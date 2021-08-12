@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Minestom</title>
+
+        <meta name="description" content="A multithreaded, open-source library for developing custom high-performance Minecraft servers.">
+        <meta name="theme-color" content="#2A3030">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&display=swap" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <div id="top-bar">
+            <a href="https://package.krystilize.com/extensions">
+                <img src="/static/svg/extension_icon.svg" alt="Extensions" height="32">
+                Extensions
+            </a>
+            <a href="https://github.com/Minestom/Minestom">
+                <img src="/static/img/GitHub-Mark-Light-64px.png" alt="GitHub" height="32">
+                GitHub
+            </a>
+            <a href="https://discord.gg/rV24CzG">
+                <img src="/static/img/Discord-Logo-White.png" alt="Discord" height="32">
+                Discord
+            </a>
+            <a href="https://wiki.minestom.com/">
+                <img src="/static/svg/gitbook-icon.svg" alt="GitBook" height="32">
+                Wiki
+            </a>
+        </div>
+        <div id="header">
+            <span>
+                <h1>Minestom</h1>
+                <h2>A complete rewrite of Minecraft server software,<br> open-source and without any code from Mojang.</h2>
+            </span>
+        </div>
+        <div class="generic-section">
+            <div>
+                <a href="https://github.com/Minestom/Minestom/blob/master/src/test/java/demo/MainDemo.java">
+                    <img src="/static/img/main-demo.png" alt="Common main method for Minestom servers">
+                </a>
+            </div>
+            <div>
+                <div>
+                    <h3>Introduction</h3>
+                    <p>
+                        A complete rewrite of Minecraft server software, <strong>open-source</strong> and <strong>without any code from Mojang</strong>.
+                    </p>
+                    <p>
+                        The main difference compared to it is that our implementation of the Minecraft server does not contain any features by default! However, we have a complete API which allows you to make anything possible with extensions, similar to plugins and mods.
+                    </p>
+                    <p class="warn">
+                        This is a developer API not meant to be used by the end-users.
+                    </p>
+                    <p class="error">
+                        Replacing Bukkit/Forge/Sponge with this <strong>will not work</strong> since we do not implement any of their APIs.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="generic-section">
+            <div>
+                <a href="https://github.com/Minestom/Minestom/blob/ccd8bea434572f234eb243c68d4e6ec03cdc007b/src/test/java/demo/PlayerInit.java#L116-L118">
+                    <img src="/static/img/instance.png" alt="Usage of Instances">
+                </a>
+            </div>
+            <div>
+                <div>
+                    <h3>Instances</h3>
+                    <p>
+                        It is our major concept, worlds are great for survival with friends, but when it scales up it can become unmanageable. The best examples can be found in Skyblock or minigames, not being able to separate each part properly and being forced to save everything in files, not to say the overhead caused by unnecessary data contained in them. Instances are a lightweight solution to it, being able to have every chunk in memory only, copying and sending it to another player in no time, making your serializer and much more...
+                    </p>
+                    <p>
+                        Being able to create instances directly on the go is a must-have, according to us it can push many more projects forward.
+                    </p>
+                    <p>
+                        Instances also come with performance benefits, unlike some others which will be fully single-threaded or maybe using one thread per world we are using a set number of threads (pool) to manage all chunks independently from instances, meaning using more CPU power.
+                    </p>
+                    <a class="wiki info" href="https://wiki.minestom.com/world/instances">Find out more about instances on the wiki</a>
+                </div>
+            </div>
+        </div>
+        <div class="generic-section">
+            <div>
+                <img src="/static/img/block.png" alt="Example usage of BlockHandler">
+            </div>
+            <div>
+                <div>
+                    <h3>Blocks</h3>
+                    <p>
+                        Minestom by default does not know what is a chest, you will have to tell him that it opens an inventory. Every "special blocks" (which aren't only visual) have to be registered, then they can be placed anywhere simply.
+                    </p>
+                    <p>
+                        However, all blocks are visually there, they just won't have interaction by default.
+                    </p>
+                    <a class="wiki info" href="https://wiki.minestom.com/world/blocks">Find out more about blocks on the wiki</a>
+                </div>
+            </div>
+        </div>
+        <div class="generic-section">
+            <div>
+                <img src="/static/img/entities.png" alt="Creating a new horse entity">
+            </div>
+            <div>
+                <div>
+                    <h3>Entities</h3>
+                    <p>
+                        The terms "passive" or "aggressive" monsters do not exist, nobody forbid you from making a flying chicken rushing into any players coming too close, doing so with NMS is a real mess because of obfuscation and the large inheritance.
+                    </p>
+                    <a class="wiki info" href="https://wiki.minestom.com/feature/entities">Find out more about entities on the wiki</a>
+                </div>
+            </div>
+        </div>
+        <div class="generic-section">
+            <div>
+                <img src="/static/img/inventory.png" alt="Opening a single-row inventory">
+            </div>
+            <div>
+                <div>
+                    <h3>Inventories</h3>
+                    <p>
+                        It is a field where Minecraft evolved a lot, inventories are now used a lot as client&lt;-&gt;server interface with clickable items and callback, we support it natively without the need of programming your solution.
+                    </p>
+                    <a class="wiki info" href="https://wiki.minestom.com/feature/inventories">Find out more about inventories on the wiki</a>
+                </div>
+            </div>
+        </div>
+        <div class="generic-section">
+            <div>
+                <a href="https://github.com/Minestom/Minestom/blob/master/src/test/java/demo/commands/PotionCommand.java">
+                    <img src="/static/img/command.png" alt="The PotionCommand from the demo server">
+                </a>
+            </div>
+            <div>
+                <div>
+                    <h3>Commands</h3>
+                    <p>
+                        Commands are the simplest way of communication between clients and server. Since 1.13 Minecraft has incorporated a new library denominated "Brigadier", we then integrated an API meant to use the full potential of args types.
+                    </p>
+                    <a class="wiki info" href="https://wiki.minestom.com/feature/commands">Find out more about commands on the wiki</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
