@@ -228,18 +228,21 @@ a:any-link {
   background-color: rgba(255, 0, 0, 0.3);
   padding: 10px;
   border-left: solid 5px red;
+  display: block;
 }
 
 .warn {
   background-color: rgba(255, 165, 0, 0.3);
   padding: 10px;
   border-left: solid 5px orange;
+  display: block;
 }
 
 .info {
   background-color: rgba(57, 63, 214, 0.3);
   padding: 10px;
   border-left: solid 5px #393fd6;
+  display: block;
 }
 
 a.wiki {
