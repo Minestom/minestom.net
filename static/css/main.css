@@ -80,7 +80,7 @@ a:any-link {
   }
 }
 
-#top-bar > a > img {
+#top-bar > a > i {
   margin-right: 6px;
 }
 
@@ -91,8 +91,8 @@ a:any-link {
   border-bottom: var(--orange) 3px;
 }
 
-#top-bar img {
-  height: 32px;
+#top-bar i {
+  font-size: 28px;
 }
 
 #header {
