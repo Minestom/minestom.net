@@ -63,10 +63,10 @@
                         A complete rewrite of Minecraft server software, <strong>open-source</strong> and <strong>without any code from Mojang</strong>.
                     </p>
                     <p>
-                        The main difference compared to it is that our implementation of the Minecraft server does not contain any features by default! However, we have a complete API which allows you to make anything possible with extensions, similar to plugins and mods.
+                        The main difference from default Minecraft is that Minestom does not contain any features by default. However, we have a complete API that allows you to make anything possible with extensions, similar to how plugins and mods work.
                     </p>
                     <p class="warn">
-                        This is a developer API not meant to be used by the end-users.
+                        This is a developer API; It is not meant to be used by the end-users.
                     </p>
                     <p class="error">
                         Replacing Bukkit/Forge/Sponge with this <strong>will not work</strong> since we do not implement any of their APIs.
@@ -77,20 +77,23 @@
         <div class="generic-section">
             <div>
                 <a href="https://github.com/Minestom/Minestom/blob/ccd8bea434572f234eb243c68d4e6ec03cdc007b/src/test/java/demo/PlayerInit.java#L116-L118">
-                    <img src="static/img/instance.png" alt="Usage of Instances" loading="lazy">
+                    <img src="static/img/create_instance.png" alt="Usage of Instances" loading="lazy">
                 </a>
             </div>
             <div>
                 <div>
                     <h3>Instances</h3>
                     <p>
-                        It is our major concept, worlds are great for survival with friends, but when it scales up it can become unmanageable. The best examples can be found in Skyblock or minigames, not being able to separate each part properly and being forced to save everything in files, not to say the overhead caused by unnecessary data contained in them. Instances are a lightweight solution to it, being able to have every chunk in memory only, copying and sending it to another player in no time, making your serializer and much more...
+                        Worlds in default Minecraft are great for playing with friends, but scaling them up can be unmanageable. The best examples of this can be found in minigames; it's hard to separate worlds properly and all worlds are saved in files. Plus, there's a lot of overhead caused by unnecessary data contained in them.
                     </p>
                     <p>
-                        Being able to create instances directly on the go is a must-have, according to us it can push many more projects forward.
+                        Instances are our lightweight solution to it. You can copy and send them to another player in no time, create a serializer, decide if they're saved in memory only, and more.
                     </p>
                     <p>
-                        Instances also come with performance benefits, unlike some others which will be fully single-threaded or maybe using one thread per world we are using a set number of threads (pool) to manage all chunks independently from instances, meaning using more CPU power.
+                        Being able to create instances on the go is a must-have that can help push many more projects forward.
+                    </p>
+                    <p>
+                        Instances also come with performance benefits. Unlike other implementations of worlds that may be fully singlethreaded or use one thread per world, Minestom uses a set number of threads (a thread pool) to manage chunks independently from instances so that lag can be reduced.
                     </p>
                     <a class="wiki info" href="https://wiki.minestom.com/world/instances">Find out more about instances on the wiki</a>
                 </div>
@@ -104,10 +107,10 @@
                 <div>
                     <h3>Blocks</h3>
                     <p>
-                        Minestom by default does not know what is a chest, you will have to tell him that it opens an inventory. Every "special blocks" (which aren't only visual) have to be registered, then they can be placed anywhere simply.
+                        By default, Minestom doesn't know what a chest is. You have to tell the server to open an inventory when someone clicks on it. Every one of these special blocks (a block that isn't only visual) has to be registered, but after that, they can just be placed in the world.
                     </p>
                     <p>
-                        However, all blocks are visually there, they just won't have interaction by default.
+                        However, all blocks are visually there, and you only need to add functionality.
                     </p>
                     <a class="wiki info" href="https://wiki.minestom.com/world/blocks">Find out more about blocks on the wiki</a>
                 </div>
@@ -115,13 +118,13 @@
         </div>
         <div class="generic-section">
             <div>
-                <img src="static/img/entities.png" alt="Creating a new horse entity" loading="lazy">
+                <img src="static/img/create_chicken.png" alt="Creating a new chicken entity" loading="lazy">
             </div>
             <div>
                 <div>
                     <h3>Entities</h3>
                     <p>
-                        The terms "passive" or "aggressive" monsters do not exist, nobody forbid you from making a flying chicken rushing into any players coming too close, doing so with NMS is a real mess because of obfuscation and the large inheritance.
+                        The terms "passive" or "aggressive" mobs do not exist. Nobody forbids you from making a flying chicken that rushes at any players that come too close. Doing this with NMS is a mess because of obfuscation and the large inheritance, but it's easy with Minestom.
                     </p>
                     <a class="wiki info" href="https://wiki.minestom.com/feature/entities">Find out more about entities on the wiki</a>
                 </div>
@@ -135,7 +138,7 @@
                 <div>
                     <h3>Inventories</h3>
                     <p>
-                        It is a field where Minecraft evolved a lot, inventories are now used a lot as client&lt;-&gt;server interface with clickable items and callback, we support it natively without the need of programming your solution.
+                        Inventories have evolved a lot from just being storage containers. They are often used as a client&lt;-&gt;server interface with clickable items and callbacks. Minestom supports it natively without having to program all the basic stuff yourself!
                     </p>
                     <a class="wiki info" href="https://wiki.minestom.com/feature/inventories">Find out more about inventories on the wiki</a>
                 </div>
@@ -151,7 +154,7 @@
                 <div>
                     <h3>Commands</h3>
                     <p>
-                        Commands are the simplest way of communication between clients and server. Since 1.13 Minecraft has incorporated a new library denominated "Brigadier", we then integrated an API meant to use the full potential of args types.
+                        Commands are the simplest way of communication between clients and server. In 1.13, Minecraft started using a new library for commands named Brigadier. Minestom has integrated an API that allows you to use the features it adds.
                     </p>
                     <a class="wiki info" href="https://wiki.minestom.com/feature/commands">Find out more about commands on the wiki</a>
                 </div>
