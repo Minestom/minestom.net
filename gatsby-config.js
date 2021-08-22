@@ -4,6 +4,7 @@ module.exports = {
     title: "Minestom",
   },
   plugins: [
+    "gatsby-plugin-advanced-sitemap",
     "gatsby-plugin-sass",
     "gatsby-plugin-mdx",
     {
