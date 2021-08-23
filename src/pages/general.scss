@@ -8,15 +8,11 @@
 body {
     color: whitesmoke;
     margin: 0;
-    width: 100%;
-    display: flex;
-    flex-flow: column;
     background-color: $gray;
     font-family: 'Roboto', sans-serif;
 }
 
 a:any-link {
-    text-decoration: none;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     color: whitesmoke;
