@@ -15,5 +15,13 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://minestom.net',
+        sitemap: 'https://minestom.net/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
   ],
 };

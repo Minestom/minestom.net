@@ -24,6 +24,7 @@
     "gatsby": "^3.11.1",
     "gatsby-plugin-advanced-sitemap": "^2.0.0",
     "gatsby-plugin-mdx": "^2.12.0",
+    "gatsby-plugin-robots-txt": "^1.6.9",
     "gatsby-plugin-sass": "^4.12.0",
     "gatsby-source-filesystem": "^3.12.0",
     "react": "^17.0.1",
