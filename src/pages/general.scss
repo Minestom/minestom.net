@@ -21,3 +21,19 @@ a:any-link {
     font-family: 'Poppins', sans-serif;
     color: whitesmoke;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $black;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $orange;
+
+    &:hover {
+        background-color: rgba($orange, .75);
+    }
+}
