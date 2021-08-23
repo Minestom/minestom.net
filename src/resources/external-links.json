@@ -1,0 +1,29 @@
+[
+    {
+        "href": "https://package.krystilize.com/",
+        "icon": "fas fa-puzzle-piece",
+        "name": "Extensions"
+    },
+    {
+        "href": "https://github.com/Minestom/Minestom",
+        "icon": "fab fa-github",
+        "name": "GitHub"
+    },
+    {
+        "href": "/discord",
+        "icon": "fab fa-discord",
+        "name": "Discord"
+    },
+    {
+        "href": "https://wiki.minestom.net/",
+        "icon": "fas fa-book",
+        "name": "Wiki",
+        "style":{"fontSize": "24px"}
+    },
+    {
+        "href": "https://javadoc.minestom.net/",
+        "icon": "fab fa-java",
+        "name": "Javadoc",
+        "style": {"fontWeight": "bold"}
+    }
+]

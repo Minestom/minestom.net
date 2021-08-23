@@ -1,0 +1,39 @@
+@import '../components/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&display=swap');
+
+:root {
+    overflow-x: hidden;
+}
+
+body {
+    color: whitesmoke;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    background-color: $gray;
+    font-family: 'Roboto', sans-serif;
+}
+
+a:any-link {
+    text-decoration: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $black;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $orange;
+
+    &:hover {
+        background-color: rgba($orange, .75);
+    }
+}

@@ -1,0 +1,16 @@
+@import './colors.scss';
+
+$callouts: (
+    error: red,
+    warn: orange,
+    info: $info-blue
+);
+
+@each $callout, $color in $callouts {
+    .#{$callout} {
+        background-color: rgba($color, .3);
+        padding: 10px;
+        border-left: solid 5px $color;
+        display: block;
+    }
+}
