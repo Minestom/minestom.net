@@ -6,7 +6,7 @@ export default class WikiReference extends Component {
     wikiBaseURL = "https://wiki.minestom.net"
     render() {
         return (
-            <a class="wiki info" href={this.wikiBaseURL + this.props.path} dangerouslySetInnerHTML={{__html: this.props.text}} />
+            <a className="wiki info" href={this.wikiBaseURL + this.props.path} dangerouslySetInnerHTML={{__html: this.props.text}} />
         )
     }
 }

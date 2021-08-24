@@ -6,7 +6,7 @@ import { Warn, Error } from './Callout'
 export default class GenericSection extends Component {
     render() {
         return (
-            <div class="generic-section">
+            <div className="generic-section">
                 <div>
                     <img src={this.props.img.src} alt={this.props.img.alt} loading="lazy" />
                 </div>

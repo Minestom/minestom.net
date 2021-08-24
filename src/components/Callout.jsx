@@ -4,7 +4,7 @@ import './Callout.scss'
 export class Error extends Component {
     render() {
         return (
-            <p class="error" dangerouslySetInnerHTML={{__html: this.props.text}} />
+            <p className="error" dangerouslySetInnerHTML={{__html: this.props.text}} />
         )
     }
 }
@@ -12,7 +12,7 @@ export class Error extends Component {
 export class Warn extends Component {
     render() {
         return (
-            <p class="warn" dangerouslySetInnerHTML={{__html: this.props.text}} />
+            <p className="warn" dangerouslySetInnerHTML={{__html: this.props.text}} />
         )
     }
 }
@@ -20,7 +20,7 @@ export class Warn extends Component {
 export class Info extends Component {
     render() {
         return (
-            <p class="info" dangerouslySetInnerHTML={{__html: this.props.text}} />
+            <p className="info" dangerouslySetInnerHTML={{__html: this.props.text}} />
         )
     }
 }

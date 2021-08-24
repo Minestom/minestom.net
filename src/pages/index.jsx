@@ -21,7 +21,7 @@ export default class index extends Component {
                 <div style={{display: "flex", flexFlow: "column", height: "100vh"}}>
                     <Navbar />
                     <div style={{overflow: "auto"}}>
-                        <div class="header">
+                        <div className="header">
                             <span>
                                 <h1>Minestom</h1>
                                 <h2>A Minecraft server implementation,<br/> open-source and without any code from Mojang.</h2>
