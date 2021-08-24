@@ -5,7 +5,7 @@ export default class NavbarLink extends Component {
     render() {
         return (
             <a href={this.props.href} className="navbar-link">
-                <i className={this.props.icon} style={this.props.style}></i>
+                <i className={this.props.icon} style={this.props.style}/>
                 {this.props.name}
             </a>
         )
