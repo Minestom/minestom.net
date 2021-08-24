@@ -13,9 +13,10 @@
 
     @media screen and (max-aspect-ratio: 6/10) {
         height: fit-content;
+        padding: 20px 0;
 
         span {
-            bottom: 0px !important;
+            bottom: 0 !important;
         }
     }
 
