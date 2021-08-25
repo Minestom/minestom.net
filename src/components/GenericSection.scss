@@ -10,6 +10,10 @@
         flex-flow: row-reverse;
     }
 
+    &:nth-last-of-type(1) {
+        padding-bottom: 10%;
+    }
+
     @media (max-width: 1024px) {
 
         > div:first-of-type {
