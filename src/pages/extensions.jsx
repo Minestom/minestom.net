@@ -10,7 +10,7 @@ export default class index extends Component {
     constructor(props) {
         super(props);
         this.state = {}
-        if (fetch) {
+        if (typeof fetch !== "undefined") {
             fetch("https://minestom.net/api/extensions").then(response => response.json())
                 .then(result => this.setState({
                     extensions: result.results
