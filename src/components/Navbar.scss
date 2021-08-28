@@ -4,8 +4,15 @@
     height: 45px;
     width: 100%;
     display: flex;
-    flex-flow: row-reverse;
+    flex-flow: row;
+    justify-content: flex-end;
     background-color: $black;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     flex-shrink: 0;
+
+    span {
+        display: flex;
+        margin-left: 0;
+        margin-right: auto;
+    }
 }

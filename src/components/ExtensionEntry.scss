@@ -1,0 +1,33 @@
+@import "hover";
+
+.extension-entry {
+  list-style-type: none;
+  width: 500px;
+  padding: 0;
+
+  div {
+    padding: 10px 15px;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  h3, h4 {
+    display: inline-block;
+  }
+
+  h3 {
+    margin-right: 10px;
+  }
+
+  h4 {
+    font-weight: unset;
+  }
+
+  h4 a {
+    text-decoration: underline dotted;
+  }
+
+  @include highlight-on-hover($black);
+}

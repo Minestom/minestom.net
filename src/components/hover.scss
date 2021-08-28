@@ -1,0 +1,21 @@
+@import "colors";
+
+@mixin highlight-on-hover($color) {
+  &:hover {
+    transition-duration: .5s;
+    background-color: $color;
+
+    &:after {
+      transition-duration: .5s;
+      width: 100%;
+    }
+  }
+
+  &:after {
+    content: "";
+    height: 3px;
+    width: 0;
+    display: block;
+    background-color: $orange;
+  }
+}
