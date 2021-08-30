@@ -1,0 +1,19 @@
+th {
+  padding-top: 15px;
+  text-align: left;
+  font-size: x-large;
+}
+
+td {
+  &:first-of-type {
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: underline dotted;
+  }
+}
+
+.sub-table {
+  font-weight: initial;
+}

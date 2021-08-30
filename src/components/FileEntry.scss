@@ -1,0 +1,16 @@
+@import "colors";
+
+.fileEntry {
+  margin-top: 5px;
+  background-color: $black;
+  padding: 5px;
+  display: block;
+  i, p {
+    display: inline-block;
+    margin: 0 7px 0 0;
+  }
+
+  p:last-of-type {
+    align-self: end;
+  }
+}
