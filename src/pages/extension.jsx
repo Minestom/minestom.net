@@ -4,9 +4,12 @@ import {Helmet} from "react-helmet";
 import Navbar from "../components/Navbar";
 import FileEntry from "../components/FileEntry";
 import './two-col-page.scss'
-import {Warn} from "../components/Callout";
+import {Error, Warn} from "../components/Callout";
 import './extension.scss'
-import {MDXRenderer} from "gatsby-plugin-mdx";
+import ReactDOM from "react-dom";
+import marked from "marked";
+
+const README = "/README.md"
 
 class Extension extends Component {
     constructor(props) {
@@ -19,15 +22,48 @@ class Extension extends Component {
                 return
             }
             this.state = {}
+            this.readme = React.createRef()
             let split = id.split('/');
             fetch("https://minestom.net/api/extension?id=" + id).then(response => response.json())
-                .then(result => this.setState({
-                    ...result,
-                    name: split[1],
-                    owner: split[0],
-                    url: "https://github.com/" + id,
-                    id: id
-                }))
+                .then(result => {
+                    this.setState({
+                        ...result,
+                        name: split[1],
+                        owner: split[0],
+                        url: "https://github.com/" + id,
+                        id: id
+                    })
+                    const BASE_URL = "https://raw.githubusercontent.com/" + id + "/" + this.state.defaultBranch
+                    const useResult = (result) => {
+                        if (!result.ok) throw new Error("Not OK")
+
+                        result.text().then(rawMd => {
+                            const html = marked(rawMd)
+                            const span = document.createElement("span")
+                            span.innerHTML = html
+                            const images = span.getElementsByTagName("img");
+                            for (let i = 0; i < images.length; i++) {
+                                let img = images[i]
+                                if ((img.src.indexOf('http://') === -1 && img.src.indexOf('https://') === -1)) {
+                                    img.src = BASE_URL + (img.src.startsWith("/") ? "" : "/") + img.src
+                                }
+                            }
+                            document.getElementById("readme").appendChild(span)
+                        })
+                    }
+                    // Find readme.md
+                    fetch(BASE_URL + README)
+                        .then(useResult)
+                        .catch(err =>
+                            fetch(BASE_URL + "/docs" + README)
+                                .then(useResult)
+                                .catch(err1 => fetch(BASE_URL + "/.github" + README)
+                                    .then(useResult)
+                                    .catch(err2 => {
+                                        // No readme
+                                        ReactDOM.render(<Error text={"This extension doesn't have a README.md or we couldn't access it."} />, this.readme.current)
+                                    })))
+                })
         }
     }
 
@@ -116,8 +152,8 @@ class Extension extends Component {
                                 </div>
                             )}
                         </div>
-                        <div id={"readme"}>
-
+                        <div ref={this.readme} id={"readme"}>
+                            Loading readme...
                         </div>
                     </div>
                 </div>
