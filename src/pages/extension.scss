@@ -18,8 +18,8 @@ td {
   font-weight: initial;
 }
 
-.page-container {
-  justify-content: space-evenly;
+.page-container > div {
+  width: 45%;
 }
 
 #readme img {

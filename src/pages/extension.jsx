@@ -21,6 +21,7 @@ class Extension extends Component {
                 window.location.href = "/extensions"
                 return
             }
+            this.readme = React.createRef()
             this.state = {}
             let split = id.split('/');
             fetch("https://minestom.net/api/extension?id=" + id).then(response => response.json())
@@ -39,6 +40,7 @@ class Extension extends Component {
                         result.text().then(rawMd => {
                             const html = marked(rawMd)
                             const span = document.createElement("span")
+                            span.style.overflow = "auto"
                             span.innerHTML = html
                             const images = span.getElementsByTagName("img");
                             for (let i = 0; i < images.length; i++) {
@@ -153,7 +155,7 @@ class Extension extends Component {
                                 </div>
                             )}
                         </div>
-                        <div style={{overflow: "auto"}} id={"readme"}>
+                        <div ref={this.readme} id={"readme"}>
                             Loading readme...
                         </div>
                     </div>
