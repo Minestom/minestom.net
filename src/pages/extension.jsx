@@ -45,8 +45,9 @@ class Extension extends Component {
                             const images = span.getElementsByTagName("img");
                             for (let i = 0; i < images.length; i++) {
                                 let img = images[i]
-                                if (img.src.startsWith(window.location.origin)) {
-                                    img.src = img.src.replace(window.location.origin, BASE_URL)
+                                let src = img.getAttribute("src")
+                                if (!src.startsWith("http://") && !src.startsWith("https://")) {
+                                    img.src = BASE_URL + (src.startsWith("/") ? "" : "/") + src
                                 }
                             }
                             const readmeContainer = document.getElementById("readme")
