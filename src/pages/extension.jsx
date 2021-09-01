@@ -22,7 +22,6 @@ class Extension extends Component {
                 return
             }
             this.state = {}
-            this.readme = React.createRef()
             let split = id.split('/');
             fetch("https://minestom.net/api/extension?id=" + id).then(response => response.json())
                 .then(result => {
@@ -44,11 +43,13 @@ class Extension extends Component {
                             const images = span.getElementsByTagName("img");
                             for (let i = 0; i < images.length; i++) {
                                 let img = images[i]
-                                if ((img.src.indexOf('http://') === -1 && img.src.indexOf('https://') === -1)) {
-                                    img.src = BASE_URL + (img.src.startsWith("/") ? "" : "/") + img.src
+                                if (img.src.startsWith(window.location.origin)) {
+                                    img.src = img.src.replace(window.location.origin, BASE_URL)
                                 }
                             }
-                            document.getElementById("readme").appendChild(span)
+                            const readmeContainer = document.getElementById("readme")
+                            readmeContainer.innerHTML = ""
+                            readmeContainer.appendChild(span)
                         })
                     }
                     // Find readme.md
@@ -74,7 +75,7 @@ class Extension extends Component {
                 <Helmet>
                     <title>Loading extension data... | Minestom</title>
                 </Helmet>
-                <div>
+                <div style={{display: "flex", flexFlow: "column", height: "100vh"}}>
                     <Navbar/>
                     <div className="page-container">
                         <div>
@@ -152,7 +153,7 @@ class Extension extends Component {
                                 </div>
                             )}
                         </div>
-                        <div ref={this.readme} id={"readme"}>
+                        <div style={{overflow: "auto"}} id={"readme"}>
                             Loading readme...
                         </div>
                     </div>
