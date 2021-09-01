@@ -14,6 +14,7 @@ const README = "/README.md"
 class Extension extends Component {
     constructor(props) {
         super(props);
+        this.state = {}
 
         if (typeof window !== "undefined") {
             let id = new URLSearchParams(window.location.search).get("id");
@@ -22,7 +23,6 @@ class Extension extends Component {
                 return
             }
             this.readme = React.createRef()
-            this.state = {}
             let split = id.split('/');
             fetch("https://minestom.net/api/extension?id=" + id).then(response => response.json())
                 .then(result => {
