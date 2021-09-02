@@ -96,13 +96,21 @@ class Extension extends Component {
                                         </tr>
                                         <tr>
                                             <td>Owner</td>
-                                            <td><a
-                                                href={"https://github.com/" + this.state.owner}>{this.state.owner}</a>
+                                            <td>
+                                                <a href={"https://github.com/" + this.state.owner}>
+                                                    {this.state.owner}
+                                                    <i className="fas fa-external-link-alt"/>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Repository</td>
-                                            <td><a href={this.state.url}>{this.state.id}</a></td>
+                                            <td>
+                                                <a href={this.state.url}>
+                                                    {this.state.id}
+                                                    <i className="fas fa-external-link-alt"/>
+                                                </a>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th colSpan={2}>Statistics</th>

@@ -9,8 +9,10 @@ td {
     font-weight: bold;
   }
 
-  a {
-    text-decoration: underline dotted;
+  a > i {
+    font-size: 85%;
+    vertical-align: middle;
+    margin-left: 5px;
   }
 }
 
@@ -25,6 +27,12 @@ td {
   }
 }
 
-#readme img {
-  max-width: 100%;
+#readme {
+  img {
+    max-width: 100%;
+  }
+
+  &:last-child {
+    padding-bottom: 10vh;
+  }
 }
