@@ -8,6 +8,7 @@ import {Error, Warn} from "../components/Callout";
 import './extension.scss'
 import ReactDOM from "react-dom";
 import marked from "marked";
+import Loading from "../components/Loading";
 
 const README = "/README.md"
 
@@ -82,7 +83,7 @@ class Extension extends Component {
                     <Navbar/>
                     <div className="page-container">
                         <div>
-                            {this.state.name === undefined ? (<p>Loading...</p>) : (
+                            {this.state.name === undefined ? (<Loading text={"details"} />) : (
                                 <div style={{overflow: "auto"}}>
                                     <Helmet>
                                         <title>{this.state.name} | Minestom</title>
@@ -157,7 +158,7 @@ class Extension extends Component {
                             )}
                         </div>
                         <div ref={this.readme} id={"readme"}>
-                            Loading readme...
+                            <Loading text={"README.md"} />
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import GeneralHeader from '../components/GeneralHeader'
 import { Helmet } from 'react-helmet'
 import ExtensionEntry from "../components/ExtensionEntry";
 import './two-col-page.scss'
+import Loading from "../components/Loading";
 
 export default class index extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ export default class index extends Component {
                         <div>
                             <ul style={{overflow: "auto"}}>
                                 {this.state.extensions === undefined ?
-                                    (<p>Loading ...</p>)
+                                    (<Loading text={"extension list"} />)
                                     :
                                     (this.state.extensions.map(extension => (<ExtensionEntry {... extension} />)))}
                             </ul>
