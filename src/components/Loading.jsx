@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import './Loading.scss'
 
 class Loading extends Component {
     render() {
         return (
-            <p>
+            <p className={"loading"}>
+                <i className="fas fa-spinner fa-spin"></i>
                 Loading {this.props.text}...
             </p>
         );
