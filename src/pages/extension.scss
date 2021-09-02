@@ -32,7 +32,7 @@ td {
     max-width: 100%;
   }
 
-  &:last-child {
+  > span > :last-child {
     padding-bottom: 10vh;
   }
 }
