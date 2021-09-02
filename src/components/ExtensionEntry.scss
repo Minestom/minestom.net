@@ -36,6 +36,10 @@
   .direct-link {
     float: right;
     display: none;
+
+    i {
+      font-size: 140%;
+    }
   }
 
   &:hover .direct-link {
