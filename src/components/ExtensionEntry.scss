@@ -33,5 +33,14 @@
     border-left: $orange 3px solid;
   }
 
+  .direct-link {
+    float: right;
+    display: none;
+  }
+
+  &:hover .direct-link {
+    display: inline-block;
+  }
+
   @include highlight-on-hover($black);
 }
