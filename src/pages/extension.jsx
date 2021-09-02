@@ -9,6 +9,7 @@ import './extension.scss'
 import ReactDOM from "react-dom";
 import marked from "marked";
 import Loading from "../components/Loading";
+import * as timeago from "timeago.js";
 
 const README = "/README.md"
 
@@ -124,12 +125,12 @@ class Extension extends Component {
                                             <td>{this.state.forkCount}</td>
                                         </tr>
                                         <tr>
-                                            <td>Created at</td>
-                                            <td>{new Date(this.state.createdAt).toUTCString()}</td>
+                                            <td>Created on</td>
+                                            <td>{new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeStyle: 'long' }).format(new Date(this.state.createdAt))} (<time dateTime={this.state.createdAt} />)</td>
                                         </tr>
                                         <tr>
                                             <td>Last push</td>
-                                            <td>{new Date(this.state.pushedAt).toUTCString()}</td>
+                                            <td><time dateTime={this.state.pushedAt} /></td>
                                         </tr>
                                         <tr>
                                             <th colSpan={2}>Release</th>
@@ -150,8 +151,8 @@ class Extension extends Component {
                                                                 <td>{this.state.release.tag_name}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Created at</td>
-                                                                <td>{this.state.release.created_at}</td>
+                                                                <td>Created</td>
+                                                                <td><time dateTime={this.state.release.created_at} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Files</td>
@@ -172,6 +173,12 @@ class Extension extends Component {
                 </div>
             </div>
         );
+    }
+
+    componentDidUpdate(props, state, snapshot) {
+        if (typeof window !== "undefined") {
+            timeago.render(document.querySelectorAll("time"))
+        }
     }
 }
 
