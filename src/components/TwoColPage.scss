@@ -45,5 +45,15 @@
         overflow: auto;
       }
     }
+
+    > div:first-of-type {
+      height: calc(100vh - 45px);
+      overflow: auto;
+      direction: rtl;
+
+      > div {
+        direction: ltr;
+      }
+    }
   }
 }

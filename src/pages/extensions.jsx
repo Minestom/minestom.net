@@ -49,13 +49,15 @@ export default class index extends Component {
                 </Helmet>
                 <TwoColPage>
                     <div>
-                        <h1 className="page-title">Extensions</h1>
-                        <p>Extensions are a great way to share common functionalities across your projects or even share it with others.</p>
-                        <p>Here you can find public extensions, official ones are highlighted with orange; work-in-progress extensions are opaque.</p>
-                        <em>Note that the WIP state is determined automatically based on releases, if your extension is production ready be sure to create a release for it.</em>
-                        <h2>How can I submit my extension?</h2>
-                        <p>You just need to add the <code>minestom-extension</code> topic to your repository on GitHub.</p>
-                        <em>Please not that after adding the topic it may take up to an hour for the extension to show up in this list.</em>
+                        <div>
+                            <h1 className="page-title">Extensions</h1>
+                            <p>Extensions are a great way to share common functionalities across your projects or even share it with others.</p>
+                            <p>Here you can find public extensions, official ones are highlighted with orange; work-in-progress extensions are opaque.</p>
+                            <em>Note that the WIP state is determined automatically based on releases, if your extension is production ready be sure to create a release for it.</em>
+                            <h2>How can I submit my extension?</h2>
+                            <p>You just need to add the <code>minestom-extension</code> topic to your repository on GitHub.</p>
+                            <em>Please not that after adding the topic it may take up to an hour for the extension to show up in this list.</em>
+                        </div>
                     </div>
                     <div>
                         <h2>Extension list</h2>
