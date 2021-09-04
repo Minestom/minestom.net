@@ -1,4 +1,5 @@
-@import '../components/colors.scss';
+@import '../components/colors';
+@import "../components/breakpoints";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&display=swap');
 
 :root {
@@ -16,6 +17,12 @@ a:any-link {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     color: whitesmoke;
+}
+
+.only-small {
+    @media (min-width: $medium) {
+        display: none;
+    }
 }
 
 ::-webkit-scrollbar {

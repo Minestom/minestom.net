@@ -60,7 +60,7 @@ export default class index extends Component {
                         </div>
                     </div>
                     <div>
-                        <h2>Extension list</h2>
+                        <h2 className={"only-small"}>Extension list</h2>
                         <ul className={"extension-list"}>
                             {this.state.extensions === undefined ?
                                 (<Loading text={"extension list"} />)
