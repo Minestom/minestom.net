@@ -1,10 +1,13 @@
 @import "colors";
+@import "hover";
 
 .fileEntry {
   margin-top: 5px;
   background-color: $black;
   padding: 5px;
   display: block;
+  width: 100%;
+
   i, p {
     display: inline-block;
     margin: 0 7px 0 0;
@@ -13,4 +16,6 @@
   p:last-of-type {
     float: right;
   }
+
+  @include highlight-on-hover($gray)
 }
