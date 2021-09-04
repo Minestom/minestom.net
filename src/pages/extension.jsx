@@ -156,9 +156,9 @@ class Extension extends Component {
                                                             <td><time dateTime={this.state.release.created_at} /></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Files</td>
-                                                            <td>{this.state.release.assets.map(asset => (<FileEntry {...asset} />))}</td>
+                                                            <td colSpan={2}>Files</td>
                                                         </tr>
+                                                        {this.state.release.assets.map(asset => (<tr key={asset.name}><td colSpan={2}><FileEntry {...asset} /></td></tr>))}
                                                     </table>
                                                 </td>
                                             </tr>)
