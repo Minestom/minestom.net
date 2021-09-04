@@ -11,11 +11,30 @@ export default class index extends Component {
     constructor(props) {
         super(props);
         this.state = {}
-        if (typeof fetch !== "undefined") {
-            fetch("https://minestom.net/api/extensions").then(response => response.json())
-                .then(result => this.setState({
-                    extensions: result.results
-                }))
+
+        const loadExtensionsPage = (end) => {
+            let url = "https://minestom.net/api/extensions";
+            if (end !== null) {
+                url += `?end=${end}`
+            }
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    if (this.state.extensions === undefined) {
+                        this.state.extensions = []
+                    }
+                    this.setState({
+                        extensions: [...this.state.extensions, ...result.results]
+                    })
+
+                    if (result.pageInfo.hasNextPage) {
+                        loadExtensionsPage(result.pageInfo.endCursor)
+                    }
+                })
+        }
+
+        if (typeof window !== "undefined") {
+            loadExtensionsPage(null)
         }
     }
 
