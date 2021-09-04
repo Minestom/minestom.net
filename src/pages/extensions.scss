@@ -6,6 +6,10 @@
     padding: 0;
   }
 
+  .page-container {
+    justify-content: space-around !important;
+  }
+
   h2 {
     @media (min-width: $medium) {
       display: none;

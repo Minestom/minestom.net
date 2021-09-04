@@ -11,8 +11,12 @@
   .page-container {
     display: flex;
     flex-flow: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     overflow: auto;
+
+    > div {
+      padding: 0 5px;
+    }
 
     @media (max-width: $medium) {
       display: block;
@@ -28,6 +32,12 @@
         max-width: 500px;
       }
     }
+    > div:last-of-type {
+      @media (min-width: $medium) {
+        max-width: 50%;
+      }
+    }
+
     &:nth-last-child(1) {
       overflow-x: hidden;
       pre {
