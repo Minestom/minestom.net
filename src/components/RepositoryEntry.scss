@@ -51,5 +51,5 @@
     display: inline-block;
   }
 
-  @include highlight-on-hover($black);
+  @include highlight-on-hover($black, true);
 }

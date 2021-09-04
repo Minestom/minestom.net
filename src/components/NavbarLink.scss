@@ -1,5 +1,6 @@
 @import "./colors.scss";
 @import "hover";
+@import "breakpoints";
 
 .navbar-link {
     display: flex;
@@ -8,7 +9,7 @@
     color: $light-gray;
     font-family: 'Poppins', sans-serif;
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: $small) {
         font-size: 0;
     }
     

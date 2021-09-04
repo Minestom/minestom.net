@@ -1,7 +1,10 @@
-@import "./colors.scss";
+@import "colors";
+@import "breakpoints";
+
+$navbar-height: 45px;
 
 .navbar {
-    height: 45px;
+    height: $navbar-height;
     width: 100%;
     display: flex;
     flex-flow: row;
@@ -14,5 +17,32 @@
         display: flex;
         margin-left: 0;
         margin-right: auto;
+
+        @media (max-width: $small) {
+            .toggle-container {
+                &.on {
+                    display: block;
+                    position: absolute;
+                    top: $navbar-height;
+                    background-color: $black;
+                    z-index: 999;
+
+                    a {
+                        font-size: unset !important;
+                    }
+                }
+            }
+        }
+
+        > i {
+            display: none;
+
+            @media (max-width: $small) {
+                display: block;
+                padding: 5px 10px;
+                font-size: 28px;
+                align-self: center;
+            }
+        }
     }
 }
