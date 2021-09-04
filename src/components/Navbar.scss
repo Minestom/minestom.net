@@ -6,6 +6,9 @@ $navbar-height: 45px;
 .navbar {
     height: $navbar-height;
     width: 100%;
+    z-index: 1;
+    position: sticky;
+    top: 0;
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
@@ -25,7 +28,6 @@ $navbar-height: 45px;
                     position: absolute;
                     top: $navbar-height;
                     background-color: $black;
-                    z-index: 999;
 
                     a {
                         font-size: unset !important;
