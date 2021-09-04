@@ -41,7 +41,7 @@ export default class index extends Component {
                                 {this.state.extensions === undefined ?
                                     (<Loading text={"extension list"} />)
                                     :
-                                    (this.state.extensions.map(extension => (<RepositoryEntry {... extension} />)))}
+                                    (this.state.extensions.map(extension => (<RepositoryEntry {... extension} page={"extension"}  key={`${extension.owner}/${extension.name}`} />)))}
                             </ul>
                         </div>
                     </div>

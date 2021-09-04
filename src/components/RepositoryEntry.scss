@@ -1,6 +1,6 @@
 @import "hover";
 
-.extension-entry {
+.repository-entry {
   list-style-type: none;
   width: 500px;
   padding: 0;
@@ -31,6 +31,11 @@
 
   .official {
     border-left: $orange 3px solid;
+    background-color: rgba($orange, .1);
+  }
+
+  .pre-release {
+    opacity: .5;
   }
 
   .direct-link {
