@@ -47,12 +47,14 @@
     }
 
     > div:first-of-type {
-      height: calc(100vh - 45px);
-      overflow: auto;
-      direction: rtl;
+      @media (min-width: $medium) {
+        height: calc(100vh - 45px);
+        overflow: auto;
+        direction: rtl;
 
-      > div {
-        direction: ltr;
+        > div {
+          direction: ltr;
+        }
       }
     }
   }
