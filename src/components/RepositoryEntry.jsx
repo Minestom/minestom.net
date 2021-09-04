@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './ExtensionEntry.scss'
+import './RepositoryEntry.scss'
 
-export default class ExtensionEntry extends Component {
+export default class RepositoryEntry extends Component {
     render() {
         return (
             <li className="extension-entry">

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import './general.scss'
 import GeneralHeader from '../components/GeneralHeader'
 import { Helmet } from 'react-helmet'
-import ExtensionEntry from "../components/ExtensionEntry";
+import RepositoryEntry from "../components/RepositoryEntry";
 import './two-col-page.scss'
 import Loading from "../components/Loading";
 
@@ -41,7 +41,7 @@ export default class index extends Component {
                                 {this.state.extensions === undefined ?
                                     (<Loading text={"extension list"} />)
                                     :
-                                    (this.state.extensions.map(extension => (<ExtensionEntry {... extension} />)))}
+                                    (this.state.extensions.map(extension => (<RepositoryEntry {... extension} />)))}
                             </ul>
                         </div>
                     </div>
