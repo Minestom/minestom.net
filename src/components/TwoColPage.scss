@@ -1,0 +1,39 @@
+@import "../components/breakpoints";
+
+.page {
+  display: flex;
+  flex-flow: column;
+
+  @media (min-width: $medium) {
+    height: 100vh;
+  }
+
+  .page-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    overflow: auto;
+
+    @media (max-width: $medium) {
+      display: block;
+      margin: 10px;
+    }
+
+    @media (min-width: $medium) {
+      > div:first-of-type {
+        height: fit-content;
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
+        max-width: 500px;
+      }
+    }
+    &:nth-last-child(1) {
+      overflow-x: hidden;
+      pre {
+        width: 100%;
+        overflow: auto;
+      }
+    }
+  }
+}
