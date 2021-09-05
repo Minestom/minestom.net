@@ -5,12 +5,21 @@
   margin-top: 5px;
   background-color: $black;
   padding: 5px;
-  display: block;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  width: 95%;
 
   i, p {
     display: inline-block;
     margin: 0 7px 0 0;
+  }
+
+  p:first-of-type {
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
   }
 
   p:last-of-type {
