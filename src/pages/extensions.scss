@@ -1,0 +1,14 @@
+@import "../components/breakpoints";
+
+.extensions-page {
+  .extension-list {
+    overflow: auto;
+    padding: 0;
+  }
+
+  .page-container {
+    justify-content: space-evenly !important;
+
+
+  }
+}
