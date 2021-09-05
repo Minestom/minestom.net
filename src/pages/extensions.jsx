@@ -68,7 +68,7 @@ export default class index extends Component {
                     <div>
                         <h2 className={"only-small"}>Extension list</h2>
                         <ul className={"extension-list"}>
-                            <Search data={this.state.extensions} keys={["owner", "name", "description"]} onResult={this.handleSearch} />
+                            <Search state={this.state} data={"extensions"} keys={["owner", "name", "description"]} onResult={this.handleSearch} />
                             {this.state.extensions === undefined ?
                                 (<Loading text={"extension list"} />)
                                 :

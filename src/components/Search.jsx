@@ -8,8 +8,8 @@ class Search extends Component {
         this.handleInput = this.handleInput.bind(this)
 
         this.fuse = null
-        if (this.props.data !== undefined) {
-            this.fuse = new Fuse(this.props.data, {
+        if (this.props.state[this.props.data] !== undefined) {
+            this.fuse = new Fuse(this.props.state[this.props.data], {
                 keys: this.props.keys,
                 threshold: .25
             })
@@ -27,6 +27,13 @@ class Search extends Component {
 
     handleInput(event) {
         const value = event.target.value;
+
+        if (this.fuse === null && this.props.state[this.props.data] !== undefined) {
+            this.fuse = new Fuse(this.props.state[this.props.data], {
+                keys: this.props.keys,
+                threshold: .25
+            })
+        }
 
         if(value.length === 0 || this.fuse === null) {
             this.props.onResult({
