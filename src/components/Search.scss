@@ -1,9 +1,9 @@
 @import "colors";
+@import "breakpoints";
 
 .search {
-  max-width: 500px;
   width: available;
-  //box-sizing: border-box;
+  box-sizing: border-box;
   background-color: $black;
   padding: 5px;
   margin-bottom: 15px;
@@ -11,6 +11,10 @@
   flex-flow: row;
   align-items: center;
   box-shadow: 6px 10px 8px -7px rgba(0,0,0,.2);
+
+  @media (min-width: $medium) {
+    width: 500px;
+  }
 
   input {
     width: 100%;
