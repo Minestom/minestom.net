@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Fuse from "fuse.js";
+import './Search.scss'
 
 class Search extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"search"}>
                 <i className="fas fa-search"/>
                 <input type={"text"} placeholder={"Search"} onInput={this.handleInput}/>
             </div>

@@ -12,7 +12,7 @@
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    overflow: auto;
+    overflow-y: scroll;
 
     @media (min-width: $medium) {
       justify-content: center;
