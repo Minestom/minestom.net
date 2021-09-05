@@ -6,11 +6,15 @@ import RepositoryEntry from "../components/RepositoryEntry";
 import Loading from "../components/Loading";
 import TwoColPage from "../components/TwoColPage";
 import './extensions.scss'
+import Search from "../components/Search";
 
 export default class index extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.handleSearch = this.handleSearch.bind(this)
+        this.state = {
+            useResults: false
+        }
 
         const loadExtensionsPage = (end) => {
             let url = "https://minestom.net/api/extensions";
@@ -23,8 +27,10 @@ export default class index extends Component {
                     if (this.state.extensions === undefined) {
                         this.state.extensions = []
                     }
+                    const extensions = [...this.state.extensions, ...result.results];
                     this.setState({
-                        extensions: [...this.state.extensions, ...result.results]
+                        extensions: extensions,
+                        displayData: this.state.useResults ? this.state.displayData : extensions
                     })
 
                     if (result.pageInfo.hasNextPage) {
@@ -62,14 +68,26 @@ export default class index extends Component {
                     <div>
                         <h2 className={"only-small"}>Extension list</h2>
                         <ul className={"extension-list"}>
+                            <Search data={this.state.extensions} keys={["owner", "name", "description"]} onResult={this.handleSearch} />
                             {this.state.extensions === undefined ?
                                 (<Loading text={"extension list"} />)
                                 :
-                                (this.state.extensions.map(extension => (<RepositoryEntry {... extension} page={"extension"}  key={`${extension.owner}/${extension.name}`} />)))}
+                                (this.state.displayData.map(extension => (<RepositoryEntry {... extension} page={"extension"}  key={`${extension.owner}/${extension.name}`} />)))}
                         </ul>
                     </div>
                 </TwoColPage>
             </div>
         )
+    }
+
+    handleSearch(result) {
+        const newState = Object.assign({}, this.state)
+        newState.useResults = result.useResults
+        if (newState.useResults) {
+            newState.displayData = result.results
+        } else {
+            newState.displayData = newState.extensions
+        }
+        this.setState(newState)
     }
 }
