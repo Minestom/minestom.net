@@ -88,7 +88,7 @@ class Extension extends Component {
                                 <Helmet>
                                     <title>{this.state.name} | Minestom</title>
                                     <link rel="stylesheet"
-                                          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/default.min.css" />
+                                          href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/androidstudio.css" />
                                 </Helmet>
                                 <h1>{this.state.name}</h1>
                                 <p>{this.state.description}</p>
