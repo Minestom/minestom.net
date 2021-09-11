@@ -5,7 +5,7 @@ class Loading extends Component {
     render() {
         return (
             <p className={"loading"}>
-                <i className="fas fa-spinner fa-spin"></i>
+                <i className="fas fa-spinner fa-spin" />
                 Loading {this.props.text}...
             </p>
         );
