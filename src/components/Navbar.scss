@@ -8,14 +8,19 @@ $navbar-height: 45px;
     height: $navbar-height;
     width: 100%;
     z-index: 10;
-    position: sticky;
-    top: 0;
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
     background-color: $black;
-    @include shadow($gray);
+    @include shadow($dark-gray);
     flex-shrink: 0;
+
+    &:after {
+        position: absolute;
+        width: calc(100% - 4px);
+        top: $navbar-height;
+        left: 0;
+    }
 
     > .navbar-link {
         @media (max-width: $medium) {

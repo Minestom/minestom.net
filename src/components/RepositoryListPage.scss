@@ -1,5 +1,6 @@
 @import "colors";
 @import "common";
+@import "breakpoints";
 
 .repositories-page {
   .repository-list {
@@ -8,10 +9,14 @@
 
     li:first-of-type {
       margin-top: 50px;
+
+      @media (max-width: $medium) {
+        margin-top: 10px;
+      }
     }
 
     li:last-of-type {
-      margin-bottom: 25%;
+      margin-bottom: 200px;
     }
   }
 
@@ -25,6 +30,11 @@
     padding-top: 10px;
     background-color: $gray;
 
-    @include shadow($gray, rgba(0,0,0,0), 30px);
+    @media (max-width: $medium) {
+      position: sticky;
+      top: 0;
+    }
+
+    @include shadow($gray, 50px);
   }
 }

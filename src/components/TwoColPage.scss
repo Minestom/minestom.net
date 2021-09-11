@@ -1,4 +1,5 @@
 @import "../components/breakpoints";
+@import "Navbar";
 
 .page {
   display: flex;
@@ -12,10 +13,13 @@
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    overflow-y: scroll;
+    height: calc(100vh - #{$navbar-height});
+    margin: 0;
+    padding: 0 10px 10px;
 
     @media (min-width: $medium) {
       justify-content: center;
+      overflow-y: scroll;
     }
 
     > div {
@@ -24,7 +28,6 @@
 
     @media (max-width: $medium) {
       display: block;
-      margin: 10px;
     }
 
     @media (min-width: $medium) {
