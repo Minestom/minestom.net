@@ -1,19 +1,20 @@
 @import "colors";
 @import "breakpoints";
+@import "common";
 
 $navbar-height: 45px;
 
 .navbar {
     height: $navbar-height;
     width: 100%;
-    z-index: 1;
+    z-index: 10;
     position: sticky;
     top: 0;
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
     background-color: $black;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    @include shadow($gray);
     flex-shrink: 0;
 
     span {

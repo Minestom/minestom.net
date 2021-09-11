@@ -6,5 +6,13 @@
   {
     "href": "/extensions",
     "name": "Extensions"
+  },
+  {
+    "href": "/libraries",
+    "name": "Libraries"
+  },
+  {
+    "href": "/implementations",
+    "name": "Implementations"
   }
 ]

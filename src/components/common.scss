@@ -1,0 +1,11 @@
+@mixin shadow($from: black, $to: rgba(0,0,0,0), $height: 5px) {
+  &:after {
+    width: 100%;
+    height: $height;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, $from 0%, $to 100%);
+    content: "";
+    position: absolute;
+    bottom: -$height;
+  }
+}

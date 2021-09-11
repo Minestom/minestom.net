@@ -3,7 +3,7 @@ import GeneralHeader from "../components/GeneralHeader";
 import {Helmet} from "react-helmet";
 import FileEntry from "../components/FileEntry";
 import {Error, Warn} from "../components/Callout";
-import './extension.scss'
+import './repository.scss'
 import ReactDOM from "react-dom";
 import marked from "marked";
 import Loading from "../components/Loading";
@@ -13,7 +13,7 @@ import hljs from "highlight.js";
 
 const README = "/README.md"
 
-class Extension extends Component {
+class Repository extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -21,12 +21,12 @@ class Extension extends Component {
         if (typeof window !== "undefined") {
             let id = new URLSearchParams(window.location.search).get("id");
             if (id === null) {
-                window.location.href = "/extensions"
+                window.location.href = "/404"
                 return
             }
             this.readme = React.createRef()
             let split = id.split('/');
-            fetch("https://minestom.net/api/extension?id=" + id).then(response => response.json())
+            fetch("https://minestom.net/api/v2/repository?id=" + id).then(response => response.json())
                 .then(result => {
                     this.setState({
                         ...result,
@@ -79,7 +79,7 @@ class Extension extends Component {
             <div>
                 <GeneralHeader/>
                 <Helmet>
-                    <title>Loading extension data... | Minestom</title>
+                    <title>Loading repository data... | Minestom</title>
                 </Helmet>
                 <TwoColPage>
                     <div>
@@ -127,7 +127,7 @@ class Extension extends Component {
                                     </tr>
                                     <tr>
                                         <td>Created on</td>
-                                        <td>{new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeStyle: 'long' }).format(new Date(this.state.createdAt))} (<time dateTime={this.state.createdAt} />)</td>
+                                        <td>{new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeStyle: 'short', hour12: false, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }).format(new Date(this.state.createdAt))} (<time dateTime={this.state.createdAt} />)</td>
                                     </tr>
                                     <tr>
                                         <td>Last push</td>
@@ -140,7 +140,7 @@ class Extension extends Component {
                                         this.state.release.assets === undefined ?
                                             (<tr>
                                                 <td colSpan={2}>
-                                                    <Warn text={"This extension has no releases"}/>
+                                                    <Warn text={"This repository has no releases"}/>
                                                 </td>
                                             </tr>)
                                             :
@@ -154,9 +154,6 @@ class Extension extends Component {
                                                         <tr>
                                                             <td>Created</td>
                                                             <td><time dateTime={this.state.release.created_at} /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colSpan={2}>Files</td>
                                                         </tr>
                                                         {this.state.release.assets.map(asset => (<tr key={asset.name}><td colSpan={2}><FileEntry {...asset} /></td></tr>))}
                                                     </table>
@@ -182,4 +179,4 @@ class Extension extends Component {
     }
 }
 
-export default Extension;
+export default Repository;
