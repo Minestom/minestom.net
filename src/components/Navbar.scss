@@ -45,6 +45,10 @@ $navbar-height: 45px;
                         font-size: unset !important;
                     }
                 }
+
+                &.off {
+                    display: none;
+                }
             }
         }
 

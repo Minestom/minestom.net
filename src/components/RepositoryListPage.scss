@@ -4,7 +4,7 @@
 
 .repositories-page {
   .no-result {
-    width: 100%;
+    width: 500px;
     margin-top: 60px;
 
     @media (max-width: $small) {
@@ -48,6 +48,6 @@
       top: 0;
     }
 
-    @include shadow($gray, 50px);
+    @include shadow($gray, 43px);
   }
 }
