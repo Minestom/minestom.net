@@ -17,6 +17,12 @@ $navbar-height: 45px;
     @include shadow($gray);
     flex-shrink: 0;
 
+    > .navbar-link {
+        @media (max-width: $medium) {
+            font-size: 0;
+        }
+    }
+
     span {
         display: flex;
         margin-left: 0;
