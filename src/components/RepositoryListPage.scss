@@ -3,6 +3,19 @@
 @import "breakpoints";
 
 .repositories-page {
+  .no-result {
+    width: 100%;
+    margin-top: 60px;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
+
+    @media (max-width: $medium) {
+      margin-top: 10px;
+    }
+  }
+
   .repository-list {
     overflow: auto;
     padding: 0;

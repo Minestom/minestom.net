@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import RepositoryEntry from "./RepositoryEntry";
 import {capitalizeFirstLetter} from "./common";
 import './RepositoryListPage.scss'
+import {Warn} from "./Callout";
 
 class RepositoryListPage extends Component {
     constructor(props) {
@@ -74,7 +75,7 @@ class RepositoryListPage extends Component {
                             {this.state.repositories === undefined ?
                                 (<Loading text={`${this.props.singular} list`} />)
                                 :
-                                (this.state.displayData.map(repository => (<RepositoryEntry {... repository} key={`${repository.owner}/${repository.name}`} />)))}
+                                (this.state.displayData.length === 0 && this.state.useResults ? (<div className={"no-result"}><Warn text={"No matching results"} /></div>) : this.state.displayData.map(repository => (<RepositoryEntry {... repository} key={`${repository.owner}/${repository.name}`} />)))}
                         </ul>
                     </div>
                 </TwoColPage>
