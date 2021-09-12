@@ -1,0 +1,53 @@
+@import "colors";
+@import "common";
+@import "breakpoints";
+
+.repositories-page {
+  .no-result {
+    width: 500px;
+    margin-top: 60px;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
+
+    @media (max-width: $medium) {
+      margin-top: 10px;
+    }
+  }
+
+  .repository-list {
+    overflow: auto;
+    padding: 0;
+
+    li:first-of-type {
+      margin-top: 50px;
+
+      @media (max-width: $medium) {
+        margin-top: 10px;
+      }
+    }
+
+    li:last-of-type {
+      margin-bottom: 200px;
+    }
+  }
+
+  .page-container {
+    justify-content: space-evenly !important;
+  }
+
+  .search-wrapper {
+    position: absolute;
+    z-index: 1;
+    padding-top: 10px;
+    background-color: $gray;
+
+    @media (max-width: $medium) {
+      position: sticky;
+      top: 0;
+    }
+
+    @include shadow($gray, 43px);
+  }
+}

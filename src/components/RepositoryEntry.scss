@@ -1,9 +1,14 @@
 @import "hover";
+@import "breakpoints";
 
 .repository-entry {
   list-style-type: none;
-  max-width: 500px;
+  width: 500px;
   padding: 0;
+
+  @media (max-width: $small) {
+    width: 100%;
+  }
 
   div {
     padding: 10px 15px;
@@ -23,6 +28,11 @@
 
   h4 {
     font-weight: unset;
+
+    @media (max-width: $small) {
+      display: block;
+      margin-top: -5px;
+    }
   }
 
   h4 a {
