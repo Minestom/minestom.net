@@ -1,0 +1,34 @@
+.not-found {
+  background-color: #7f7f7f;
+  display: flex;
+  flex-flow: row;
+  height: 100%;
+  overflow: hidden;
+
+  div {
+    width: 50%;
+    justify-content: center;
+
+    img {
+      overflow: hidden;
+      height: 100%;
+    }
+
+    &:nth-last-of-type(1) {
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+
+      p {
+        font-size: 190%;
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 250%;
+        margin-top: 25%;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
