@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import './GenericSection.scss'
 import WikiReference from './WikiReference'
 import { Warn, Error } from './Callout'
+import hljs from "highlight.js";
 
 export default class GenericSection extends Component {
     render() {
         return (
             <div className="generic-section">
                 <div>
-                    <img src={this.props.img.src} alt={this.props.img.alt} loading="lazy" />
+                    <pre><code className={"language-java"}>{this.props.code}</code></pre>
                 </div>
                 <div>
                     <div>
@@ -21,5 +22,9 @@ export default class GenericSection extends Component {
                 </div>
             </div>
         )
+    }
+
+    componentDidMount() {
+        hljs.highlightAll();
     }
 }
