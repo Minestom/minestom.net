@@ -160,7 +160,8 @@
             super("potion");
 
             setCondition(Conditions::playerOnly);
-            setDefaultExecutor(((sender, args) -> sender.sendMessage(Component.text("Usage: /potion <type> <duration (seconds)>")));
+            setDefaultExecutor(((sender, args) ->
+                sender.sendMessage(Component.text("Usage: /potion <type> <duration (seconds)>")));
 
             potion = ArgumentType.Potion("potion");
             duration = ArgumentType.Integer("duration");

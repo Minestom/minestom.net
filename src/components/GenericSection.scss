@@ -48,10 +48,25 @@
         }
 
         > pre {
+            box-shadow: 20px 20px 60px black;
+            transition-duration: 1s;
+
             > code {
                 padding: 35px;
                 border-radius: 5px;
             }
+
+            &:hover {
+                transform: none;
+            }
         }
+    }
+
+    &:nth-of-type(even) pre {
+        transform: rotateY(10deg) rotateX(-25deg);
+    }
+
+    &:nth-of-type(odd) pre {
+        transform: rotateY(-10deg) rotateX(-25deg);
     }
 }
