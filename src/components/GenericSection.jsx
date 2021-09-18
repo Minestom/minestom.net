@@ -14,7 +14,10 @@ export default class GenericSection extends Component {
         return (
             <div className="generic-section">
                 <div>
-                    <pre><code ref={this.codeBlock} className={"language-java"}>{this.props.code}</code></pre>
+                    <pre>
+                        {this.props.codeUrl !== undefined && <a href={this.props.codeUrl} rel={"nofollow"}><i className="fas fa-link"/></a>}
+                        <code ref={this.codeBlock} className={"language-java"}>{this.props.code}</code>
+                    </pre>
                 </div>
                 <div>
                     <div>

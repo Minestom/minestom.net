@@ -66,6 +66,20 @@
             margin-top: 65px;
             box-shadow: 20px 20px 60px black;
             transition-duration: 1s;
+            position: relative;
+
+            &:hover a {
+                display: block;
+            }
+
+            a {
+                font-size: 20px;
+                display: none;
+                position: absolute;
+                padding: 10px;
+                top: 0;
+                right: 0;
+            }
 
             > code {
                 padding: 35px;
