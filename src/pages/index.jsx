@@ -28,7 +28,7 @@ export default class index extends Component {
                                 <h2>A Minecraft server implementation,<br/> open-source and without any code from Mojang.</h2>
                             </span>
                         </div>
-                        {Sections.map(section => (<GenericSection {...section} />))}
+                        {Sections.map(section => (<GenericSection key={section.title} {...section} />))}
                     </div>
                 </div>
             </div>

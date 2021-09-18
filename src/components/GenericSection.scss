@@ -1,23 +1,38 @@
+@import "breakpoints";
+
 .generic-section {
     width: 100%;
     margin-top: 10%;
     display: flex;
     justify-content: space-evenly;
     flex-flow: row;
+    flex-wrap: wrap-reverse;
     line-height: 1.5;
 
     &:nth-child(even) {
         flex-flow: row-reverse;
+        flex-wrap: wrap-reverse;
     }
 
     &:nth-last-of-type(1) {
         padding-bottom: 10%;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: $medium) {
 
         > div:first-of-type {
-            display: none;
+            width: 100%;
+
+            pre {
+                box-shadow: none;
+                width: 100%;
+            }
+
+            @media (max-width: $small) {
+                & {
+                    display: none;
+                }
+            }
         }
 
         > div:last-of-type > div {
@@ -32,7 +47,7 @@
         margin-bottom: auto;
 
         > div {
-            width: 40vw;
+            width: 600px;
 
             > h3 {
                 font-size: xx-large;
@@ -48,6 +63,7 @@
         }
 
         > pre {
+            margin-top: 65px;
             box-shadow: 20px 20px 60px black;
             transition-duration: 1s;
 
@@ -55,18 +71,6 @@
                 padding: 35px;
                 border-radius: 5px;
             }
-
-            &:hover {
-                transform: none;
-            }
         }
-    }
-
-    &:nth-of-type(even) pre {
-        transform: rotateY(10deg) rotateX(-25deg);
-    }
-
-    &:nth-of-type(odd) pre {
-        transform: rotateY(-10deg) rotateX(-25deg);
     }
 }

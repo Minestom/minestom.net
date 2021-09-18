@@ -5,16 +5,21 @@ import { Warn, Error } from './Callout'
 import hljs from "highlight.js";
 
 export default class GenericSection extends Component {
+    constructor(props) {
+        super(props);
+        this.codeBlock = React.createRef()
+    }
+
     render() {
         return (
             <div className="generic-section">
                 <div>
-                    <pre><code className={"language-java"}>{this.props.code}</code></pre>
+                    <pre><code ref={this.codeBlock} className={"language-java"}>{this.props.code}</code></pre>
                 </div>
                 <div>
                     <div>
                         <h3>{this.props.title}</h3>
-                        {this.props.paragraphs.map(p => (<p dangerouslySetInnerHTML={{__html: p}}/>))}
+                        {this.props.paragraphs.map(p => (<p key={p.substr(0,30)} dangerouslySetInnerHTML={{__html: p}}/>))}
                         {this.props.warn !== undefined && <Warn text={this.props.warn} />}
                         {this.props.error !== undefined && <Error text={this.props.error} />}
                         {this.props.wiki !== undefined && <WikiReference {...this.props.wiki} />}
@@ -25,6 +30,6 @@ export default class GenericSection extends Component {
     }
 
     componentDidMount() {
-        hljs.highlightAll();
+        hljs.highlightElement(this.codeBlock.current);
     }
 }
