@@ -69,12 +69,13 @@
             position: relative;
 
             &:hover a {
-                display: block;
+                opacity: 1;
             }
 
             a {
+                transition-duration: .5s;
+                opacity: 0;
                 font-size: 20px;
-                display: none;
                 position: absolute;
                 padding: 10px;
                 top: 0;
