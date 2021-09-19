@@ -9,7 +9,8 @@ module.exports = {
       options: {
         exclude: [
             "/repository",
-            "/404"
+            "/404",
+            "/discord"
         ]
       }
     },
