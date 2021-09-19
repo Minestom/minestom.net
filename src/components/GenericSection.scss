@@ -1,23 +1,43 @@
+@import "breakpoints";
+
 .generic-section {
     width: 100%;
     margin-top: 10%;
     display: flex;
     justify-content: space-evenly;
     flex-flow: row;
+    flex-wrap: wrap-reverse;
     line-height: 1.5;
 
     &:nth-child(even) {
         flex-flow: row-reverse;
+        flex-wrap: wrap-reverse;
     }
 
     &:nth-last-of-type(1) {
         padding-bottom: 10%;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: $medium) {
 
         > div:first-of-type {
-            display: none;
+            width: 100%;
+
+            pre {
+                box-shadow: none;
+                width: auto;
+                margin: 15px;
+
+                code {
+                    padding: 15px;
+                }
+            }
+
+            @media (max-width: $small) {
+                & {
+                    display: none;
+                }
+            }
         }
 
         > div:last-of-type > div {
@@ -32,7 +52,7 @@
         margin-bottom: auto;
 
         > div {
-            width: 40vw;
+            width: 600px;
 
             > h3 {
                 font-size: xx-large;
@@ -47,10 +67,30 @@
             }
         }
 
-        img {
-            width: 45vw;
-            max-height: 90vh;
-            box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.3);
+        > pre {
+            margin-top: 65px;
+            box-shadow: 20px 20px 60px black;
+            transition-duration: 1s;
+            position: relative;
+
+            &:hover a {
+                opacity: 1;
+            }
+
+            a {
+                transition-duration: .5s;
+                opacity: 0;
+                font-size: 20px;
+                position: absolute;
+                padding: 10px;
+                top: 0;
+                right: 0;
+            }
+
+            > code {
+                padding: 35px;
+                border-radius: 5px;
+            }
         }
     }
 }
