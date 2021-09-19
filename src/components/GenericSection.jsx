@@ -16,7 +16,7 @@ export default class GenericSection extends Component {
                 <div>
                     <pre>
                         {this.props.codeUrl !== undefined && <a href={this.props.codeUrl} rel={"nofollow"}><i className="fas fa-link"/></a>}
-                        <code ref={this.codeBlock} className={"language-java"}>{this.props.code}</code>
+                        <code className={"language-java hljs"} dangerouslySetInnerHTML={{__html: hljs.highlight("java", this.props.code).value}} />
                     </pre>
                 </div>
                 <div>
@@ -30,9 +30,5 @@ export default class GenericSection extends Component {
                 </div>
             </div>
         )
-    }
-
-    componentDidMount() {
-        hljs.highlightElement(this.codeBlock.current);
     }
 }
