@@ -11,7 +11,11 @@ import * as timeago from "timeago.js";
 import TwoColPage from "../components/TwoColPage";
 import hljs from "highlight.js";
 
-const README = "/README.md"
+// possible readme locations
+const README_LOCATIONS = [
+    "/README.md", "/docs/README.md", "/.github/README.md",
+    "/readme.md", "/docs/readme.md", "/.github/readme.md"
+];
 
 class Repository extends Component {
     constructor(props) {
@@ -37,8 +41,6 @@ class Repository extends Component {
                     })
                     const BASE_URL = "https://raw.githubusercontent.com/" + id + "/" + this.state.defaultBranch
                     const useResult = (result) => {
-                        if (!result.ok) throw new Error("Not OK")
-
                         result.text().then(rawMd => {
                             const html = marked(rawMd)
                             const span = document.createElement("span")
@@ -59,17 +61,17 @@ class Repository extends Component {
                         })
                     }
                     // Find readme.md
-                    fetch(BASE_URL + README)
-                        .then(useResult)
-                        .catch(err =>
-                            fetch(BASE_URL + "/docs" + README)
-                                .then(useResult)
-                                .catch(err1 => fetch(BASE_URL + "/.github" + README)
-                                    .then(useResult)
-                                    .catch(err2 => {
-                                        // No readme
-                                        ReactDOM.render(<Error text={"This extension doesn't have a README.md or we couldn't access it."} />, this.readme.current)
-                                    })))
+                    Promise.all(README_LOCATIONS.map(location => fetch(BASE_URL + location)))
+                        .then(responses => responses.find(response => response.ok))
+                        .then(response => {
+                            if (response) {
+                                // there is at least one response with 'ok'
+                                useResult(response);
+                            } else {
+                                // all locations failed
+                                ReactDOM.render(<Error text={"This extension doesn't have a README.md or we couldn't access it."} />, this.readme.current)
+                            }
+                        });
                 })
         }
     }
