@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import * as timeago from "timeago.js";
 import TwoColPage from "../components/TwoColPage";
 import hljs from "highlight.js";
+import DOMPurify from "dompurify";
 
 // possible readme locations
 const README_LOCATIONS = [
@@ -42,7 +43,7 @@ class Repository extends Component {
                     const BASE_URL = "https://raw.githubusercontent.com/" + id + "/" + this.state.defaultBranch
                     const useResult = (result) => {
                         result.text().then(rawMd => {
-                            const html = marked(rawMd)
+                            const html = DOMPurify.sanitize(marked(rawMd))
                             const span = document.createElement("span")
                             span.style.overflow = "auto"
                             span.innerHTML = html
