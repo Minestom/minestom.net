@@ -9,28 +9,29 @@
   warn: This is a developer API; It is not meant to be used by the end-users.
   error: Replacing Bukkit/Forge/Sponge with this <strong>will not work</strong> since
     we do not implement any of their APIs.
-  codeUrl: https://github.com/Minestom/Minestom/blob/d53ef3658665377298276fe16bd558daf1458940/src/test/java/demo/MainDemo.java#L19-L39
+  codeUrl: https://github.com/Minestom/Minestom/blob/master/demo/src/main/java/net/minestom/demo/MainDemo.java#L14-L35
   code: |
     public static void main(String[] args) {
-        // Initialization
-        MinecraftServer minecraftServer = MinecraftServer.init();
+      // Initialization
+      MinecraftServer minecraftServer = MinecraftServer.init();
 
-        InstanceManager instanceManager = MinecraftServer.getInstanceManager();
-        // Create the instance
-        InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
-        // Set the ChunkGenerator
-        instanceContainer.setChunkGenerator(new GeneratorDemo());
+      InstanceManager instanceManager = MinecraftServer.getInstanceManager();
+      // Create the instance
+      InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
+      // Set the generator
+      instanceContainer.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.STONE));
 
-        // Add an event callback to specify the spawning instance (and the spawn position)
-        GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
-        globalEventHandler.addListener(PlayerLoginEvent.class, event -> {
-            final Player player = event.getPlayer();
-            event.setSpawningInstance(instanceContainer);
-            player.setRespawnPoint(new Pos(0, 42, 0));
-        });
+      // Add an event callback to specify the spawning instance (and the spawn position)
+      GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
+      globalEventHandler.addListener(PlayerLoginEvent.class, event -> {
+        final Player player = event.getPlayer();
+        player.setPermissionLevel(2);
+        event.setSpawningInstance(instanceContainer);
+        player.setRespawnPoint(new Pos(0, 42, 0));
+      });
 
-        // Start the server on port 25565
-        minecraftServer.start("0.0.0.0", 25565);
+      // Start the server on port 25565
+      minecraftServer.start("0.0.0.0", 25565);
     }
 - title: Instances
   paragraphs:
@@ -58,8 +59,8 @@
     // Create the instance
     InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
 
-    // Set the ChunkGenerator
-    instanceContainer.setChunkGenerator(/* chunk generator here */);
+    // Set the generator
+    instanceContainer.setGenerator(/* generator here */);
 
     // Make chunks automatically load
     instanceContainer.enableAutoChunkLoad(true);
@@ -76,20 +77,20 @@
   codeUrl: https://wiki.minestom.net/world/blocks
   code: |
     public class DemoHandler implements BlockHandler {
-        @Override
-        public void onPlace(@NotNull Placement placement) {
-            if (placement instanceof PlayerPlacement) {
-                // A player placed the block
-            }
-            Block block = placement.getBlock();
-            System.out.println("The block " + block.name() + " has been placed");
+      @Override
+      public void onPlace(@NotNull Placement placement) {
+        if (placement instanceof PlayerPlacement) {
+          // A player placed the block
         }
+        Block block = placement.getBlock();
+        System.out.println("The block " + block.name() + " has been placed");
+      }
 
-        @Override
-        public @NotNull NamespaceID getNamespaceId() {
-            // Required for serialization purpose
-            return NamespaceID.from("minestom:demo");
-        }
+      @Override
+      public @NotNull NamespaceID getNamespaceId() {
+        // Namespace required for serialization purpose
+        return NamespaceID.from("minestom:demo");
+      }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -101,6 +102,7 @@
     // Be aware that block objects can be reused, handlers should
     // therefore never assume to be assigned to a single block.
     tnt = tnt.withHandler(new DemoHandler());
+
     // Share the same handler reference with multiple blocks
     BlockHandler handler = new DemoHandler();
     Block stone = Block.STONE.withHandler(handler);
@@ -119,14 +121,14 @@
     // but unfortunately does not fly
     final Entity chicken = new Entity(EntityType.CHICKEN);
     chicken.addAIGroup(ImmutableList.of(
-                new DoNothingGoal(chicken, 500, 0.1f),
-                new MeleeAttackGoal(chicken, 2, 500, TimeUnit.MILLISECOND),
-                new RandomStrollGoal(chicken, 4)
-            ),
-            ImmutableList.of(
-                new LastEntityDamagerTarget(chicken, 15),
-                new ClosestEntityTarget(chicken, 15, Player.class)
-            ));
+        new DoNothingGoal(chicken, 500, 0.1f),
+        new MeleeAttackGoal(chicken, 2, 500, TimeUnit.MILLISECOND),
+        new RandomStrollGoal(chicken, 4)
+      ),
+      ImmutableList.of(
+        new LastEntityDamagerTarget(chicken, 15),
+        new ClosestEntityTarget(chicken, 15, Player.class)
+    ));
     final Instance instance = ...; // Instance to spawn the chicken in
     final Pos spawnPosition = new Pos(0, 42, 0);
     chicken.setInstance(instance, spawnPosition);
@@ -142,9 +144,11 @@
   code: |
     // Create the inventory
     Inventory inventory = new Inventory(InventoryType.CHEST_1_ROW, "The inventory name");
+
     // Open the inventory for the player
     // (Opening the same inventory for multiple players would result in a shared interface)
     player.openInventory(inventory);
+
     // Close the current player inventory
     player.closeInventory();
 - title: Commands
@@ -155,30 +159,33 @@
   wiki:
     path: "/feature/commands"
     text: Find out more about commands on the wiki
-  codeUrl: https://github.com/Minestom/Minestom/blob/d53ef3658665377298276fe16bd558daf1458940/src/test/java/demo/commands/PotionCommand.java#L16-L45
+  codeUrl: https://github.com/Minestom/Minestom/blob/master/demo/src/main/java/net/minestom/demo/commands/PotionCommand.java#L16-L43
   code: |
     public class PotionCommand extends Command {
-        private final ArgumentPotionEffect potion;
-        private final Argumentlnteger duration;
 
-        public PotionCommand() {
-            super("potion");
+      private final ArgumentPotionEffect potion;
+      private final ArgumentInteger duration;
 
-            setCondition(Conditions::playerOnly);
-            setDefaultExecutor(((sender, args) ->
-                sender.sendMessage(Component.text("Usage: /potion <type> <duration (seconds)>")));
+      public PotionCommand() {
+        super("potion");
 
-            potion = ArgumentType.Potion("potion");
-            duration = ArgumentType.Integer("duration");
+        setCondition(Conditions::playerOnly);
 
-            addSyntax(this::onPotionCommand, potion, duration);
-        }
+        setDefaultExecutor(((sender, args) -> sender.sendMessage(Component.text("Usage: /potion <type> <duration (seconds)>"))));
 
-        private void onPotionCommand(CommandSender sender, CommandContext context) {
-            final Player player = (Player) sender;
-            final PotionEffect potionEffect = context.get(potion);
-            final Integer duration = context.get(this.duration);
-            player.sendMessage(Component.text(player.getActiveEffects().toString()));
-            player.addEffect(new Potion( potionEffect, (byte) 0, duration * MinecraftServer.TICK_PER_SECOND));
-        }
+        potion = ArgumentType.Potion("potion");
+        duration = ArgumentType.Integer("duration");
+
+        addSyntax(this::onPotionCommand, potion, duration);
+      }
+
+      private void onPotionCommand(CommandSender sender, CommandContext context) {
+        final Player player = (Player) sender;
+        final PotionEffect potionEffect = context.get(potion);
+        final Integer duration = context.get(this.duration);
+
+        player.sendMessage(Component.text(player.getActiveEffects().toString()));
+        player.addEffect(new Potion(potionEffect, (byte) 0, duration * MinecraftServer.TICK_PER_SECOND, (byte) 0));
+      }
+
     }
