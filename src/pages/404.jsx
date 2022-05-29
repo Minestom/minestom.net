@@ -21,8 +21,8 @@ export default class index extends Component {
                             <img src={image} />
                         </div>
                         <div>
-                            <h1>Nothing to see here</h1>
-                            <p>The requested page doesn't exists</p>
+                            <h1>Nothing to see here./h1>
+                            <p>The requested page doesn't exist.</p>
                         </div>
                     </div>
                 </div>
