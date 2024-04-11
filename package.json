@@ -1,41 +1,39 @@
 {
   "name": "minestom.net",
-  "version": "1.0.0",
-  "description": "Website of the Minestom project",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Minestom/minestom.net.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Minestom/minestom.net/issues"
-  },
-  "homepage": "https://minestom.net",
-  "private": true,
+  "version": "0.1.0",
+  "description": "Minestom website",
+  "type": "module",
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "solid-devtools": "^0.29.2",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-solid": "^2.8.2"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "dompurify": "^2.3.3",
-    "filesize": "^8.0.0",
-    "fuse.js": "^6.4.6",
-    "gatsby": "^3.11.1",
-    "gatsby-plugin-advanced-sitemap": "^2.0.0",
-    "gatsby-plugin-mdx": "^2.12.0",
-    "gatsby-plugin-robots-txt": "^1.6.9",
-    "gatsby-plugin-sass": "^4.12.0",
-    "gatsby-source-filesystem": "^3.12.0",
-    "highlight.js": "^11.2.0",
-    "marked": "^3.0.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "sass": "^1.38.0",
-    "timeago.js": "^4.0.2"
+    "@kobalte/core": "^0.12.6",
+    "@mdx-js/mdx": "^3.0.1",
+    "@mdx-js/rollup": "^3.0.1",
+    "@solid-primitives/clipboard": "^1.5.10",
+    "@solidjs/router": "^0.13.2",
+    "clsx": "^2.1.0",
+    "highlight.js": "^11.9.0",
+    "mini-svg-data-uri": "^1.4.4",
+    "remark-gfm": "^4.0.0",
+    "solid-icons": "^1.1.0",
+    "solid-js": "^1.8.11",
+    "solid-jsx": "^1.1.4",
+    "solid-mdx": "0.0.6",
+    "tailwind-merge": "^2.2.2"
   }
 }
