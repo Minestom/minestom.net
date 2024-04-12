@@ -4,22 +4,30 @@ layout: home
 
 hero:
   name: "Minestom"
-  text: "Minestom documentation & information"
-  tagline: My great project tagline
+  text: "A Minecraft Server Implementation"
+  tagline: Open-source and without any code from Mojang
+  image:
+    src: /minestom-logo-lg.png
+    alt: Minestom Logo
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Introduction
+      link: /docs/introduction
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: GitHub
+      link: https://github.com/minestom/minestom
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Instances
+    details: Instances are lightweight alternatives to worlds. Minestom uses a a thread pool to manage chunks independently from instances so that lag can be reduced.
+  - title: Blocks
+    details: By default, Minestom doesn't know what a chest is. You have to tell the server to open an inventory when someone clicks on it. All functionality needs to be created.
+  - title: Entities
+    details: The terms "passive" or "aggressive" mobs do not exist. Nobody forbids you from making a flying chicken that rushes at any players that come too close.
+  - title: Inventories
+    details: Inventories have evolved a lot from just being storage containers. Minestom supports inventory callbacks without having to program all the basic stuff yourself!
+  - title: Commands
+    details: Commands are the simplest way of communication between clients and server. Minestom has integrated an API that allows you to use the features Brigader adds.
+  - title: Community
+    details: Minestom has a welcoming community that is happy to provide help to anyone in need. Contributions are welcomed and are always appreciated.
 ---
-
