@@ -8,6 +8,8 @@ import "./style.css";
 import Navbar from "~/components/nav/navbar";
 import { NavbarConfig } from "~/app.config";
 import MinestomLogo from "~/components/minestom-logo";
+import { MDXProvider } from "solid-mdx";
+import CodeBlock from "../code-block";
 
 export default function DocsWrapper(props: { children?: JSX.Element }) {
   const location = useLocation();
@@ -46,7 +48,42 @@ export default function DocsWrapper(props: { children?: JSX.Element }) {
       <div class="h-full flex flex-col">
         <Navbar logo={false} {...NavbarConfig} class="flex-none" />
         <main class="p-8 flex-auto overflow-auto markdown">
-          {props.children}
+          <MDXProvider
+            components={{
+              h2(props: { children: string }) {
+                let id = props.children.toLowerCase().replace(" ", "-");
+                return (
+                  <section class="relative" id={id}>
+                    <a
+                      href={`#${id}`}
+                      class="absolute top-1 text-2xl text-muted-foreground -left-5"
+                    >
+                      #
+                    </a>
+                    <h2>{props.children}</h2>
+                  </section>
+                );
+              },
+              pre(props: { children: Element }) {
+                return props.children;
+              },
+              code(props: { children: string; className: string }) {
+                let language = props.children
+                  .split(" ")
+                  .find((str) => str.startsWith("language-"))
+                  ?.replace("language-", "");
+                return (
+                  <CodeBlock
+                    class="my-3 shadow-none"
+                    language={language ?? "java"}
+                    code={props.children}
+                  />
+                );
+              },
+            }}
+          >
+            {props.children}
+          </MDXProvider>
         </main>
       </div>
     </div>
