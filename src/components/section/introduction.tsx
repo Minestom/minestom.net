@@ -20,7 +20,7 @@ export default function Introducution() {
   return (
     <section
       id="introduction"
-      class="w-full flex flex-row items-center bg-gray-200 dark:bg-[#111] justify-center p-[10%] gap-4"
+      class="w-full flex flex-row items-center bg-muted justify-center p-[10%] gap-4"
     >
       <div class="flex flex-col flex-auto w-2/3">
         <h1 class="text-4xl font-bold relative bg-clip-text text-transparent bg-gradient-to-b from-minestom-orange to-minestom-pink drop-shadow-md">

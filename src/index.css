@@ -47,13 +47,12 @@
 
         --radius: 0.5rem;
     }
-
     .dark,
-    @media(prefers-color-scheme: dark) {
+    [data-kb-theme="dark"] {
         --background: 240 10% 3.9%;
         --foreground: 0 0% 98%;
 
-        --muted: 240 3.7% 15.9%;
+        --muted: 240 3.7% 5.9%;
         --muted-foreground: 240 5% 64.9%;
 
         --accent: 240 3.7% 15.9%;
@@ -97,10 +96,16 @@
 
 @layer base {
     body {
-        background-color: black;
-        color: white;
+        @apply bg-background text-foreground;
         font-feature-settings:
             "rlig" 1,
             "calt" 1;
+    }
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    h2 {
+        font-size: 18px;
     }
 }

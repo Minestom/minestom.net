@@ -9,12 +9,13 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "allowJs": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "mdx", "vite-plugin-pages/client-solid"],
     "noEmit": true,
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "docs/*": ["./docs/*"]
     },
     "resolveJsonModule": true
   }

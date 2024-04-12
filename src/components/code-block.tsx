@@ -20,7 +20,7 @@ export default function CodeBlock(props: {
       )}
     >
       <button
-        class="p-2 hover:bg-gray-600 rounded-md absolute m-2 top-0 right-0 opacity-15 hover:opacity-80 transition-all"
+        class="p-2 hover:bg-muted rounded-md absolute m-2 top-0 right-0 opacity-15 hover:opacity-80 transition-all"
         onClick={copy}
       >
         <FaRegularClipboard size={20} />

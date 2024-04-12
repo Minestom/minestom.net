@@ -1,23 +1,24 @@
 import { A } from "@solidjs/router";
-import { JSX } from "solid-js";
+import { JSX, ParentProps } from "solid-js";
 import { cn } from "~/utils/cn";
 import { As, Link, Tooltip } from "@kobalte/core";
 
-export default function NavItem(props: {
+export type NavItemProps = {
   href: string;
   class?: string;
   tooltip?: string;
-  children?: JSX.Element;
-}) {
+};
+export default function NavItem(props: NavItemProps & ParentProps) {
   return (
-    <li class={cn("relative", props.class)}>
+    <li
+      class={cn(
+        "relative text-muted-foreground hover:text-blue-500",
+        props.class,
+      )}
+    >
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
-          <As
-            component={A}
-            class="dark:text-gray-100 dark:hover:text-gray-200 text-gray-600 hover:text-gray-700 transition-colors"
-            href={props.href}
-          >
+          <As component={A} class={"transition-colors"} href={props.href}>
             {props.children}
           </As>
         </Tooltip.Trigger>

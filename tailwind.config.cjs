@@ -7,6 +7,7 @@ const {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class", '[data-kb-theme="dark"]'],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -16,6 +17,8 @@ module.exports = {
         "code-block": "#282b2e",
         "minestom-orange": "#ff6c32",
         "minestom-pink": "#ff76b6",
+        muted: "hsl(var(--muted))",
+        "muted-foreground": "hsl(var(--muted-foreground))",
       },
     },
   },

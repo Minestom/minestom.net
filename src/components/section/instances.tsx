@@ -16,7 +16,7 @@ export default function Instances() {
   return (
     <section
       id="introduction"
-      class="w-full flex flex-col-reverse bg-gray-200 dark:bg-[#111] lg:flex-row items-center justify-center p-[5%] gap-8"
+      class="w-full flex flex-col-reverse bg-muted lg:flex-row items-center justify-center p-[5%] gap-8"
     >
       <CodeBlock
         code={code}

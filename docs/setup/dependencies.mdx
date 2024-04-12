@@ -1,0 +1,76 @@
+---
+description: Describes how to add Minestom as a dependency in your project.
+---
+
+# Dependencies
+
+::: info
+Minestom needs Java 21 or newer in order to run. If you are using Gradle, you must use version 7.2 or higher.
+:::
+
+Adding Minestom to your Java project is really simple, you only need to add a few repositories:
+
+## Repositories
+
+```groovy
+repositories {
+    // ...
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+```
+
+```groovy
+repositories {
+    // ...
+    mavenCentral()
+    maven(url = "https://jitpack.io")
+}
+```
+
+```markup
+<repositories>
+    <!-- ... -->
+    <repository>
+        <id>jitpack</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+## Dependencies
+
+```groovy
+dependencies {
+    // ...
+    implementation 'com.github.Minestom:Minestom:VERSION'
+}
+```
+
+```groovy
+dependencies {
+    //...
+    implementation("com.github.Minestom:Minestom:VERSION")
+}
+```
+
+```markup
+<dependencies>
+    <!-- ... -->
+    <dependency>
+        <groupId>com.github.Minestom</groupId>
+        <artifactId>Minestom</artifactId>
+        <version>VERSION</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+</dependencies>
+```
+
+When using Maven it is recommended to exclude the artifact `shrinkwrap-resolver-depchain` from the group `org.jboss.shrinkwrap.resolver` as otherwise resolving the dependencies will fail. Shrinkwrap can be added as a separate dependency if needed without issues to restore its functionality.
+
+A list of versions can be found at [https://jitpack.io/#Minestom/Minestom](https://jitpack.io/#Minestom/Minestom).
