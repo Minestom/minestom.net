@@ -35,10 +35,10 @@ export default function Introducution() {
       </div>
 
       <div class="flex flex-col gap-2 flex-auto">
-        <p class="font-medium text-md p-4 bg-yellow-500 rounded-lg">
+        <p class="font-medium text-md p-4 border-yellow-500 border bg-accent rounded-lg">
           This is a developer API; It is not meant to be used by the end-users.
         </p>
-        <p class="font-medium text-md p-4 bg-red-500 dark:bg-red-600 rounded-lg">
+        <p class="font-medium text-md p-4 border-red-500 border bg-accent rounded-lg">
           Replacing Bukkit/Forge/Sponge with this will not work since we do not
           implement any of their APIs.
         </p>

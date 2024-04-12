@@ -10,6 +10,7 @@ import { NavbarConfig } from "~/app.config";
 import MinestomLogo from "~/components/minestom-logo";
 import { MDXProvider } from "solid-mdx";
 import CodeBlock from "../code-block";
+import Repositories from "./repositories";
 
 export default function DocsWrapper(props: { children?: JSX.Element }) {
   const location = useLocation();
@@ -45,22 +46,20 @@ export default function DocsWrapper(props: { children?: JSX.Element }) {
           )}
         </For>
       </nav>
-      <div class="h-full flex flex-col">
+      <div class="h-full flex flex-col w-full">
         <Navbar logo={false} {...NavbarConfig} class="flex-none" />
-        <main class="p-8 flex-auto overflow-auto markdown">
+        <main class="p-8 flex-auto overflow-auto w-full markdown">
           <MDXProvider
             components={{
               h2(props: { children: string }) {
-                let id = props.children.toLowerCase().replace(" ", "-");
+                let id = props.children.toLowerCase().replaceAll(" ", "-");
                 return (
                   <section class="relative" id={id}>
-                    <a
-                      href={`#${id}`}
-                      class="absolute top-1 text-2xl text-muted-foreground -left-5"
-                    >
+                    <hr class="border-border mt-8" />
+                    <h2>{props.children}</h2>
+                    <a href={`#${id}`} class="absolute top-6 text-2xl -left-5">
                       #
                     </a>
-                    <h2>{props.children}</h2>
                   </section>
                 );
               },
@@ -74,11 +73,14 @@ export default function DocsWrapper(props: { children?: JSX.Element }) {
                   ?.replace("language-", "");
                 return (
                   <CodeBlock
-                    class="my-3 shadow-none"
+                    class="my-3 shadow-none text-sm"
                     language={language ?? "java"}
                     code={props.children}
                   />
                 );
+              },
+              Repositories(props: any) {
+                return <Repositories />;
               },
             }}
           >
