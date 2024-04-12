@@ -41,7 +41,7 @@ export default defineConfig({
           },
           {
             text: "Acquirable API",
-            link: "/docs/thread-architecture/acquirable-api/README",
+            link: "/docs/thread-architecture/acquirable-api",
             items: [
               {
                 text: "The Inside",
@@ -57,7 +57,7 @@ export default defineConfig({
           { text: "Instances", link: "/docs/world/instances" },
           {
             text: "Chunk Management",
-            link: "/docs/world/chunk-management/README",
+            link: "/docs/world/chunk-management",
             items: [
               { text: "Anvil Loader", link: "/docs/world/anvilloader" },
               { text: "Lighting", link: "/docs/world/lightloader" },
@@ -79,7 +79,7 @@ export default defineConfig({
           },
           {
             text: "Events",
-            link: "/docs/feature/events/README",
+            link: "/docs/feature/events",
             items: [
               {
                 text: "Implementation",
@@ -94,7 +94,7 @@ export default defineConfig({
           { text: "Items", link: "/docs/feature/items" },
           {
             text: "Entities",
-            link: "/docs/feature/entities/README",
+            link: "/docs/feature/entities",
             items: [{ text: "AI", link: "/docs/feature/entities/ai" }],
           },
           { text: "Tags", link: "/docs/feature/tags" },
@@ -107,7 +107,7 @@ export default defineConfig({
           { text: "Advancements", link: "/docs/feature/advancements" },
           {
             text: "Map Rendering",
-            link: "/docs/feature/map-rendering/README",
+            link: "/docs/feature/map-rendering",
             items: [
               {
                 text: "GLFW Map Rendering",
@@ -125,7 +125,7 @@ export default defineConfig({
           { text: "Extensions", link: "/docs/expansion/extensions" },
           {
             text: "Scripting",
-            link: "/docs/expansion/scripting/README",
+            link: "/docs/expansion/scripting",
             items: [
               {
                 text: "WIP Commands",
