@@ -1,0 +1,275 @@
+{
+  "results": [
+    {
+      "name": "MCCoroutine",
+      "description": "MCCoroutine is a library, which adds extensive support for Kotlin Coroutines for Minecraft Server environments.",
+      "owner": "Shynixn"
+    },
+    {
+      "name": "hephaestus-engine",
+      "description": "Render, animate and interact with custom entity models in Minecraft: Java Edition servers",
+      "owner": "unnamed",
+      "preRelease": true
+    },
+    {
+      "name": "WorldSeedEntityEngine",
+      "description": "A Minecraft multipart entity system with unique features",
+      "owner": "AtlasEngineCa"
+    },
+    {
+      "name": "glyphs",
+      "description": "Library for convenient management of bitmap textures from Minecraft resourcepacks.",
+      "owner": "Brikster"
+    },
+    {
+      "name": "MinestomPvP",
+      "description": "PvP extension for Minestom",
+      "owner": "TogAr2",
+      "preRelease": true
+    },
+    {
+      "name": "polar",
+      "description": "Fast and small world format for Minestom",
+      "owner": "hollow-cube"
+    },
+    {
+      "name": "mc_debug_renderer",
+      "description": "Enables servers to render debug shapes on the client.",
+      "owner": "mworzala"
+    },
+    {
+      "name": "ParticleEmitter",
+      "description": "Library for drawing particle effects in Minecraft java edition using bedrock json files",
+      "owner": "AtlasEngineCa"
+    },
+    {
+      "name": "TNT",
+      "description": "TNT is an experimental world format for Minestom",
+      "owner": "emortalmc"
+    },
+    {
+      "name": "ScreamingLib",
+      "description": "Cross-platform library for Minecraft development.",
+      "owner": "ScreamingSandals",
+      "preRelease": true
+    },
+    {
+      "name": "SlimeLoader",
+      "description": "Loader for the Slime world format and Minestom",
+      "owner": "cody-quinn",
+      "preRelease": true
+    },
+    {
+      "name": "HSCore",
+      "description": "The lazy core of my personal projects",
+      "owner": "HSGamer"
+    },
+    {
+      "name": "Rayfast",
+      "description": "Rayfast is a wayfast raycast java library.",
+      "owner": "emortalmc"
+    },
+    {
+      "name": "Scaffolding",
+      "description": "Schematic library for Minestom",
+      "owner": "HyperaDev",
+      "preRelease": true
+    },
+    {
+      "name": "KStom",
+      "description": "Kotlin libraries for Minestom",
+      "owner": "Project-Cepi",
+      "preRelease": true
+    },
+    {
+      "name": "libmmo",
+      "description": "A set of data-driven libraries useful for creating MMO servers, based on Minestom.",
+      "owner": "hollow-cube",
+      "preRelease": true
+    },
+    {
+      "name": "Immortal",
+      "description": "[legacy] Game manager for EmortalMC",
+      "owner": "emortalmc",
+      "preRelease": true
+    },
+    {
+      "name": "common",
+      "description": "A library of common systems for Minestom such as schematics, world management, chat, and so on.",
+      "owner": "hollow-cube",
+      "preRelease": true
+    },
+    {
+      "name": "MinestomFluids",
+      "description": "Fluid/liquid library for Minestom",
+      "owner": "TogAr2",
+      "preRelease": true
+    },
+    { "name": "canvas", "description": null, "owner": "mworzala" },
+    {
+      "name": "window",
+      "description": "Useful API for Minestom inventories",
+      "owner": "GoldenStack",
+      "preRelease": true
+    },
+    {
+      "name": "MinestomParticles",
+      "description": "Extra particle API for Minestom",
+      "owner": "TogAr2",
+      "preRelease": true
+    },
+    {
+      "name": "trove",
+      "description": "General-purpose loot table parser and evaluator. Supports multiple different types of drops at once, e.g. items and experience.",
+      "owner": "GoldenStack"
+    },
+    {
+      "name": "Server",
+      "description": "The Minestom implementation for the bluedragonmc.com Minecraft server.",
+      "owner": "BlueDragonMC",
+      "preRelease": true
+    },
+    {
+      "name": "MinestomBasicLight",
+      "description": "A basic light engine for Minestom.",
+      "owner": "CutestNekoAqua",
+      "preRelease": true
+    },
+    {
+      "name": "NBStom",
+      "description": "A NBS reader and player for Minestom",
+      "owner": "emortalmc",
+      "preRelease": true
+    },
+    {
+      "name": "BasicRedstone",
+      "description": "Very basic redstone for Minestom",
+      "owner": "TogAr2"
+    },
+    {
+      "name": "Geyser-Utils",
+      "description": null,
+      "owner": "Hypejet-Archive",
+      "preRelease": true
+    },
+    {
+      "name": "Minestom-Placement",
+      "description": "A Minestom block placement implementation",
+      "owner": "ALS-Project"
+    },
+    {
+      "name": "adventure-platform-minestom",
+      "description": null,
+      "owner": "mworzala",
+      "preRelease": true
+    },
+    {
+      "name": "cloud-minestom",
+      "description": "Minestom implementation of cloud command framework",
+      "owner": "OpenMinigameServer",
+      "preRelease": true
+    },
+    {
+      "name": "MineScreen",
+      "description": "Create Minestom GUIs using an easy to use api.",
+      "owner": "kiip1",
+      "preRelease": true
+    },
+    {
+      "name": "bamboo",
+      "description": "A dead simple schematic library for Minestom.",
+      "owner": "AppleFlavored"
+    },
+    {
+      "name": "StomStruct",
+      "description": "Use Structure Block files with Minestom",
+      "owner": "Minecraft-Mom"
+    },
+    {
+      "name": "resources",
+      "description": "Serve resource packs to players with only your server!",
+      "owner": "dev-hydrogen"
+    },
+    {
+      "name": "CloudMinestom",
+      "description": "A minestom implementation of the Cloud Command Framework.",
+      "owner": "MelonHell",
+      "preRelease": true
+    },
+    {
+      "name": "Minestom-States",
+      "description": "A BlockStates implementation for Minestom",
+      "owner": "ALS-Project",
+      "preRelease": true
+    },
+    {
+      "name": "Acquaintance",
+      "description": "Handles parties and friends in EmortalMC",
+      "owner": "emortalmc",
+      "preRelease": true
+    },
+    {
+      "name": "MineStomDataSaving",
+      "description": "A world saving library for Minestom",
+      "owner": "JustDoom",
+      "preRelease": true
+    },
+    {
+      "name": "PAFMySQLMinestomAPI",
+      "description": "Party and Friends API ported for Minestom",
+      "owner": "Hypejet-Archive"
+    },
+    {
+      "name": "Minestom-Example-Extension",
+      "description": "Minestom Example Extension written in Java! (Kotlin not included)",
+      "owner": "Yu-Vitaqua-fer-Chronos"
+    },
+    {
+      "name": "NextPermission",
+      "description": "https://github.com/MinestomPlugins/NextPermissions",
+      "owner": "MinestomPlugins",
+      "preRelease": true
+    },
+    {
+      "name": "SBoards",
+      "description": "Easy to use Per Player Scoreboard api for Minestom",
+      "owner": "sqcred"
+    },
+    { "name": "HypeStom-Kt", "description": null, "owner": "Hypejet-Archive" },
+    {
+      "name": "Casement",
+      "description": "A lightweight Minestom Gui library",
+      "owner": "Tofaa2",
+      "preRelease": true
+    },
+    {
+      "name": "TuringCore.bak",
+      "description": "TuringCore is a core extension for Minestom,likes Essential in Spigot.Provides lots of useful utils and core features.",
+      "owner": "Sword-Fire",
+      "preRelease": true
+    },
+    {
+      "name": "PAF-Party-API-Minestom",
+      "description": "Party and Friends Party API ported for Minestom",
+      "owner": "Hypejet-Archive"
+    },
+    {
+      "name": "BrickI18n",
+      "description": "A Minecraft server extension that makes localization easier than ever.",
+      "owner": "GufliMC",
+      "preRelease": true
+    },
+    {
+      "name": "EnchantmentManager",
+      "description": "Minestom enchantment tools (enchant item with levels, etc)",
+      "owner": "GoldenStack"
+    },
+    {
+      "name": "minestom-library-template",
+      "description": "A simple template for creating Minestom libraries/plugins",
+      "owner": "MinestomPlugins"
+    }
+  ],
+  "pageInfo": { "endCursor": "Y3Vyc29yOjUw", "hasNextPage": true },
+  "timestamp": 1712889394837
+}

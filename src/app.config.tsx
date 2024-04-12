@@ -1,4 +1,4 @@
-import { NavbarProps } from "./components/navbar";
+import { NavbarProps } from "~/components/nav/navbar";
 import { FaBrandsGithub, FaBrandsJava, FaBrandsDiscord } from "solid-icons/fa";
 
 const NavbarConfig: Omit<NavbarProps, "logo"> = {

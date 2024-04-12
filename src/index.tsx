@@ -6,15 +6,16 @@ import "./index.css";
 import { Route, Router } from "@solidjs/router";
 import Implementations from "./route/implementations";
 import Index from "./route";
-import Navbar from "./components/navbar";
+import Navbar from "~/components/nav/navbar";
 import { ParentProps } from "solid-js";
-import DocsWrapper from "~/components/docs-wrapper";
+import DocsWrapper from "~/components/docs/wrapper";
 import {
   ColorModeProvider,
   ColorModeScript,
   localStorageManager,
 } from "@kobalte/core";
 import { NavbarConfig } from "./app.config";
+import Libraries from "./route/libraries";
 
 const root = document.getElementById("root");
 
@@ -25,7 +26,6 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 }
 
 render(() => {
-  console.log(routes);
   return (
     <>
       <ColorModeScript storageType={localStorageManager.type} />
@@ -45,7 +45,7 @@ render(() => {
             )}
           >
             <Route path={"/"} component={Index} />
-            <Route path={"/libraries"} component={Index} />
+            <Route path={"/libraries"} component={Libraries} />
             <Route path={"/implementations"} component={Implementations} />
           </Route>
           <Route path="/docs" component={DocsWrapper}>

@@ -1,4 +1,4 @@
-import logo from "../minestom-logo.png";
+import logo from "~/assets/minestom-logo.png";
 
 export default function MinestomLogo() {
   return (

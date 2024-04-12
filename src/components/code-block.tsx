@@ -1,6 +1,6 @@
 import hljs from "highlight.js";
 import "highlight.js/styles/androidstudio.css";
-import { cn } from "../utils/cn";
+import { cn } from "~/lib/utils";
 import { writeClipboard } from "@solid-primitives/clipboard";
 import { FaRegularClipboard } from "solid-icons/fa";
 

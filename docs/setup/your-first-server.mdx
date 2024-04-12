@@ -1,14 +1,10 @@
----
-description: Includes everything you need to have your first server running.
----
-
 # Your first server
 
 Some things are needed before being able to connect to your Minestom server.
 
-* Initialize the server
-* Registering events/commands
-* Start the server at the specified port and address
+- Initialize the server
+- Registering events/commands
+- Start the server at the specified port and address
 
 Here is a correct example:
 
@@ -62,7 +58,7 @@ public class MainDemo {
         // Create the instance
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
         // Set the ChunkGenerator
-        instanceContainer.setGenerator(unit -> 
+        instanceContainer.setGenerator(unit ->
                         unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK));
         // Add an event callback to specify the spawning instance (and the spawn position)
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
@@ -89,28 +85,20 @@ You can find the full documentation for the Shadow plugin [here](https://imperce
 
 First, let's add the Shadow plugin to our project.
 
-{% tabs %}
-{% tab title="Gradle (Groovy)" %}
 ```groovy
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
 }
 ```
-{% endtab %}
 
-{% tab title="Gradle (Kotlin)" %}
 ```kts
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 If the JAR is meant to be run, which it probably is, you also need to specify the class containing the main method like so,
 
-{% tabs %}
-{% tab title="Gradle (Groovy)" %}
 ```groovy
 jar {
     manifest {
@@ -119,9 +107,7 @@ jar {
     }
 }
 ```
-{% endtab %}
 
-{% tab title="Gradle (Kotlin)" %}
 ```kts
 tasks.withType<Jar> {
     manifest {
@@ -130,15 +116,11 @@ tasks.withType<Jar> {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar! (The jar will be put in `/build/libs/` by default)
 
 Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts` file.
 
-{% tabs %}
-{% tab title="Gradle (Groovy)" %}
 ```groovy
 plugins {
     id 'java'
@@ -165,9 +147,7 @@ jar {
     }
 }
 ```
-{% endtab %}
 
-{% tab title="Gradle (Kotlin)" %}
 ```kts
 plugins {
     id("java")
@@ -194,5 +174,3 @@ tasks.withType<Jar> {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}

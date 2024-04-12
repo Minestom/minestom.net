@@ -28,6 +28,7 @@
     "@mdx-js/rollup": "^3.0.1",
     "@solid-primitives/clipboard": "^1.5.10",
     "@solidjs/router": "^0.13.2",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "highlight.js": "^11.9.0",
     "mini-svg-data-uri": "^1.4.4",

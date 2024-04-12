@@ -1,4 +1,4 @@
-import CodeBlock from "../code-block";
+import CodeBlock from "~/components/code-block";
 
 const code = `// Get the instance manager
 InstanceManager instanceManager = MinecraftServer.getInstanceManager();

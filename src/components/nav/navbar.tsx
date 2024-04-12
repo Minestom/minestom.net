@@ -1,9 +1,9 @@
 import { JSX, createMemo, createSignal, onCleanup, onMount } from "solid-js";
 import NavItem, { NavItemProps } from "./navitem";
-import ColorPicker from "./color-picker";
-import { cn } from "~/utils/cn";
+import ThemeToggle from "~/components/theme-toggle";
+import { cn } from "~/lib/utils";
 import { useLocation } from "@solidjs/router";
-import MinestomLogo from "./minestom-logo";
+import MinestomLogo from "~/components/minestom-logo";
 import { Show } from "solid-js";
 import { For } from "solid-js";
 
@@ -30,9 +30,9 @@ export default function Navbar(props: NavbarProps & { class?: string }) {
     <nav
       class={cn(
         props.class,
-        "h-16 z-50 transition-all border-gray-200 dark:border-gray-800 px-6 flex flex-row",
-        isScrolled() ? "drop-shadow-sm bg-muted border-b" : "",
-        pathname() == "/" ? "" : "drop-shadow-sm bg-muted border-b-2",
+        "h-16 z-50 transition-all border-border px-6 flex flex-row items-center",
+        isScrolled() ? "bg-muted border-b" : "",
+        pathname() == "/" ? "" : "bg-muted border-b",
       )}
     >
       {props.logo == true && (
@@ -58,9 +58,9 @@ export default function Navbar(props: NavbarProps & { class?: string }) {
           )}
         </For>
       </ul>
-      <span class="h-1/3 my-auto mx-4 w-[1px] bg-gray-800" />
-      <ColorPicker />
-      <span class="h-1/3 my-auto mx-4 w-[1px] bg-gray-800" />
+      <span class="h-1/3 my-auto mx-4 w-[1px] bg-border" />
+      <ThemeToggle />
+      <span class="h-1/3 my-auto mx-4 w-[1px] bg-border" />
       <Show when={(props.socials?.length ?? 0) != 0}>
         <ul class="font-semibold gap-4 h-full flex flex-row flex-none items-center">
           <For each={props.socials}>

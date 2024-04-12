@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router";
 import { JSX, ParentProps } from "solid-js";
-import { cn } from "~/utils/cn";
+import { cn } from "~/lib/utils";
 import { As, Link, Tooltip } from "@kobalte/core";
 
 export type NavItemProps = {
