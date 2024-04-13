@@ -17,16 +17,16 @@
                 <li
                     v-for="item in filteredLibraries"
                     :key="item.name"
-                    class="p-4 bg-vp-c-bg-elv hover:drop-shadow-lg transition-all rounded-lg animate-in fade-in-40"
+                    class="p-4 bg-vp-c-bg-alt hover:drop-shadow-md drop-shadow-sm transition-all rounded-lg animate-in fade-in-40 flex flex-col"
                 >
                     <h2 class="font-bold">
                         {{ item.name }}
                         <span class="font-normal"> by </span>
                         <span>{{ item.owner }}</span>
                     </h2>
-                    <p class="text-vp-c-text-2">{{ item.description }}</p>
+                    <p class="text-vp-c-text-2 mb-2">{{ item.description }}</p>
                     <a
-                        class="transition-colors text-vp-c-text-3 hover:text-vp-c-text-2"
+                        class="transition-colors text-vp-c-text-3 hover:text-vp-c-text-2 mt-auto"
                         :href="item.url"
                         >View on GitHub
 

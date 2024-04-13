@@ -17,7 +17,7 @@
                 <li
                     v-for="item in filteredImplementations"
                     :key="item.name"
-                    class="p-4 bg-vp-c-bg-elv hover:drop-shadow-lg transition-all rounded-lg animate-in fade-in-40"
+                    class="p-4 bg-vp-c-bg-alt hover:drop-shadow-md drop-shadow-sm transition-all rounded-lg animate-in fade-in-40"
                 >
                     <h2 class="font-bold">
                         {{ item.name }}
