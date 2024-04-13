@@ -13,6 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vueuse/core": "^10.9.0",
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.6.8",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
     "vitepress": "^1.1.0",
     "vitepress-plugin-tabs": "^0.5.0",
     "vue": "^3.4.21"
