@@ -8,9 +8,9 @@ To give an example, imagine two entities very far from each other and therefore 
 
 The API provides multiple benefits:
 
-* Thread-safety with synchronous code
-* Same code whether you use one thread per chunk or a single for the whole server
-* Better control over your data to identify bottlenecks
+- Thread-safety with synchronous code
+- Same code whether you use one thread per chunk or a single for the whole server
+- Better control over your data to identify bottlenecks
 
 Here how the acquirable API looks in practice:
 
@@ -132,9 +132,9 @@ AcquirableCollection<Player> acquirablePlayers = getOnlinePlayers();
 Stream<Player> players = acquirablePlayers.unwrap();
 ```
 
-{% hint style="warning" %}
-Those are not safe operations, be sure to read the [Thread safety](../thread-safety.md) page to understand the implications.
-{% endhint %}
+::: warning
+Those are not safe operations, be sure to read the [Thread safety](thread-safety) page to understand the implications.
+:::
 
 I would personally recommend commenting everywhere you use those unsafe methods to indicate why this operation does not compromise the application's safety. If you cannot find any reason, you likely shouldn't.
 

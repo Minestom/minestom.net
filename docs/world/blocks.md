@@ -4,11 +4,11 @@
 
 A `Block` is an **immutable** object containing:
 
-* Namespace & protocol id
-* `Map<String, String>` containing properties (e.g. waterlogged)
-* State id which is the numerical id defining the block visual used in chunk packets and a few others
-* Optional nbt
-* A `BlockHandler`
+- Namespace & protocol id
+- `Map<String, String>` containing properties (e.g. waterlogged)
+- State id which is the numerical id defining the block visual used in chunk packets and a few others
+- Optional nbt
+- A `BlockHandler`
 
 The immutability allows block references to be cached and reused.
 
@@ -57,9 +57,9 @@ NBTCompound nbt = tnt.nbt();
 
 Tags data can be serialized and will be saved on disk automatically.
 
-{% hint style="warning" %}
+::: warning
 Tags `id`, `x`, `y`, `z `and `keepPacked`are used by the anvil loader and may cause unexpected behavior when added to blocks.
-{% endhint %}
+:::
 
 ## Handlers
 

@@ -31,7 +31,7 @@ instance.setGenerator(unit -> {
 
 ```java
 Instance instance = ...;
-instance.setGenerator(unit -> 
+instance.setGenerator(unit ->
     unit.modifier().fillHeight(0, 40, Block.STONE));
 ```
 
@@ -42,7 +42,6 @@ Modification over the border of a `GenerationUnit` cannot be done without extra 
 Forked units are designed to be placed into the instance whenever it is possible to do so. This eliminates any section bordering issues that may arise.
 
 There are two fork methods, both useful in their own ways. Here is a simple example of adding a structure (snowman):\
-
 
 ```java
 Instance instance = ...;
@@ -103,11 +102,11 @@ instance.setGenerator(unit -> {
 
 These examples will generate a flat snow world with chunky snowmen scattered throughout, cleanly applying the snowmen whenever it is possible to do so.
 
-![](../.gitbook/assets/image.png)
+![](/image.png)
 
 Example with missing terrain for clarity:
 
-![](<../.gitbook/assets/image (3).png>)
+![](</image (3).png>)
 
 ## Heightmaps with JNoise
 
@@ -139,4 +138,4 @@ instance.setGenerator(unit -> {
 
 Here's and example of what that looks like:
 
-![](<../.gitbook/assets/image (4).png>)
+![](</image (4).png>)

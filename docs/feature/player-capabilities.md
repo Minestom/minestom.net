@@ -78,4 +78,4 @@ NotificationCenter.send(Notification, Collection<Player>);
 
 The example renders as the following:
 
-![](../.gitbook/assets/notification.png)
+![](/notification.png)

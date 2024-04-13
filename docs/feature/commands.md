@@ -12,7 +12,7 @@ If you find it confusing, here are a few examples:
 /health // This is a command
 /health set 50; // This is a command and its syntax
 set // This is a literal argument
-~ ~ ~ // This is a position argument  
+~ ~ ~ // This is a position argument
 ```
 
 ## Create your first command
@@ -72,7 +72,7 @@ public class TestCommand extends Command {
 }
 ```
 
-![The command in action](../.gitbook/assets/screenshot-2021-02-12-at-04.57.33.png)
+![The command in action](/screenshot-2021-02-12-at-04.57.33.png)
 
 ## Argument callback
 
@@ -114,7 +114,7 @@ public class TestCommand extends Command {
 }
 ```
 
-![Argument callback detecting an invalid number](../.gitbook/assets/screenshot-2021-02-12-at-05.27.21.png)
+![Argument callback detecting an invalid number](/screenshot-2021-02-12-at-05.27.21.png)
 
 ## Command data
 

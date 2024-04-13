@@ -4,20 +4,20 @@
 
 Event listening is a fairly hard part to keep easy while having a clear understanding of the execution flow. In Minestom, a tree is used to define inheritance for filtering and extensibility. Each node of the tree contains:
 
-* Event class, where only subclasses are allowed to enter (`Event`/`PlayerEvent`/etc...)
-* Condition for filtering
-* List of listeners
-* Name for identification
-* Priority
+- Event class, where only subclasses are allowed to enter (`Event`/`PlayerEvent`/etc...)
+- Condition for filtering
+- List of listeners
+- Name for identification
+- Priority
 
-![Event tree with all nodes being executed](../../.gitbook/assets/event-tree.gif)
+![Event tree with all nodes being executed](/event-tree.gif)
 
 The tree structure provides us many advantages:
 
-* Context-aware listeners due to node filtering
-* Clear execution order
-* Ability to store the event tree as an image for documentation purpose
-* Listener injection into existing nodes
+- Context-aware listeners due to node filtering
+- Clear execution order
+- Ability to store the event tree as an image for documentation purpose
+- Listener injection into existing nodes
 
 ## API
 
@@ -81,7 +81,7 @@ node.call(new MyEvent());
 
 Now that you are familiar with the API, here is how you should use it inside your Minestom project.
 
-### Node to use 
+### Node to use
 
 #### Server JAR
 
