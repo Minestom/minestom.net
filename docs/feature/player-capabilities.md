@@ -2,7 +2,7 @@
 
 Minestom features a number of interaction methods for players. Many of them are described below, however this list is not exhaustive.
 
-It is worth reviewing the [Adventure API](adventure.md) before this, because these systems depend heavily on `Component`.
+It is worth reviewing the [Adventure API](adventure) before this, because these systems depend heavily on `Component`.
 
 ## Sidebars (Scoreboards)
 
@@ -56,7 +56,7 @@ Sidebar#updateLineScore(String /* unique id */, Int /* new score */);
 
 `Notification`s are a system to send advancement completion toasts to a player as a form of communication.
 
-They are a wrapper around `Advancement`, so you do not need to create any advancements to use them, just a `Notification`. See the [Advancements](advancements.md) page for more information on advancements.
+They are a wrapper around `Advancement`, so you do not need to create any advancements to use them, just a `Notification`. See the [Advancements](advancements) page for more information on advancements.
 
 ```java
 Notification#<init>(Component /* title */, FrameType, ItemStack /* icon */);

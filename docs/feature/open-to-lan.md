@@ -16,4 +16,4 @@ To modify how often the event is called and the pings are sent, pass in a `OpenT
 
 ## Modifying the description
 
-The description is set using the `ServerListPingEvent`. For more information on this, see the [server list ping](events/server-list-ping.md) page.
+The description is set using the `ServerListPingEvent`. For more information on this, see the [server list ping](events/server-list-ping) page.

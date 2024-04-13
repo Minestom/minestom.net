@@ -22,12 +22,12 @@ mapData.rows = ROW_COUNT;
 mapData.columns = COLUMN_COUNT;
 ```
 
-* `mapId` is an `int` to be able to reference which map to change.
-* `data` is a `byte[]` array which holds the indices inside the color palette. Its size should be at least `rows*columns`.
-* `x` is an unsigned byte (stored inside a `short`) which represents the X coordinate of the left-most pixel to write. Ranges from 0 to 127 (inclusive).
-* `y` is an unsigned byte (stored inside a `short`) which represents the Y coordinate of the top-most pixel to write. Ranges from 0 to 127 (inclusive).
-* `rows` is an unsigned byte (stored inside a `short`) which represents the number of rows to update.
-* `columns` is an unsigned byte (stored inside a `short`) which represents the number of columns to update.
+- `mapId` is an `int` to be able to reference which map to change.
+- `data` is a `byte[]` array which holds the indices inside the color palette. Its size should be at least `rows*columns`.
+- `x` is an unsigned byte (stored inside a `short`) which represents the X coordinate of the left-most pixel to write. Ranges from 0 to 127 (inclusive).
+- `y` is an unsigned byte (stored inside a `short`) which represents the Y coordinate of the top-most pixel to write. Ranges from 0 to 127 (inclusive).
+- `rows` is an unsigned byte (stored inside a `short`) which represents the number of rows to update.
+- `columns` is an unsigned byte (stored inside a `short`) which represents the number of columns to update.
 
 Pixels are stored in a row-major configuration (ie index is defined by `x+width*y`). Attempting to write pixels outside of the 128x128 area WILL crash and/or disconnect the client, so be careful. Minestom does not check which area you are writing to.
 
@@ -87,4 +87,4 @@ Graphics2D framebuffers also support getting/setting pixels individually if nece
 
 ### GLFW-Capable buffers
 
-[This is an article all to itself.](glfwmaprendering.md)
+[This is an article all to itself.](./map-rendering/glfwmaprendering)

@@ -50,7 +50,7 @@ The description is formatted using legacy section sign color coding and is autom
 
 Covered by the `OPEN_TO_LAN` constant, this category represents server list pings that are sent _from_ the server when it is mimicking being a single player world that is opened to LAN. This type only supports the description. As with the legacy type, the description is formatted using legacy section sign color coding and is automatically converted to this format.
 
-For more information on opening a server to LAN, see the [Open to LAN](../open-to-lan.md) page.
+For more information on opening a server to LAN, see the [Open to LAN](../open-to-lan) page.
 
 ## Ping
 

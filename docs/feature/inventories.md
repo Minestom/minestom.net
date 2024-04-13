@@ -8,7 +8,7 @@ In order to create one, you can simply call its constructor by specifying an Inv
 // Create the inventory
 Inventory inventory = new Inventory(InventoryType.CHEST_1_ROW, "The inventory name");
 
-// Open the inventory for the player 
+// Open the inventory for the player
 // (Opening the same inventory for multiple players would result in a shared interface)
 player.openInventory(inventory);
 
@@ -30,10 +30,10 @@ inventory.addInventoryCondition((player, slot, clickType, inventoryConditionResu
 });
 ```
 
-### InventoryPreClickEvent (see [the events page](events/))
+### InventoryPreClickEvent (see [the events page](events))
 
 Really similar to inventory conditions except that it listens to every inventory (you can obviously add checks when needed, but its goal is to be more "general")
 
-### InventoryClickEvent (see [the events page](events/))
+### InventoryClickEvent (see [the events page](events))
 
 This event only listens to successful actions (not canceled) and is fired after setting the items in the inventory.

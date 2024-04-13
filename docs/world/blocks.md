@@ -41,7 +41,7 @@ hardness = block.registry().hardness();
 
 ## Tags
 
-`Block` implements `TagReadable` meaning that they can contain all kinds of data. (see [Tags](../feature/tags.md))
+`Block` implements `TagReadable` meaning that they can contain all kinds of data. (see [Tags](../feature/tags))
 
 ```java
 Tag<String> tag = Tag.String("my-key");
