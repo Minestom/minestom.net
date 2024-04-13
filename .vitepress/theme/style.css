@@ -121,6 +121,12 @@
         --vp-home-hero-image-filter: blur(68px);
     }
 
+    .VPHero .container {
+        padding: 0% 3%;
+    }
+    .VPHero .image-container {
+        transform: translate(0px, -32px);
+    }
     .VPHero .image-bg,
     .VPHero .image-src {
         height: 90%;

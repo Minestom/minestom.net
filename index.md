@@ -4,15 +4,18 @@ layout: home
 
 hero:
   name: "Minestom"
-  text: "A Minecraft Server Implementation"
-  tagline: Open-source and without any code from Mojang
+  text: "An Open-Source Minecraft Server"
+  tagline: Built by the community, for the community
   image:
     src: /minestom-logo-lg.png
     alt: Minestom Logo
   actions:
     - theme: brand
-      text: Introduction
+      text: Wiki
       link: /docs/introduction
+    - theme: alt
+      text: Libraries
+      link: /libraries/introduction
     - theme: alt
       text: GitHub
       link: https://github.com/minestom/minestom
