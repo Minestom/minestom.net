@@ -100,8 +100,8 @@
 
     --vp-home-hero-image-background-image: linear-gradient(
         -45deg,
-        #ff76b6aa 50%,
-        #ff6c32aa 50%
+        #ff76b666 50%,
+        #ff6c3266 50%
     );
     --vp-home-hero-image-filter: blur(44px);
 }
@@ -115,6 +115,11 @@
 @media (min-width: 960px) {
     :root {
         --vp-home-hero-image-filter: blur(68px);
+    }
+
+    .VPHero .image-bg,
+    .VPHero .image-src {
+        height: 90%;
     }
 }
 
