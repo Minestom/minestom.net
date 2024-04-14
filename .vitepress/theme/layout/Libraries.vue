@@ -4,15 +4,24 @@
             <h1 class="text-vp-c-text-1 text-3xl font-semibold mb-4">
                 Libraries
             </h1>
-            <h3 class="-mt-4 font-medium">
-                Learn more
-                <a href="/docs/libraries" class="text-vp-c-brand-2 underline">
-                    here</a
-                >
-            </h3>
+            <p class="text-vp-c-text-3 font-normal text-md">
+                Here you can find libraries, which can be used to share code
+                between multiple projects.
+            </p>
+
+            <p class="text-vp-c-text-3 font-normal text-md">
+                Note that the WIP state is determined automatically based on
+                releases, if your library is production ready be sure to create
+                a release for it.
+            </p>
+
+            <p class="text-vp-c-text-3 font-normal text-md">
+                To submit your library, simply add the minestom-library topic to
+                your repository on GitHub.
+            </p>
             <input
                 v-model="searchText"
-                class="rounded-lg px-3 py-2 bg-opacity-20 bg-vp-c-bg-soft font-base font-medium"
+                class="rounded-lg px-3 py-2 w-[calc(100%-2px)] translate-x-[1px] bg-vp-c-bg-soft focus:ring-vp-c-brand-2 focus:text-vp-c-brand-2 text-vp-c-text-2 transition-colors font-base ring-vp-c-border ring-1"
                 placeholder="Search..."
             />
             <div v-if="loading" class="my-3 text-center">Loading...</div>
