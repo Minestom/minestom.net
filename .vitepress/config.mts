@@ -4,7 +4,8 @@ import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Minestom",
-  description: "Minestom documentation & information",
+  description:
+    "An open-source Minecraft server built by the community, for the community.",
   markdown: {
     config(md) {
       md.use(tabsMarkdownPlugin);
@@ -28,6 +29,8 @@ export default defineConfig({
           text: "Introduction",
           link: "/showcase/introduction",
         },
+
+        // Showcase example
         {
           text: "Showcase",
           items: [{ text: "Example Server", link: "/showcase/example" }],

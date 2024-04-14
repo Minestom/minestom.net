@@ -4,6 +4,12 @@
             <h1 class="text-vp-c-text-1 text-3xl font-semibold mb-4">
                 Libraries
             </h1>
+            <h3 class="-mt-4 font-medium">
+                Learn more
+                <a href="/docs/libraries" class="text-vp-c-brand-2 underline">
+                    here</a
+                >
+            </h3>
             <input
                 v-model="searchText"
                 class="rounded-lg px-3 py-2 bg-opacity-20 bg-vp-c-bg-soft font-base font-medium"
