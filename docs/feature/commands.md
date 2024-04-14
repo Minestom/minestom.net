@@ -72,7 +72,7 @@ public class TestCommand extends Command {
 }
 ```
 
-![The command in action](/screenshot-2021-02-12-at-04.57.33.png)
+![The command in action](/docs/feature/commands/number-command.png)
 
 ## Argument callback
 
@@ -114,7 +114,7 @@ public class TestCommand extends Command {
 }
 ```
 
-![Argument callback detecting an invalid number](/screenshot-2021-02-12-at-05.27.21.png)
+![Argument callback detecting an invalid number](/docs/feature/commands/number-command-validation.png)
 
 ## Command data
 

@@ -102,11 +102,11 @@ instance.setGenerator(unit -> {
 
 These examples will generate a flat snow world with chunky snowmen scattered throughout, cleanly applying the snowmen whenever it is possible to do so.
 
-![](/image.png)
+![](/docs/world/generation/snowmen-terrain.png)
 
 Example with missing terrain for clarity:
 
-![](</image (3).png>)
+![](/docs/world/generation/snowmen.png)
 
 ## Heightmaps with JNoise
 
@@ -138,4 +138,4 @@ instance.setGenerator(unit -> {
 
 Here's and example of what that looks like:
 
-![](</image (4).png>)
+![](/docs/world/generation/jnoise.png)

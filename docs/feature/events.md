@@ -10,7 +10,7 @@ Event listening is a fairly hard part to keep easy while having a clear understa
 - Name for identification
 - Priority
 
-![Event tree with all nodes being executed](/event-tree.gif)
+![Event tree with all nodes being executed](/docs/feature/events/event-tree.gif)
 
 The tree structure provides us many advantages:
 
