@@ -1,4 +1,4 @@
 ---
-sidebar: true
+sidebar: false
 layout: Libraries
 ---

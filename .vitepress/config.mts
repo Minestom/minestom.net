@@ -16,24 +16,21 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: "/minestom-logo.png",
     nav: [
-      { text: "Libraries", link: "/libraries/introduction" },
+      { text: "Libraries", link: "/libraries" },
+      { text: "Showcase", link: "/showcase/introduction" },
       { text: "Wiki", link: "/docs/introduction" },
       { text: "Javadoc", link: "https://javadoc.minestom.net" },
     ],
 
     sidebar: {
-      "/libraries": [
+      "/showcase": [
         {
           text: "Introduction",
-          link: "/libraries/introduction",
+          link: "/showcase/introduction",
         },
         {
-          text: "Implementations",
-          link: "/libraries/implementations",
-        },
-        {
-          text: "Libraries",
-          link: "/libraries/libraries",
+          text: "Showcase",
+          items: [{ text: "Example Server", link: "/showcase/example" }],
         },
       ],
       "/docs/": [

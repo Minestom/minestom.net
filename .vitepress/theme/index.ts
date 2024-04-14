@@ -2,7 +2,7 @@
 import { h } from "vue";
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
-import Implementations from "./layout/Implementations.vue";
+import Showcase from "./layout/Showcase.vue";
 import Libraries from "./layout/Libraries.vue";
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import "./style.css";
@@ -15,7 +15,7 @@ export default {
     });
   },
   enhanceApp({ app, router, siteData }) {
-    app.component("Implementations", Implementations);
+    app.component("Showcase", Showcase);
     app.component("Libraries", Libraries);
     enhanceAppWithTabs(app);
   },

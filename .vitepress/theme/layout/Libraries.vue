@@ -14,25 +14,28 @@
                 v-else-if="filteredLibraries.length > 0"
                 class="grid grid-cols-1 lg:grid-cols-2 gap-2"
             >
-                <li
+                <a
                     v-for="item in filteredLibraries"
                     :key="item.name"
-                    class="p-4 bg-vp-c-bg-alt hover:drop-shadow-md drop-shadow-sm transition-all rounded-lg animate-in fade-in-40 flex flex-col"
+                    :href="item.url"
+                    class="p-4 group bg-vp-c-bg transition-all flex flex-col rounded-lg border border-vp-c-border hover:border-vp-c-brand-2 animate-in fade-in-40 relative"
                 >
                     <h2 class="font-bold">
                         {{ item.name }}
                         <span class="font-normal"> by </span>
                         <span>{{ item.owner }}</span>
                     </h2>
-                    <p class="text-vp-c-text-2 mb-2">{{ item.description }}</p>
-                    <a
-                        class="transition-colors text-vp-c-text-3 hover:text-vp-c-text-2 mt-auto"
-                        :href="item.url"
-                        >View on GitHub
-
-                        <span v-if="item.preRelease">(Pre-release)</span></a
-                    >
-                </li>
+                    <p class="text-vp-c-text-2 mb-2">
+                        {{ item.description }}
+                    </p>
+                    <p class="text-vp-c-text-3 mt-auto flex flex-row">
+                        <span class="mr-auto">{{ item.stars }} stars</span>
+                        <span
+                            class="group-hover:text-vp-c-brand-2 transition-colors"
+                            >View on GitHub</span
+                        >
+                    </p>
+                </a>
             </ul>
             <p v-else class="my-3">No libraries found.</p>
         </div>
@@ -74,6 +77,7 @@ export default {
                     owner: repo.owner.login,
                     description: repo.description || "No description provided.",
                     preRelease: repo.pre_release,
+                    stars: repo.stargazers_count,
                     url: repo.html_url,
                 }));
             } catch (error) {

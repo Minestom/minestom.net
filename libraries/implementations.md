@@ -1,4 +1,0 @@
----
-sidebar: true
-layout: Implementations
----
