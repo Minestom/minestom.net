@@ -1,5 +1,5 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
+title: "Fast and Open-Source Minecraft Server"
 layout: home
 
 hero:

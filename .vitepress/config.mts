@@ -5,7 +5,7 @@ import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 export default defineConfig({
   title: "Minestom",
   description:
-    "An open-source Minecraft server built by the community, for the community.",
+    "A multithreaded, open-source library for developing high-performance Minecraft servers.",
   markdown: {
     config(md) {
       md.use(tabsMarkdownPlugin);
