@@ -15,7 +15,10 @@ hero:
       link: /docs/introduction
     - theme: alt
       text: Libraries
-      link: /libraries/introduction
+      link: /libraries
+    - theme: alt
+      text: Showcase
+      link: /showcase/introduction
     - theme: alt
       text: GitHub
       link: https://github.com/minestom/minestom
