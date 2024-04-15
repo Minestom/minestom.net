@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240405.0",
     "@tailwindcss/forms": "^0.5.7",
     "@vueuse/core": "^10.9.0",
     "autoprefixer": "^10.4.19",
