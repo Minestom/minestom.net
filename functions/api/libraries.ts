@@ -4,18 +4,19 @@ const CACHE_TTL_SECONDS = 600; // 10 minutes
 const KV_TTL_SECONDS = 1800; // 30 minutes
 const KV_KEY = "LIBRARIES";
 
-export interface Env {
-  GH_API_TOKEN: string;
-  KV_CACHE: KVNamespace;
-}
-
-type Repository = {
+export type Repository = {
   owner: string;
   name: string;
   description: string;
   stars: number;
+  preRelease: boolean;
   url: string;
 };
+
+export interface Env {
+  GH_API_TOKEN: string;
+  KV_CACHE: KVNamespace;
+}
 
 function transformGitHubApiResponse(json: any): Repository[] {
   return json.items.map((repo: any) => ({

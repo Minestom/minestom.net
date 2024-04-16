@@ -21,7 +21,7 @@
             </p>
             <input
                 v-model="searchText"
-                class="rounded-lg px-3 py-2 w-[calc(100%-2px)] translate-x-[1px] bg-vp-c-bg-soft focus:ring-vp-c-brand-2 focus:text-vp-c-brand-2 text-vp-c-text-2 transition-colors font-base ring-vp-c-border ring-1"
+                class="rounded-lg px-3 py-2 w-[calc(100%-2px)] translate-x-[1px] bg-vp-c-bg focus:ring-vp-c-brand-2 focus:text-vp-c-brand-2 text-vp-c-text-2 transition-colors font-base ring-vp-c-border ring-1"
                 placeholder="Search..."
             />
             <div v-if="loading" class="my-3 text-center">Loading...</div>
@@ -76,28 +76,11 @@ export default {
         async fetchLibraries() {
             this.loading = true;
             try {
-                const response = await axios.get(
-                    "https://api.github.com/search/repositories",
-                    {
-                        params: {
-                            q: "topic:minestom-library",
-                        },
-                        headers: {
-                            Accept: "application/vnd.github.v3+json",
-                        },
-                    },
-                );
-                this.libraries = response.data.items.map((repo) => ({
-                    name: repo.name,
-                    owner: repo.owner.login,
-                    description: repo.description || "No description provided.",
-                    preRelease: repo.pre_release,
-                    stars: repo.stargazers_count,
-                    url: repo.html_url,
-                }));
+                const response = await axios.get("/api/libraries");
+                this.libraries = response.data;
             } catch (error) {
                 console.error("Error fetching libraries:", error);
-                this.libraries = []; // Reset the libraries on error.
+                this.libraries = [];
             } finally {
                 this.loading = false;
             }
