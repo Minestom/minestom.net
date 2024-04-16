@@ -10,18 +10,12 @@
             </p>
 
             <p class="text-vp-c-text-3 font-normal text-md">
-                Note that the WIP state is determined automatically based on
-                releases, if your library is production ready be sure to create
-                a release for it.
-            </p>
-
-            <p class="text-vp-c-text-3 font-normal text-md">
                 To submit your library, simply add the minestom-library topic to
                 your repository on GitHub.
             </p>
             <input
                 v-model="searchText"
-                class="rounded-lg px-3 py-2 w-[calc(100%-2px)] translate-x-[1px] bg-vp-c-bg focus:ring-vp-c-brand-2 focus:text-vp-c-brand-2 text-vp-c-text-2 transition-colors font-base ring-vp-c-border ring-1"
+                class="rounded-lg px-3 py-2 w-[calc(100%-2px)] translate-x-[1px] bg-vp-c-bg focus:ring-vp-c-brand-2 text-vp-c-text-2 transition-colors font-base ring-vp-c-border ring-1"
                 placeholder="Search..."
             />
             <div v-if="loading" class="my-3 text-center">Loading...</div>

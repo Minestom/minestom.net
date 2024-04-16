@@ -24,16 +24,16 @@ hero:
       link: https://github.com/minestom/minestom
 
 features:
-  - title: Instances
-    details: Instances are lightweight alternatives to worlds. Minestom uses a a thread pool to manage chunks independently from instances so that lag can be reduced.
-  - title: Blocks
-    details: By default, Minestom doesn't know what a chest is. You have to tell the server to open an inventory when someone clicks on it. All functionality needs to be created.
-  - title: Entities
-    details: The terms "passive" or "aggressive" mobs do not exist. Nobody forbids you from making a flying chicken that rushes at any players that come too close.
-  - title: Inventories
-    details: Inventories have evolved a lot from just being storage containers. Minestom supports inventory callbacks without having to program all the basic stuff yourself!
-  - title: Commands
-    details: Commands are the simplest way of communication between clients and server. Minestom has integrated an API that allows you to use the features Brigader adds.
+  - title: Lightweight
+    details: Minestom comes with a minimal set of functionalities, which allows for a lighter, more efficient server that performs well under different conditions.
   - title: Community
-    details: Minestom has a welcoming community that is happy to provide help to anyone in need. Contributions are welcomed and are always appreciated.
+    details: Minestom has an active community of developers and users who contribute to its continuous development. Many community members are happy to provide help.
+  - title: Modern Codebase
+    details: Minestom is written in modern Java, using best practices and standards. This makes the code easier to maintain and extend compared to other server implementations.
+  - title: High Performance
+    details: Minestom is designed for efficiency, offering high performance with minimal overhead. It can handle large numbers of players and entities without many performance issues.
+  - title: Multi-Threaded
+    details: Minestom uses a thread pool to manage chunks independently from instances. This is crucial in providing large performance benefits over traditional Minecraft servers.
+  - title: No Legacy NMS
+    details: With Minestom, net.minecraft.server is a thing of the past. The protocol is fully implemented and does not obfuscate any code, creating a faster and more enjoyable experience.
 ---
