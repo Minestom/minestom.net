@@ -5,10 +5,10 @@ description: Describes how to add Minestom as a dependency in your project.
 # Dependencies
 
 ::: info
-Minestom needs Java 21 or newer in order to run. If you are using Gradle, you must use version 7.2 or higher.
+Minestom needs Java 21 or newer in order to run. If you are using Gradle, you must use version 8.5 or higher.
 :::
 
-Adding Minestom to your Java project is really simple, you only need to add a few repositories:
+Adding Minestom to your Java project is done just like a normal library.
 
 ## Repositories
 
@@ -43,6 +43,40 @@ repositories {
         <url>https://jitpack.io</url>
     </repository>
 </repositories>
+```
+
+:::
+
+## Dependencies
+
+:::tabs
+== Gradle (Groovy)
+
+```groovy
+dependencies {
+    implementation 'net.minestom:minestom-snapshots:<version>'
+}
+```
+
+== Gradle (Kotlin)
+
+```kotlin
+dependencies {
+    implementation("net.minestom:minestom-snapshots:<version>")
+}
+```
+
+== Maven
+
+```xml
+<dependencies>
+    <!-- ... -->
+    <dependency>
+        <groupId>net.minestom</groupId>
+        <artifactId>minestom-snapshots</artifactId>
+        <version>// version</version>
+    </dependency>
+</dependencies>
 ```
 
 :::

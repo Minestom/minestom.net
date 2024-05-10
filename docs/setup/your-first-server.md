@@ -12,30 +12,70 @@ Some things are needed before being able to connect to your Minestom server.
 
 Here is a correct example:
 
+::: tabs
+=== Java
+
 ```java
-    public static void main(String[] args) {
-        // Initialize the server
-        MinecraftServer minecraftServer = MinecraftServer.init();
+public static void main(String[] args) {
+    // Initialize the server
+    MinecraftServer minecraftServer = MinecraftServer.init();
 
-        // REGISTER EVENTS (set spawn instance, teleport player at spawn)
-
-        // Start the server
-        minecraftServer.start("0.0.0.0", 25565);
-    }
+    // Register Events (set spawn instance, teleport player at spawn)
+    // Start the server
+    minecraftServer.start("0.0.0.0", 25565);
+}
 ```
 
-However even after those steps, you will not be able to connect, what we miss here is an instance (the world)
+===
+=== Kotlin
 
-_Please check the_ [_instances_](/docs/world/instances) _and_ [_events_](/docs/feature/events) _pages if you have any question about how to create/listen to one_
+```kotlin
+fun main() {
+    // Initialize the server
+    val minecraftServer = MinecraftServer.init()
+
+    // Register Events (set spawn instance, teleport player at spawn)
+    // Start the server
+    minecraftServer.start("0.0.0.0", 25565)
+}
+```
+
+===
+:::
+
+However even after those steps, you will not be able to connect, because we are missing an instance.
+
+_Please check the_ [_instances_](/docs/world/instances) _and_ [_events_](/docs/feature/events) _pages if you have any questions about how to create/listen to one._
+
+::: tabs
+=== Java
 
 ```java
+Instance instance = // create instance
 GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
 globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
-   event.setSpawningInstance(YOUR_SPAWNING_INSTANCE);
+   event.setSpawningInstance(instance);
 });
 ```
 
+===
+=== Kotlin
+
+```kotlin
+val instance = // create instance
+val globalEventHandler = MinecraftServer.getGlobalEventHandler();
+globalEventHandler.addListener(AsyncPlayerConfigurationEvent::class.java) { event ->
+    event.spawningInstance = instance
+}
+```
+
+===
+:::
+
 Here is an example of a working Minestom server
+
+::: tabs
+=== Java
 
 ```java
 package demo;
@@ -45,25 +85,21 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
 import net.minestom.server.instance.*;
-import net.minestom.server.instance.batch.ChunkBatch;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.coordinate.Pos;
-import net.minestom.server.world.biomes.Biome;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainDemo {
-
     public static void main(String[] args) {
         // Initialization
         MinecraftServer minecraftServer = MinecraftServer.init();
-        InstanceManager instanceManager = MinecraftServer.getInstanceManager();
+
         // Create the instance
+        InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
+
         // Set the ChunkGenerator
-        instanceContainer.setGenerator(unit ->
-                        unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK));
+        instanceContainer.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK));
+
         // Add an event callback to specify the spawning instance (and the spawn position)
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
         globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
@@ -71,16 +107,52 @@ public class MainDemo {
             event.setSpawningInstance(instanceContainer);
             player.setRespawnPoint(new Pos(0, 42, 0));
         });
+
         // Start the server on port 25565
         minecraftServer.start("0.0.0.0", 25565);
     }
 }
 ```
 
+===
+=== Kotlin
+
+```kotlin
+package demo
+
+import net.minestom.server.MinecraftServer
+import net.minestom.server.instance.block.Block
+import net.minestom.server.coordinate.Pos
+
+fun main() {
+    // Initialization
+    val minecraftServer = MinecraftServer.init();
+
+    // Create the instance
+    val instanceManager = MinecraftServer.getInstanceManager();
+    val instanceContainer = instanceManager.createInstanceContainer();
+
+    // Set the ChunkGenerator
+    instanceContainer.setGenerator { unit ->
+        unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK)
+    }
+
+    // Add an event callback to specify the spawning instance (and the spawn position)
+    val globalEventHandler = MinecraftServer.getGlobalEventHandler()
+    globalEventHandler.addListener(AsyncPlayerConfigurationEvent::class.java) { event ->
+        val player = event.getPlayer()
+        event.spawningInstance = instanceContainer
+        player.respawnPoint = Pos(0.0, 42.0, 0.0)
+    }
+}
+```
+
+===
+:::
+
 ## Building the server JAR
 
-Once you have created your Minestom server, you will probably want to build it and distribute it to a host or friend.
-To do so we will set up the Shadow plugin so that we can make a final working uber (fat) jar.
+Once you have created your Minestom server, you will probably want to build it as a single JAR. This can be achieved with the Gradle `shadow` plugin.
 
 Side note: For Maven users, you will need the "Shade" plugin. If you use Maven and would like to contribute an example
 it would be appreciated :)
@@ -88,6 +160,10 @@ it would be appreciated :)
 You can find the full documentation for the Shadow plugin [here](https://imperceptiblethoughts.com/shadow/introduction/).
 
 First, let's add the Shadow plugin to our project.
+
+::: warning
+As of the time writing this, the original shadow plugin from johnrengelman has not been updated for Java 21 support, so we'll use a fork in this example.
+:::
 
 With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar! (The jar will be put in `/build/libs/` by default)
 
@@ -99,7 +175,7 @@ Now, just to be sure that you understood everything, here is a complete `build.g
 ```groovy
 plugins {
     id 'java'
-    id "com.github.johnrengelman.shadow" version "8.1.1"
+    id "io.github.goooler.shadow" version "8.1.7"
 }
 
 group 'org.example'
@@ -112,7 +188,7 @@ repositories {
 
 dependencies {
     // Change this to the latest version
-    implementation 'com.github.Minestom:Minestom:VERSION'
+    implementation 'net.minestom:minestom-snapshots:<version>'
 }
 
 jar {
@@ -128,7 +204,8 @@ jar {
 ```kts
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    // If you need Kotlin support, use the kotlin("jvm") plugin
+    id("io.github.goooler.shadow") version "8.1.7"
 }
 
 group = "org.example"
@@ -141,7 +218,7 @@ repositories {
 
 dependencies {
     // Change this to the latest version
-    implementation("com.github.Minestom.Minestom:Minestom:VERSION")
+    implementation("net.minestom:minestom-snapshots:<version>")
 }
 
 tasks.withType<Jar> {
