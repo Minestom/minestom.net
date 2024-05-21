@@ -30,11 +30,12 @@ export default {
             this.loading = true;
             try {
                 const response = await axios.get("/api/latest-version");
-                if (response.data.length > 10) {
+                const version = response.data.latestVersion;
+                if (version == null) {
                     this.error = "Malformed response";
                     return;
                 }
-                this.latestVersion = response.data;
+                this.latestVersion = version;
                 this.error = "";
             } catch (error) {
                 console.error("Error fetching libraries:", error);
