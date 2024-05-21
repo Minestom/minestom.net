@@ -28,40 +28,64 @@ function transformGitHubApiResponse(json: any): Repository[] {
   }));
 }
 
-export const onRequest: PagesFunction<Env> = async (context) => {
-  let cachedReponse: Repository[] | null = await context.env.KV_CACHE.get(
-    KV_KEY,
-    "json",
-  );
-  if (cachedReponse != null) {
-    console.info("GitHub API response was already cached.");
-    return new Response(JSON.stringify(cachedReponse), {
-      headers: { "Content-Type": "application/json" },
-    });
+async function fetchGitHubRepositories(token: string): Promise<Repository[]> {
+  const response = await fetch(GITHUB_API_URL, {
+    headers: {
+      "X-Source": "Cloudflare-Workers",
+      "User-Agent": "Cloudflare-Workers",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`GitHub API request failed with status ${response.status}`);
   }
+
+  const data = await response.json();
+  return transformGitHubApiResponse(data);
+}
+
+async function getCachedRepositories(
+  cache: KVNamespace,
+): Promise<Repository[] | null> {
+  return cache.get<Repository[]>(KV_KEY, "json");
+}
+
+async function cacheRepositories(
+  cache: KVNamespace,
+  repositories: Repository[],
+): Promise<void> {
+  await cache.put(KV_KEY, JSON.stringify(repositories), {
+    expirationTtl: KV_TTL_SECONDS,
+  });
+}
+
+export const onRequest: PagesFunction<Env> = async (context) => {
   try {
-    let value = await fetch(GITHUB_API_URL, {
-      headers: {
-        "X-Source": "Cloudflare-Workers",
-        "User-Agent": "Cloudflare-Workers",
-        Authorization: `Bearer ${context.env.GH_API_TOKEN}`,
-      },
-    });
-    let transformed = JSON.stringify(
-      transformGitHubApiResponse(await value.json()),
+    const cachedResponse = await getCachedRepositories(context.env.KV_CACHE);
+    if (cachedResponse) {
+      console.info("GitHub API response was already cached.");
+      return new Response(JSON.stringify(cachedResponse), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const repositories = await fetchGitHubRepositories(
+      context.env.GH_API_TOKEN,
     );
-    await context.env.KV_CACHE.put(KV_KEY, transformed, {
-      expirationTtl: KV_TTL_SECONDS,
-    });
+
+    await cacheRepositories(context.env.KV_CACHE, repositories);
     console.info("Successfully cached API response.");
-    return new Response(transformed, {
+
+    return new Response(JSON.stringify(repositories), {
       headers: {
         "Content-Type": "application/json",
         "Cache-Control": `max-age=${CACHE_TTL_SECONDS}`,
       },
     });
   } catch (err: any) {
-    return new Response(JSON.stringify(err), {
+    console.error("Error fetching GitHub repositories:", err);
+    return new Response(JSON.stringify({ error: err.message }), {
       headers: {
         "Content-Type": "application/json",
         "Cache-Control": `max-age=${CACHE_TTL_SECONDS}`,
