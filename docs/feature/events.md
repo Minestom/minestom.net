@@ -97,10 +97,6 @@ node.addListener(PlayerMoveEvent.class,
 handler.addChild(node);
 ```
 
-#### Extensions
-
-Extensions should use their defined node from `Extension#getEventNode()`, which is removed from the root node once unloaded. Listeners inserted to external nodes must be removed manually.
-
 ### Structure
 
 Having an image of your tree is highly recommended, for documentation purposes and ensuring an optimal filtering path. It is then possible to use packages for major nodes, and classes for minor filtering.

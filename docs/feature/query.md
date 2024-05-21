@@ -18,7 +18,7 @@ To stop the query system, you can call the `stop` method.
 
 ## Modifying responses
 
-By default, this system will act as close to Vanilla and other server implementation's responses as possible. This includes filling in the plugin system with information about the currently installed extensions.
+By default, this system will act as close to Vanilla and other server implementation's responses as possible.
 
 If you wish to customise the responses, you can listen to the two query events that are called when each response is being created. Both of these events allow you to access the `SocketAddress` of the sender in addition to the session ID that they initiated the request with. This information can be used to identify who is sending a request. Additionally, each event is cancellable, meaning that if you don't want to send a response you can simply cancel the event. This is a powerful system that enables you to keep a query system open for obtaining arbitrary information from your server without letting everybody access the query system.
 

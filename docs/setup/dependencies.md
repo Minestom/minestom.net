@@ -17,7 +17,6 @@ Adding Minestom to your Java project is done just like a normal library.
 
 ```groovy
 repositories {
-    // ...
     mavenCentral()
     maven { url 'https://jitpack.io' }
 }
@@ -27,7 +26,6 @@ repositories {
 
 ```kotlin
 repositories {
-    // ...
     mavenCentral()
     maven(url = "https://jitpack.io")
 }
