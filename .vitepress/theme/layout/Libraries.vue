@@ -4,15 +4,13 @@
             <h1 class="text-vp-c-text-1 text-3xl font-semibold mb-4">
                 Libraries
             </h1>
-            <p class="text-vp-c-text-3 font-normal text-md">
-                Here you can find libraries, which can be used to share code
-                between multiple projects.
-            </p>
-
-            <p class="text-vp-c-text-3 font-normal text-md">
-                To submit your library, simply add the minestom-library topic to
+            <p class="text-vp-c-text-3 font-normal text-md mb-4">
+                Here you can find useful libraries and utilities to speed up your Minestom development.
+                <br>
+                To submit your library, simply add the <code class="font-bold mx-1">minestom-library</code> topic to
                 your repository on GitHub.
             </p>
+
             <input
                 v-model="searchText"
                 class="rounded-lg px-3 py-2 w-[calc(100%-2px)] translate-x-[1px] bg-vp-c-bg focus:ring-vp-c-brand-2 text-vp-c-text-2 transition-colors font-base ring-vp-c-border ring-1"
@@ -71,7 +69,7 @@ export default {
             this.loading = true;
             try {
                 const response = await axios.get("/api/libraries");
-                if (!Array.isArray(response)) {
+                if (!Array.isArray(response.data)) {
                     console.error(
                         "Malformed response from server when requesting libraries",
                     );
