@@ -71,6 +71,12 @@ export default {
             this.loading = true;
             try {
                 const response = await axios.get("/api/libraries");
+                if (!Array.isArray(response)) {
+                    console.error(
+                        "Malformed response from server when requesting libraries",
+                    );
+                    return;
+                }
                 this.libraries = response.data;
             } catch (error) {
                 console.error("Error fetching libraries:", error);
