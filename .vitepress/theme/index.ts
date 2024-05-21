@@ -3,6 +3,7 @@ import { h } from "vue";
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import Libraries from "./layout/Libraries.vue";
+import LatestVersion from "./components/LatestVersion.vue";
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import "./style.css";
 
@@ -15,6 +16,7 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     app.component("Libraries", Libraries);
+    app.component("LatestVersion", LatestVersion);
     enhanceAppWithTabs(app);
   },
 } satisfies Theme;
