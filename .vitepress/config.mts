@@ -11,7 +11,10 @@ export default defineConfig({
       md.use(tabsMarkdownPlugin);
     },
   },
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    ["meta", { name: "theme-color", content: "#ff6c32" }],
+  ],
   cleanUrls: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
