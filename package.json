@@ -13,16 +13,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240405.0",
+    "@cloudflare/workers-types": "^4.20240524.0",
     "@tailwindcss/forms": "^0.5.7",
-    "@vueuse/core": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
     "autoprefixer": "^10.4.19",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
-    "vitepress": "^1.1.0",
+    "vitepress": "^1.2.2",
     "vitepress-plugin-tabs": "^0.5.0",
-    "vue": "^3.4.21"
+    "vue": "^3.4.27"
   }
 }

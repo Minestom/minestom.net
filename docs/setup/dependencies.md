@@ -52,7 +52,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'net.minestom:minestom-snapshots:<version>'
+    implementation 'net.minestom:minestom-snapshots:{{<LatestVersion />}}'
 }
 ```
 
@@ -60,19 +60,19 @@ dependencies {
 
 ```kotlin
 dependencies {
-    implementation("net.minestom:minestom-snapshots:<version>")
+    implementation("net.minestom:minestom-snapshots:{{ <LatestVersion /> }}")
 }
 ```
 
 == Maven
 
-```xml
+```xml-vue
 <dependencies>
     <!-- ... -->
     <dependency>
         <groupId>net.minestom</groupId>
         <artifactId>minestom-snapshots</artifactId>
-        <version>// version</version>
+        <version>{{<LatestVersion />}}</version>
     </dependency>
 </dependencies>
 ```
