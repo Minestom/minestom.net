@@ -2,6 +2,29 @@
 description: Describes how to add Minestom as a dependency in your project.
 ---
 
+<script setup>
+import axios from "axios";
+import { ref, onMounted } from 'vue'
+
+const version = ref("<--version-->");
+
+const fetchVersion = async () => {
+  try {
+    const response = await axios.get("/api/latest-version");
+    const ver = response.data.latestVersion;
+    if (ver != null) {
+      version.value = ver;
+    }
+  } catch (error) {
+    console.error("Error fetching libraries:", error);
+  }
+}
+
+onMounted(() => {
+  fetchVersion();
+});
+</script>
+
 # Dependencies
 
 ::: info
@@ -50,17 +73,17 @@ repositories {
 :::tabs
 == Gradle (Groovy)
 
-```groovy
+```groovy-vue
 dependencies {
-    implementation 'net.minestom:minestom-snapshots:{{<LatestVersion />}}'
+    implementation 'net.minestom:minestom-snapshots:{{ version }}'
 }
 ```
 
 == Gradle (Kotlin)
 
-```kotlin
+```kotlin-vue
 dependencies {
-    implementation("net.minestom:minestom-snapshots:{{ <LatestVersion /> }}")
+    implementation("net.minestom:minestom-snapshots:{{version}}")
 }
 ```
 
@@ -72,7 +95,7 @@ dependencies {
     <dependency>
         <groupId>net.minestom</groupId>
         <artifactId>minestom-snapshots</artifactId>
-        <version>{{<LatestVersion />}}</version>
+        <version>{{version}}</version>
     </dependency>
 </dependencies>
 ```
