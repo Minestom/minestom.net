@@ -2,6 +2,29 @@
 description: Describes how to add Minestom as a dependency in your project.
 ---
 
+<script setup>
+import axios from "axios";
+import { ref, onMounted } from 'vue'
+
+const version = ref("<--version-->");
+
+const fetchVersion = async () => {
+  try {
+    const response = await axios.get("/api/latest-version");
+    const ver = response.data.latestVersion;
+    if (ver != null) {
+      version.value = ver;
+    }
+  } catch (error) {
+    console.error("Error fetching libraries:", error);
+  }
+}
+
+onMounted(() => {
+  fetchVersion();
+});
+</script>
+
 # Dependencies
 
 ::: info
@@ -50,35 +73,34 @@ repositories {
 :::tabs
 == Gradle (Groovy)
 
-```groovy
+```groovy-vue
 dependencies {
-    implementation 'net.minestom:minestom-snapshots:<version>'
+    implementation 'net.minestom:minestom-snapshots:{{ version }}'
 }
 ```
 
 == Gradle (Kotlin)
 
-```kotlin
+```kotlin-vue
 dependencies {
-    implementation("net.minestom:minestom-snapshots:<version>")
+    implementation("net.minestom:minestom-snapshots:{{version}}")
 }
 ```
 
 == Maven
 
-```xml
+```xml-vue
 <dependencies>
     <!-- ... -->
     <dependency>
         <groupId>net.minestom</groupId>
         <artifactId>minestom-snapshots</artifactId>
-        <version>// version</version>
+        <version>{{version}}</version>
     </dependency>
 </dependencies>
 ```
 
 :::
-<LatestVersion />
 
 When using Maven it is recommended to exclude the artifact `shrinkwrap-resolver-depchain` from the group `org.jboss.shrinkwrap.resolver` as otherwise resolving the dependencies will fail. Shrinkwrap can be added as a separate dependency if needed without issues to restore its functionality.
 
