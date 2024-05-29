@@ -101,7 +101,6 @@ dependencies {
 ```
 
 :::
-<LatestVersion />
 
 When using Maven it is recommended to exclude the artifact `shrinkwrap-resolver-depchain` from the group `org.jboss.shrinkwrap.resolver` as otherwise resolving the dependencies will fail. Shrinkwrap can be added as a separate dependency if needed without issues to restore its functionality.
 
