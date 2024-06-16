@@ -21,24 +21,24 @@ export default defineConfig({
     logo: "/minestom-logo.png",
     nav: [
       { text: "Libraries", link: "/libraries" },
-      { text: "Showcase", link: "/showcase/introduction" },
+      // { text: "Showcase", link: "/showcase/introduction" },
       { text: "Wiki", link: "/docs/introduction" },
       { text: "Javadoc", link: "https://javadoc.minestom.net" },
     ],
 
     sidebar: {
-      "/showcase": [
-        {
-          text: "Introduction",
-          link: "/showcase/introduction",
-        },
-
-        // Showcase example
-        {
-          text: "Showcase",
-          items: [{ text: "Example Server", link: "/showcase/example" }],
-        },
-      ],
+      // "/showcase": [
+      //   {
+      //     text: "Introduction",
+      //     link: "/showcase/introduction",
+      //   },
+      //
+      //   // Showcase example
+      //   {
+      //     text: "Showcase",
+      //     items: [{ text: "Example Server", link: "/showcase/example" }],
+      //   },
+      // ],
       "/docs/": [
         {
           text: "Introduction",

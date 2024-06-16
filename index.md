@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "Minestom"
-  text: "The Open-Source Minecraft Server"
-  tagline: Built by the community, for the community
+  text: ''
+  tagline: An open-source, lightweight Minecraft server built from the ground up.
   image:
     src: /minestom-logo-lg.png
     alt: Minestom Logo
@@ -30,7 +30,7 @@ features:
   - title: High Performance
     details: Minestom is designed for efficiency, offering high performance with minimal overhead. It can handle large numbers of players without any performance issues.
   - title: Multi-Threaded
-    details: Minestom uses a thread pool to manage chunks independently from instances. This is crucial in providing large performance benefits over traditional Minecraft servers.
+    details: Minestom supports using a thread pool to manage chunks independently from instances. This is crucial in providing large performance benefits over traditional Minecraft servers.
   - title: No Legacy NMS
     details: With Minestom, net.minecraft.server is a thing of the past. The protocol is fully implemented and does not obfuscate any code, creating a faster and more enjoyable experience.
 ---
