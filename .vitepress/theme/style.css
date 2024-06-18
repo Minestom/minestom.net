@@ -133,6 +133,12 @@
     }
 }
 
+.search-input {
+    background-color: transparent;
+    outline: none !important;
+    --tw-ring-shadow: 0 0 #000 !important;
+}
+
 /**
  * Component: Custom Block
  * -------------------------------------------------------------------------- */
