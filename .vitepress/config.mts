@@ -18,6 +18,9 @@ export default defineConfig({
   cleanUrls: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: "local"
+    },
     logo: "/minestom-logo.png",
     nav: [
       { text: "Libraries", link: "/libraries" },
