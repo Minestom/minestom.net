@@ -1,41 +1,28 @@
 {
   "name": "minestom.net",
   "version": "1.0.0",
-  "description": "Website of the Minestom project",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Minestom/minestom.net.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Minestom/minestom.net/issues"
-  },
-  "homepage": "https://minestom.net",
-  "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
   },
-  "dependencies": {
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "dompurify": "^2.3.3",
-    "filesize": "^8.0.0",
-    "fuse.js": "^6.4.6",
-    "gatsby": "^3.11.1",
-    "gatsby-plugin-advanced-sitemap": "^2.0.0",
-    "gatsby-plugin-mdx": "^2.12.0",
-    "gatsby-plugin-robots-txt": "^1.6.9",
-    "gatsby-plugin-sass": "^4.12.0",
-    "gatsby-source-filesystem": "^3.12.0",
-    "highlight.js": "^11.2.0",
-    "marked": "^3.0.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "sass": "^1.38.0",
-    "timeago.js": "^4.0.2"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240524.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@vueuse/core": "^10.10.0",
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
+    "vitepress": "^1.2.2",
+    "vitepress-plugin-tabs": "^0.5.0",
+    "vue": "^3.4.27"
   }
 }
