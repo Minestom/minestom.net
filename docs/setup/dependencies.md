@@ -41,7 +41,6 @@ Adding Minestom to your Java project is done just like a normal library.
 ```groovy
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 ```
 
@@ -50,20 +49,7 @@ repositories {
 ```kotlin
 repositories {
     mavenCentral()
-    maven(url = "https://jitpack.io")
 }
-```
-
-== Maven
-
-```xml
-<repositories>
-    <!-- ... -->
-    <repository>
-        <id>jitpack</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
 ```
 
 :::
@@ -102,6 +88,9 @@ dependencies {
 
 :::
 
-When using Maven it is recommended to exclude the artifact `shrinkwrap-resolver-depchain` from the group `org.jboss.shrinkwrap.resolver` as otherwise resolving the dependencies will fail. Shrinkwrap can be added as a separate dependency if needed without issues to restore its functionality.
+The version string is always the first 10 characters of a commit hash. You can view commits 
+[here](https://github.com/Minestom/Minestom/commits/master/).
 
-A list of versions can be found at [https://jitpack.io/#Minestom/Minestom](https://jitpack.io/#Minestom/Minestom).
+Minestom PR branches are also published and can be used to preview upcoming features. For such branches, the version
+string is `{branch}-{first 10 chars of commit}`. For example, the 1_20_5 branch was usable with the version string
+`1_20_5-dd965f4bb8`.
