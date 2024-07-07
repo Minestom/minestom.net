@@ -4,7 +4,7 @@ description: Responding to all types of server list ping in one place.
 
 # Server list ping
 
-Minestom provides the ability to customise responses to five different server list ping types all in one place. Put simply, to listen to every type of server list ping event you just need to listen to the `ServerListPingEvent` and modify the `ResponseData` in the event. Regardless of the source of the ping, the response data will be formatted in the correct way for the corrosponding source.
+Minestom provides the ability to customise responses to five different server list ping types all in one place. Put simply, to listen to every type of server list ping event you just need to listen to the `ServerListPingEvent` and modify the `ResponseData` in the event. Regardless of the source of the ping, the response data will be formatted in the correct way for the corresponding source.
 
 ## Ping types
 
@@ -56,7 +56,7 @@ For more information on opening a server to LAN, see the [Open to LAN](../open-t
 
 After receiving the server list ping response, modern clients send an additional packet intended to calculate latency. Minestom provides the `ClientPingServerEvent` for this.
 
-The event may be cancelled, in which case a response packet will not be sent. However, various delay methods can affect the apparant latency:
+The event may be cancelled, in which case a response packet will not be sent. However, various delay methods can affect the apparent latency:
 
 ```java
 event.setDelay(new UpdateOption(5, TimeUnit.SECOND));

@@ -66,7 +66,7 @@ The `all()` and `of(Predicate)` methods will collect every custom audience using
 
 ### Packet grouping
 
-Minestom also provides a new `ForwardingAudience` implementation called `PacketGroupingAudience`. This is implemented by every audience in Minestom that has multiple players. Instead of the normal `ForwardingAudience` implementation that iterates through the audience members, this implementation uses `PacketUtils#sendGroupedPacket(Collection, ServerPacket)` to attempt to send a grouped packet to all of the players in this audience.
+Minestom also provides a new `ForwardingAudience` implementation called `PacketGroupingAudience`. This is implemented by every audience in Minestom that has multiple players. Instead of the normal `ForwardingAudience` implementation that iterates through the audience members, this implementation uses `PacketUtils#sendGroupedPacket(Collection, ServerPacket)` to attempt to send a grouped packet to all the players in this audience.
 
 To create your own `PacketGroupingAudience`, you can use the static `of(Collection)` and `of(Iterable)` methods in the class which return an instance of `PacketGroupingAudience` when provided a group of players.
 
@@ -163,7 +163,7 @@ For example, in the old API you would use the following code:
 player.playSound(SoundEvent.MUSIC_DISC_11, SoundCategory.RECORDS, 1f, 1f);
 ```
 
-With Adventure you would use the following code:
+With Adventure, you would use the following code:
 
 ```java
 player.playSound(Sound.sound(SoundEvent.MUSIC_DISC_11, Source.RECORD, 1f, 1f));
@@ -179,7 +179,7 @@ The `net.minestom.server.chat` package has been entirely deprecated. To construc
 
 Another difference between the old chat API and Adventure is that you cannot use colors inside a string to create messages. In the old API you could do `ChatColor.RED + "some text"`. This is not possible with Adventure as it does not properly represent how text is stored in Minecraft. Instead, you can set the style of components using the methods found in the `Component` class, such as `Component.text(String, TextColor)`, or by setting the style using the `Style` method.
 
-Adventure also splits the old API's `ChatColor` class into classes for `TextColor` and `TextDecoration`. `TextDecoration` can also be negated, meaning you can remove styles from nested components whilst not impacting components that may follow this one. The old `ChatColor` class has been deprecated and replaced with new classes for `Color` and `DyeColor` across the Minestom codebase. Both of these implement `RgbLike` and can be used to color Adventure components.
+Adventure also splits the old APIs `ChatColor` class into classes for `TextColor` and `TextDecoration`. `TextDecoration` can also be negated, meaning you can remove styles from nested components whilst not impacting components that may follow this one. The old `ChatColor` class has been deprecated and replaced with new classes for `Color` and `DyeColor` across the Minestom codebase. Both of these implement `RgbLike` and can be used to color Adventure components.
 
 Hover and click events can be added to any `Component` using `.hoverEvent()` and `.clickEvent`. Instead of using `ChatHoverEvent.showItem(ItemStack)` you can instead put an `ItemStack` directly into the argument of a hover event. For example, in the old chat API you would do:
 

@@ -27,11 +27,11 @@ System.out.println("Acquisition happened successfully");
 
 It is important to understand that the consumer is called in the same thread, it is the whole magic of the Acquirable API, your code stays the exact same.
 
-The entity object from the consumer should however **only** be used inside of the consumer. Meaning that if you need to save the entity somewhere for further processing, you shall use the acquirable object instead of the acquired one.
+The entity object from the consumer should however **only** be used inside the consumer. Meaning that if you need to save the entity somewhere for further processing, you shall use the acquirable object instead of the acquired one.
 
 ```java
     private Acquirable<Entity> myEntity; // <- GOOD
-    // private Entity myEntity <- NO GOOD, DONT DO THAT
+    // private Entity myEntity <- NO GOOD, DON'T DO THAT
 
     public void randomMethod(Acquirable<Entity> acquirableEntity) {
         this.myEntity = acquirableEntity;
@@ -82,7 +82,7 @@ acquiredPlayer.unlock();
 
 ### Acquirable Collections
 
-Let's say you have a `AcquirableCollection<Player>` and you want to access **safely** all of the players it contains. You have multiple solutions, each having pros & cons.
+Let's say you have a `AcquirableCollection<Player>` and you want to **safely** access all the players it contains. You have multiple solutions, each having pros & cons.
 
 #### Naive loop
 
@@ -144,7 +144,7 @@ I would personally recommend commenting everywhere you use those unsafe methods 
 Stream<Entity> entities = Acquirable.currentEntities();
 ```
 
-### What type to request and return in methods
+### What types to request and return in methods
 
 You have obviously the right to do what you prefer. But as a general rule, you should return `Acquirable<T>` objects and request for `T`.
 

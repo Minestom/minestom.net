@@ -8,7 +8,7 @@ _GLFW capable framebuffers require access to an API supported by GLFW: OpenGL, O
 
 _These framebuffers can require conversion from RGB to MapColors, but options are provided to accelerate the process, see the end of the article (Color Mapping)._
 
-GLFW (and its LWJGL bindings) provide access to a window onto which a program can render. By making the window invisible, it is possible to render to an offscreen buffer, grab its contents and send it as a map.
+GLFW (and its LWJGL bindings) provide access to a window onto which a program can render. By making the window invisible, it is possible to render to an off-screen buffer, grab its contents and send it as a map.
 
 Which means you can use OpenGL to render onto maps! ![Partially-textured 3D block on a 4x4 wall map.](https://cdn.discordapp.com/attachments/706186241288306798/742862333046554624/2020-08-11_23.47.49.png)
 

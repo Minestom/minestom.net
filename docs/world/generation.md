@@ -57,7 +57,7 @@ instance.setGenerator(unit -> {
         return;
     }
 
-    // Lets fork this section to add our tall snowman.
+    // Let's fork this section to add our tall snowman.
     // We add two extra sections worth of space to this fork to fit the snowman.
     GenerationUnit fork = unit.fork(start, start.add(16, 32, 16));
 
@@ -110,7 +110,7 @@ Example with missing terrain for clarity:
 
 ## Heightmaps with JNoise
 
-This example shows a simply approach to building heightmaps using JNoise, this can be expanded to other noise implementations as well.
+This example shows a simple approach to building heightmaps using JNoise, this can be expanded to other noise implementations as well.
 
 ```java
 // Noise used for the height
@@ -136,6 +136,6 @@ instance.setGenerator(unit -> {
 });
 ```
 
-Here's and example of what that looks like:
+Here's an example of what that looks like:
 
 ![](/docs/world/generation/jnoise.png)

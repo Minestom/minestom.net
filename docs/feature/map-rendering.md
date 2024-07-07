@@ -29,7 +29,7 @@ mapData.columns = COLUMN_COUNT;
 - `rows` is an unsigned byte (stored inside a `short`) which represents the number of rows to update.
 - `columns` is an unsigned byte (stored inside a `short`) which represents the number of columns to update.
 
-Pixels are stored in a row-major configuration (ie index is defined by `x+width*y`). Attempting to write pixels outside of the 128x128 area WILL crash and/or disconnect the client, so be careful. Minestom does not check which area you are writing to.
+Pixels are stored in a row-major configuration (ie index is defined by `x+width*y`). Attempting to write pixels outside the 128x128 area WILL crash and/or disconnect the client, so be careful. Minestom does not check which area you are writing to.
 
 You can then send the packet to players through `PlayerConnection#sendPacket(ServerPacket)`
 

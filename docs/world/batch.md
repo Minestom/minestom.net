@@ -1,6 +1,6 @@
 # Batch
 
-When manipulating a lot of blocks, it is wiser to make use of a Batch to update all of the chunks at once. There are 3 types of batches: `ChunkBatch`, `AbsoluteBlockBatch`, `RelativeBlockBatch`.
+When manipulating a lot of blocks, it is wiser to make use of a Batch to update all the chunks at once. There are 3 types of batches: `ChunkBatch`, `AbsoluteBlockBatch`, `RelativeBlockBatch`.
 
 All batches have a similar set of methods to set blocks, however the coordinate systems are not all the same. See the individual batch for specifics.
 
