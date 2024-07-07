@@ -56,7 +56,7 @@ RelativeBlockBatch#apply(Instance, BlockPosition, Runnable);
 RelativeBlockBatch#apply(Instance, int /* x */, int /* y */, int /* z */, Runnable);
 ```
 
-`RelativeBlockbatch` has a significant performance difference from the other two options, and they should be used over `RelativeBlockBatch` if possible. It is possible to convert a relative batch to an `AbsoluteBlockBatch` using the following methods. This should be used (and cached) if the batch will be applied several times to the same location.
+`AbsoluteBlockBatch` has a significant performance difference from the other two options, and they should be used over `RelativeBlockBatch` if possible. It is possible to convert a relative batch to an `AbsoluteBlockBatch` using the following methods. This should be used (and cached) if the batch will be applied several times to the same location.
 
 ```java
 RelativeBlockBatch#toAbsoluteBatch();
