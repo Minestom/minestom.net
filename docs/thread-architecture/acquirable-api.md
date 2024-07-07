@@ -23,7 +23,7 @@ acquirableEntity.sync(entity -> {
 System.out.println("Acquisition happened successfully");
 ```
 
-`Acquirable#acquire` will block the current thread until `acquirableEntity` becomes accessible, and execute the consumer **in the same thread** once it is the case.
+`Acquirable#sync` will block the current thread until `acquirableEntity` becomes accessible, and execute the consumer **in the same thread** once it is the case.
 
 It is important to understand that the consumer is called in the same thread, it is the whole magic of the Acquirable API, your code stays the exact same.
 
