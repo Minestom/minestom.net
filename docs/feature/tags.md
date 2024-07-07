@@ -37,7 +37,7 @@ UUID uuid = instance.getTag(mappedTag);
 
 ```java
 Tag<String> stringTag = Tag.String("my-string");
-instance.getTag(stringTag.defaultValue("default"))
+instance.getTag(stringTag.defaultValue("default"));
 ```
 
 #### TagSerializer
