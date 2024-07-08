@@ -4,4 +4,4 @@ The goal of this wiki is to familiarize you with our library. The most important
 
 The project Javadoc is currently hosted [here](https://minestom.github.io/Minestom/). Additionally, we do have a [Discord server](https://discord.gg/pkFRvqB) where you can ask anything you want.
 
-If you do not know how you landed here, Minestom is a complete rewrite of the Minecraft server software without any Mojang code. You can learn more about it [here](https://github.com/Minestom/Minestom).
+If you do not know how you landed here: Minestom is a complete rewrite of the Minecraft server software without any Mojang code. You can learn more about it [here](https://github.com/Minestom/Minestom).

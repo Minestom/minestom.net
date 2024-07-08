@@ -1,16 +1,17 @@
 ---
-description: Includes everything you need to have your first server running.
+description: Describes how to get a basic server running.
 ---
 
 # Your first server
 
-Some things are needed before being able to connect to your Minestom server.
+There are a few steps necessary before you can connect to your Minestom server:
 
-- Initialize the server
-- Registering events/commands
-- Start the server at the specified port and address
+- Initializing the server
+- Registering your events/commands
+- Creating an instance for players to join
+- Starting the server on a port and address
 
-Here is a correct example:
+Here is an example of a server without an instance:
 
 ::: tabs
 === Java
@@ -20,7 +21,7 @@ public static void main(String[] args) {
     // Initialize the server
     MinecraftServer minecraftServer = MinecraftServer.init();
 
-    // Register Events (set spawn instance, teleport player at spawn)
+    // Register events (set spawn instance, teleport player at spawn)
     // Start the server
     minecraftServer.start("0.0.0.0", 25565);
 }
@@ -34,7 +35,7 @@ fun main() {
     // Initialize the server
     val minecraftServer = MinecraftServer.init()
 
-    // Register Events (set spawn instance, teleport player at spawn)
+    // Register events (set spawn instance, teleport player at spawn)
     // Start the server
     minecraftServer.start("0.0.0.0", 25565)
 }
@@ -43,15 +44,13 @@ fun main() {
 ===
 :::
 
-However even after those steps, you will not be able to connect, because we are missing an instance.
-
-_Please check the_ [_instances_](/docs/world/instances) _and_ [_events_](/docs/feature/events) _pages if you have any questions about how to create/listen to one._
+Add an instance for players to connect to:
 
 ::: tabs
 === Java
 
 ```java
-Instance instance = // create instance
+Instance instance = // Create an instance
 GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
 globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
    event.setSpawningInstance(instance);
@@ -62,8 +61,8 @@ globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
 === Kotlin
 
 ```kotlin
-val instance = // create instance
-val globalEventHandler = MinecraftServer.getGlobalEventHandler();
+val instance = // Create an instance
+val globalEventHandler = MinecraftServer.getGlobalEventHandler()
 globalEventHandler.addListener(AsyncPlayerConfigurationEvent::class.java) { event ->
     event.spawningInstance = instance
 }
@@ -72,7 +71,9 @@ globalEventHandler.addListener(AsyncPlayerConfigurationEvent::class.java) { even
 ===
 :::
 
-Here is an example of a working Minestom server
+_Check out the_ [_instances_](/docs/world/instances) _and_ [_events_](/docs/feature/events) _pages to see more on how to create and listen to instances_
+
+Here is an example of a working Minestom server:
 
 ::: tabs
 === Java
@@ -126,11 +127,11 @@ import net.minestom.server.coordinate.Pos
 
 fun main() {
     // Initialization
-    val minecraftServer = MinecraftServer.init();
+    val minecraftServer = MinecraftServer.init()
 
     // Create the instance
-    val instanceManager = MinecraftServer.getInstanceManager();
-    val instanceContainer = instanceManager.createInstanceContainer();
+    val instanceManager = MinecraftServer.getInstanceManager()
+    val instanceContainer = instanceManager.createInstanceContainer()
 
     // Set the ChunkGenerator
     instanceContainer.setGenerator { unit ->
@@ -148,85 +149,4 @@ fun main() {
 ```
 
 ===
-:::
-
-## Building the server JAR
-
-Once you have created your Minestom server, you will probably want to build it as a single JAR. This can be achieved with the Gradle `shadow` plugin.
-
-Side note: For Maven users, you will need the "Shade" plugin. If you use Maven and would like to contribute an example
-it would be appreciated :)
-
-You can find the full documentation for the Shadow plugin [here](https://imperceptiblethoughts.com/shadow/introduction/).
-
-First, let's add the Shadow plugin to our project.
-
-::: warning
-As of the time writing this, the original shadow plugin from johnrengelman has not been updated for Java 21 support, so we'll use a fork in this example.
-:::
-
-With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar! (The jar will be put in `/build/libs/` by default)
-
-Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts` file.
-
-:::tabs
-== groovy
-
-```groovy
-plugins {
-    id 'java'
-    id "io.github.goooler.shadow" version "8.1.7"
-}
-
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-}
-
-dependencies {
-    // Change this to the latest version
-    implementation 'net.minestom:minestom-snapshots:<version>'
-}
-
-jar {
-    manifest {
-        // Change this to your main class
-        attributes 'Main-Class': 'org.example.Main'
-    }
-}
-```
-
-== kotlin
-
-```kts
-plugins {
-    id("java")
-    // If you need Kotlin support, use the kotlin("jvm") plugin
-    id("io.github.goooler.shadow") version "8.1.7"
-}
-
-group = "org.example"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-    maven(url = "https://jitpack.io")
-}
-
-dependencies {
-    // Change this to the latest version
-    implementation("net.minestom:minestom-snapshots:<version>")
-}
-
-tasks.withType<Jar> {
-    manifest {
-        // Change this to your main class
-        attributes["Main-Class"] = "org.example.Main"
-    }
-}
-```
-
 :::
