@@ -18,7 +18,7 @@ Tags benefit are:
 
 ## API
 
-First of all, it is recommenced to expose Tags as contant and reused. All `Tag` methods should be pure, and allow to specify additional information to handle the data.
+First of all, it is recommended to expose Tags as constant and reused. All `Tag` methods should be pure, and allow to specify additional information to handle the data.
 
 All tags are available as static factory methods inside the `Tag` class.
 
@@ -37,7 +37,7 @@ UUID uuid = instance.getTag(mappedTag);
 
 ```java
 Tag<String> stringTag = Tag.String("my-string");
-instance.getTag(stringTag.defaultValue("default"))
+instance.getTag(stringTag.defaultValue("default"));
 ```
 
 #### TagSerializer
@@ -46,7 +46,7 @@ instance.getTag(stringTag.defaultValue("default"))
 
 #### Structure
 
-A structure tag is a wrapper around an nbt compound (map) independent from all the other tags.
+A structure tag is a wrapper around a nbt compound (map) independent of all the other tags.
 
 #### View
 

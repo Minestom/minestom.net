@@ -10,13 +10,13 @@ As for its usage in Minestom, you do not have to remember everything you will re
 
 ## What is thread-safety?
 
-A code is called "thread-safe" if and only if this code can be called from multiple threads without unexpected behavior. Therefore the term does not say anything about performance or design, it is simply a way to denote how the code can be accessed.
+A code is called "thread-safe" if and only if this code can be called from multiple threads without unexpected behavior. Therefore, the term does not say anything about performance or design, it is simply a way to denote how the code can be accessed.
 
 ## What does it cost?
 
-Transforming a single-threaded code to a multi-threaded one is not as easy as creating multiple threads. The main issue you will encounter is about memory visibility, you can imagine that 2 threads cannot access the same variable in memory at the exact same time without any drawback. Synchronization requires having the thread check if it has the right to access the X method and has therefore a cost, mostly in the order of nano or microseconds, but could lead to an unusable program if too repetitive. Common issues in multithreaded applications are:
+Transforming a single-threaded code to a multithreaded one is not as easy as creating multiple threads. The main issue you will encounter is about memory visibility, you can imagine that 2 threads cannot access the same variable in memory at the exact same time without any drawback. Synchronization requires having the thread check if it has the right to access the X method and has therefore a cost, mostly in the order of nano or microseconds, but could lead to an unusable program if too repetitive. Common issues in multithreaded applications are:
 
-1. Race-condition: when the same method is called by two threads at the same time, which generally lead to undebuggable issues
+1. Race-condition: when the same method is called by two threads at the same time, which generally causes issues that are hard to debug
 2. Deadlock: when two locks are waiting for each other, meaning that those will never be freed
 
 ## What to use?
@@ -33,6 +33,6 @@ Making a field thread-safe does not mean that the object itself is. But only tha
 
 ### Methods
 
-Additionally to the fields, you need to way to manage your flow control so two methods are not called at the exact time which is likely to break every non-thread-safe program (race-condition). Thread synchronization happens thanks to the help of locks, those are mechanisms that will make the current thread waits until someone tells him that he can now open the door and close behind him.
+In addition to the fields, you need to way to manage your flow control so two methods are not called at the exact time which is likely to break every non-thread-safe program (race-condition). Thread synchronization happens thanks to the help of locks, those are mechanisms that will make the current thread waits until someone tells him that he can now open the door and close behind him.
 
 The JVM is again here to the rescue with the `synchronized` flag or the low-level `Object#wait/notify()` methods. There are also higher-level tools such as `CountDownLatch`, `Phaser`, and even some handy safe collections to replace your non-thread-safe ones! `ConcurrentHashMap`, `CopyOnWriteArrayList`, `ConcurrentLinkedQueue`, and a lot of other ones available in your [JDK](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/package-summary.html).

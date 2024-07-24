@@ -1,6 +1,6 @@
 # Batch
 
-When manipulating a lot of blocks, it is wiser to make use of a Batch to update all of the chunks at once. There are 3 types of batches: `ChunkBatch`, `AbsoluteBlockBatch`, `RelativeBlockBatch`.
+When manipulating a lot of blocks, it is wiser to make use of a Batch to update all the chunks at once. There are 3 types of batches: `ChunkBatch`, `AbsoluteBlockBatch`, `RelativeBlockBatch`.
 
 All batches have a similar set of methods to set blocks, however the coordinate systems are not all the same. See the individual batch for specifics.
 
@@ -56,7 +56,7 @@ RelativeBlockBatch#apply(Instance, BlockPosition, Runnable);
 RelativeBlockBatch#apply(Instance, int /* x */, int /* y */, int /* z */, Runnable);
 ```
 
-`RelativeBlockbatch` has a significant performance difference from the other two options, and they should be used over `RelativeBlockBatch` if possible. It is possible to convert a relative batch to an `AbsoluteBlockBatch` using the following methods. This should be used (and cached) if the batch will be applied several times to the same location.
+`AbsoluteBlockBatch` has a significant performance difference from the other two options, and they should be used over `RelativeBlockBatch` if possible. It is possible to convert a relative batch to an `AbsoluteBlockBatch` using the following methods. This should be used (and cached) if the batch will be applied several times to the same location.
 
 ```java
 RelativeBlockBatch#toAbsoluteBatch();

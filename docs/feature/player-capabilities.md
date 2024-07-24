@@ -9,7 +9,7 @@ It is worth reviewing the [Adventure API](adventure) before this, because these 
 `Sidebar`s can be used to display up to 16 lines on a scoreboard for the player. They are created given a title as follows:
 
 ```java
-Sidebar#<init>(Component /* title */)
+Sidebar#<init>(Component /* title */);
 ```
 
 > Sidebar titles do not support JSON chat components, however the provided component will be serialized using Adventure's legacy serializer.

@@ -36,7 +36,7 @@ public class ZombieCreature extends EntityCreature {
             List.of(
                 new MeleeAttackGoal(this, 1.6, 20, TimeUnit.SERVER_TICK), // Attack the target
                 new RandomStrollGoal(this, 20) // Walk around
-            )
+            ),
             List.of(
                 new LastEntityDamagerTarget(this, 32), // First target the last entity which attacked you
                 new ClosestEntityTarget(this, 32, entity -> entity instanceof Player) // If there is none, target the nearest player

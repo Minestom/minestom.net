@@ -12,7 +12,7 @@ InstanceManager instanceManager = MinecraftServer.getInstanceManager()
 Entity#getInstance
 ```
 
-Internally, the default Instance class have its own sets to store the entities in it, but all chunk based methods are abstract and meant to be implemented by a sub-class
+Internally, the default Instance class have its own sets to store the entities in it, but all chunk based methods are abstract and meant to be implemented by a subclass
 
 ## InstanceContainer
 

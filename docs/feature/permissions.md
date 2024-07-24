@@ -30,13 +30,13 @@ In order to add a permission to a player, you will have to call the `Player#addP
 player.addPermission(new Permission("operator"));
 ```
 
-If you want to check, if a player has a permission, you can use the `Player#hasPermission(Permission)` function, here is an example of checking for a permission inside of a command:
+If you want to check, if a player has a permission, you can use the `Player#hasPermission(Permission)` function, here is an example of checking a permission from a command:
 
 ```java
 public class StopCommand extends Command {
     public StopCommand() {
         super("stop");
-        setCondition((sender, commandString) -> sender.hasPermission(new Permission("operator"));
+        setCondition((sender, commandString) -> sender.hasPermission(new Permission("operator")));
         setDefaultExecutor((sender, context) -> MinecraftServer.stopCleanly());
     }
 }

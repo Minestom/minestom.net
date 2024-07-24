@@ -8,9 +8,9 @@ Understanding what happens when an event is called or when a new node is added c
 
 ## Listener handle
 
-A `ListenerHandle` represents a direct access to an event type listeners, they are stored inside the node and must be retrieved for the listeners to be executed
+A `ListenerHandle` represents direct access to an event type listeners, they are stored inside the node and must be retrieved for the listeners to be executed
 
-`EventNode#call(Event)` is as simple as retrieving the handle (through a map lookup) and executing `ListenerHandle#call(Event)`. As you may have realize, you could completely avoid the map lookup by directly using the handle, hence why `EventNode#getHandle(Class<Event>)` exists!
+`EventNode#call(Event)` is as simple as retrieving the handle (through a map lookup) and executing `ListenerHandle#call(Event)`. As you may have realized, you could completely avoid the map lookup by directly using the handle, hence why `EventNode#getHandle(Class<Event>)` exists!
 
 Keeping the handle in a field instead of doing map lookups for every event call may also help the JIT to entirely avoid the event object allocation in case where there are no listener.
 

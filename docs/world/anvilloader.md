@@ -12,7 +12,7 @@ An example of using this method to load a world is:
 InstanceContainer.setChunkLoader(new AnvilLoader("worlds/world"));
 ```
 
-This will load the world inside of the `worlds/world` directory into the InstanceContainer, allowing you to use the instance as before but having the world loaded inside.
+This will load the world inside the `worlds/world` directory into the InstanceContainer, allowing you to use the instance as before but having the world loaded inside.
 
 In order to load a world, the world folder will only need the `/region` folder, as it contains the block data.
 
