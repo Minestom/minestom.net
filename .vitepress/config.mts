@@ -48,12 +48,15 @@ export default defineConfig({
           link: "/docs/introduction",
         },
         {
-          text: "Setup",
+          text: "Getting Started",
           items: [
-            { text: "Dependencies", link: "/docs/setup/dependencies" },
+            {
+              text: "Project Setup",
+              link: "/docs/starting-out/project-setup"
+            },
             {
               text: "Your First Server",
-              link: "/docs/setup/your-first-server",
+              link: "/docs/starting-out/your-first-server",
             },
           ],
         },
