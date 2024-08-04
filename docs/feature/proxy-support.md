@@ -1,28 +1,39 @@
 ---
-description: Connecting a Minestom server to a velocity proxy
+description: Connecting a Minestom server to a proxy
 ---
 
 # Proxy Support
 
-Minestom by default supports [Velocity](https://papermc.io/software/velocity) and [Gate](https://gate.minekube.com/) proxys through Velocity's modern forwarding.
+Minestom supports connecting to [Velocity](https://papermc.io/software/velocity), [Gate](https://gate.minekube.com/) and [Bungee](https://github.com/SpigotMC/BungeeCord) proxys, although Velocity or Gate are preferred as they support [modern forwarding](https://docs.papermc.io/velocity/security#velocity-modern-forwarding).
 
-## Initialising modern forwarding
+## Connecting to the proxy
 
-It is as simple as adding the below between `MinecraftServer.init()` and `MinecraftServer#start`
+### Velocity or Gate
+
+To use Velocity or Gate (or any other modern forwarding proxy) you can add the below between `MinecraftServer#init` and `MinecraftServer#start`
 
 ```java
-String secret = "My really secret secret that is not hard coded"
-VelocityProxy.enable(secret)
+VelocityProxy.enable("My really secret secret that is not hard coded")
+```
+
+### Bungee
+
+Bungee can be used in much a similar way to Velocity. Due to its age, it does not use modern forwarding and thus is insecure by default. A similar mechanism can be implemented with [BungeeGuard](https://www.spigotmc.org/resources/bungeeguard.79601/), and you should **never** use Bungee without it. The below code block enables Bungee and BungeeGuard
+
+```java
+BungeeCordProxy.enable()
+BungeeCordProxy.setBungeeGuardTokens(Set.of("tokens", "here"))
 ```
 
 ## Transferring between servers
 
-You need to install [Guva](https://github.com/google/guava) to transfer players. Once doing that, just add the below to send the appropriate packet
+To transfer players, you need to send a [plugin message](https://docs.papermc.io/paper/dev/plugin-messaging#what-did-we-just-do) to the BungeeCord channel. Below is how this (or any other plugin message for that matter) can be achieved.
 
 ```java
 String connectTo = "The server you want to connect to"
-ByteArrayDataOutput out = ByteStreams.newDataOutput();
-out.writeUTF("Connect");
-out.writeUTF(connectTo);
-player.sendPacket(new PluginMessagePacket("BungeeCord", out.toByteArray()));
+
+player.sendPluginMessage("BungeeCord", NetworkBuffer.makeArray(buffer -> {
+  buffer.write(NetworkBuffer.STRING, "Connect");
+  buffer.write(NetworkBuffer.STRING, connectTo);
+}));
 ```
