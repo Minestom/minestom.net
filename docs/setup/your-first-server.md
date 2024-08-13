@@ -152,30 +152,45 @@ fun main() {
 
 ## Building the server JAR
 
-Once you have created your Minestom server, you will probably want to build it as a single JAR. This can be achieved with the Gradle `shadow` plugin.
+Once you have created your Minestom server, you will probably want to build it as a single JAR. This can be achieved with the Gradle `shadow` plugin. You can find the full documentation for this plugin [here](https://gradleup.com/shadow/).
 
-Side note: For Maven users, you will need the "Shade" plugin. If you use Maven and would like to contribute an example
+::: Info
+For Maven users, you will need the "Shade" plugin. If you use Maven and would like to contribute an example
 it would be appreciated :)
-
-You can find the full documentation for the Shadow plugin [here](https://imperceptiblethoughts.com/shadow/introduction/).
+:::
 
 First, let's add the Shadow plugin to our project.
 
-::: warning
-As of the time writing this, the original shadow plugin from johnrengelman has not been updated for Java 21 support, so we'll use a fork in this example.
-:::
+::: tabs
+=== groovy
 
+```groovy
+plugins {
+    id 'com.gradleup.shadow' version "8.3.0"
+}
+```
+
+=== Kotlin
+
+```kotlin
+plugins {
+    id("com.gradleup.shadow") version "8.3.0"
+
+}
+```
+
+:::
 With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar! (The jar will be put in `/build/libs/` by default)
 
-Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts` file.
+Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceities added.
 
 :::tabs
-== groovy
+=== groovy
 
 ```groovy
 plugins {
     id 'java'
-    id "io.github.goooler.shadow" version "8.1.7"
+    id 'com.gradleup.shadow' version "8.3.0"
 }
 
 group 'org.example'
@@ -183,7 +198,6 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -191,21 +205,36 @@ dependencies {
     implementation 'net.minestom:minestom-snapshots:<version>'
 }
 
-jar {
-    manifest {
-        // Change this to your main class
-        attributes 'Main-Class': 'org.example.Main'
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21)) // Minestom has a minimum Java version of 21
     }
 }
+
+tasks {
+    jar {
+        manifest {
+            attributes["Main-Class"] = "org.example.Main" // Change this to your main class
+        }
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
+    shadowJar {
+        mergeServiceFiles()
+        archiveClassifier.set("") // Prevent the -all suffix on the shadowjar file.
+    }
+}
+
 ```
 
-== kotlin
+=== kotlin
 
 ```kts
 plugins {
     id("java")
-    // If you need Kotlin support, use the kotlin("jvm") plugin
-    id("io.github.goooler.shadow") version "8.1.7"
+    id("com.gradleup.shadow") version "8.3.0"
 }
 
 group = "org.example"
@@ -213,7 +242,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven(url = "https://jitpack.io")
 }
 
 dependencies {
@@ -221,12 +249,28 @@ dependencies {
     implementation("net.minestom:minestom-snapshots:<version>")
 }
 
-tasks.withType<Jar> {
-    manifest {
-        // Change this to your main class
-        attributes["Main-Class"] = "org.example.Main"
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21)) // Minestom has a minimum Java version of 21
     }
 }
+
+tasks {
+    jar {
+        manifest {
+            attributes["Main-Class"] = "org.example.Main" // Change this to your main class
+        }
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
+    shadowJar {
+        mergeServiceFiles()
+        archiveClassifier.set("") // Prevent the -all suffix on the shadowjar file.
+    }
+}
+
 ```
 
 :::
