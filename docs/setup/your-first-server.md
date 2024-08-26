@@ -154,15 +154,12 @@ fun main() {
 
 Once you have created your Minestom server, you will probably want to build it as a single JAR. This can be achieved with the Gradle `shadow` plugin. You can find the full documentation for this plugin [here](https://gradleup.com/shadow/).
 
-::: Info
-For Maven users, you will need the "Shade" plugin. If you use Maven and would like to contribute an example
-it would be appreciated :)
-:::
+For Maven you can use the `assembly` plugin to build the jar using the `clean package` command. A documentation on the plugin can be found [here](https://maven.apache.org/plugins/maven-assembly-plugin/).
 
-First, let's add the Shadow plugin to our project.
+First, let's add the Shadow plugin to our Gradle project.
 
 ::: tabs
-=== groovy
+=== Gradle (Groovy)
 
 ```groovy
 plugins {
@@ -170,7 +167,7 @@ plugins {
 }
 ```
 
-=== Kotlin
+=== Gradle (Kotlin)
 
 ```kotlin
 plugins {
@@ -180,12 +177,14 @@ plugins {
 ```
 
 :::
-With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar! (The jar will be put in `/build/libs/` by default)
+With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar for Gradle! (The jar will be put in `/build/libs/` by default).
 
-Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceities added.
+For Maven we will add a execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
+
+Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts`/`pom.xml` file with a few extra niceities added.
 
 :::tabs
-=== groovy
+=== Gradle (Groovy)
 
 ```groovy
 plugins {
@@ -229,7 +228,7 @@ tasks {
 
 ```
 
-=== kotlin
+=== Gradle (Kotlin)
 
 ```kts
 plugins {
@@ -271,6 +270,64 @@ tasks {
     }
 }
 
+```
+
+=== Maven
+
+```xml
+    <groupId>org.example</groupId>
+    <artifactId>Main</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <java.version>21</java.version> <!--Minestom has a minimum Java version of 21-->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.minestom</groupId>
+            <artifactId>minestom-snapshots</artifactId>
+            <version>version</version> <!--Change this to the Minestom version you are using-->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal> <!--Prevent dependecies from shading multiple times-->
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.example.Main</mainClass> <!--Change this to your main class-->
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 ```
 
 :::
