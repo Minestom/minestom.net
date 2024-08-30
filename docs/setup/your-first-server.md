@@ -336,3 +336,5 @@ Here is a complete `pom.xml` file with a few extra niceities added.
     </build>
 </project>
 ```
+
+<sub>_Example by [AlexDerProGamer](https://github.com/AlexDerProGamer)_</sub>
