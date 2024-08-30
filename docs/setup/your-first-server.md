@@ -150,13 +150,13 @@ fun main() {
 ===
 :::
 
-## Building the server JAR
+Once you have created your Minestom server, you will probably want to build it as a single JAR.
 
-Once you have created your Minestom server, you will probably want to build it as a single JAR. This can be achieved with the Gradle `shadow` plugin. You can find the full documentation for this plugin [here](https://gradleup.com/shadow/).
+## Building the server JAR (Gradle)
 
-For Maven you can use the `assembly` plugin to build the jar using the `clean package` command. A documentation on the plugin can be found [here](https://maven.apache.org/plugins/maven-assembly-plugin/).
+This can be achieved with the Gradle `shadow` plugin. You can find the full documentation for this plugin [here](https://gradleup.com/shadow/).
 
-First, let's add the Shadow plugin to our Gradle project.
+First, let's add the `shadow` plugin to our Gradle project.
 
 ::: tabs
 === Gradle (Groovy)
@@ -172,16 +172,13 @@ plugins {
 ```kotlin
 plugins {
     id("com.gradleup.shadow") version "8.3.0"
-
 }
 ```
 
 :::
 With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar for Gradle! (The jar will be put in `/build/libs/` by default).
 
-For Maven we will add a execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
-
-Now, just to be sure that you understood everything, here is a complete `build.gradle`/`build.gradle.kts`/`pom.xml` file with a few extra niceities added.
+Here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceities added.
 
 :::tabs
 === Gradle (Groovy)
@@ -272,9 +269,18 @@ tasks {
 
 ```
 
-=== Maven
+:::
+
+## Building the server JAR (Maven)
+
+Start by adding a execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
+
+You can use the `assembly` plugin to build the jar using the `clean package` command. Documentation on the plugin can be found [here](https://maven.apache.org/plugins/maven-assembly-plugin/).
+
+Here is a complete `pom.xml` file with a few extra niceities added.
 
 ```xml
+<project>
     <groupId>org.example</groupId>
     <artifactId>Main</artifactId>
     <version>1.0.0</version>
@@ -328,6 +334,5 @@ tasks {
             </plugin>
         </plugins>
     </build>
+</project>
 ```
-
-:::
