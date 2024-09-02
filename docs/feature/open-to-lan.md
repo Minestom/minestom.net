@@ -6,7 +6,7 @@ description: Allowing the server to show up in the LAN section of the server lis
 
 By sending a series of packets to a multicast address, Minestom provides the ability to mimic being a single player world that is opened to LAN. This will make it show up in the server list of all open Minecraft instances running in your local network below the "_Scanning for games on your local network_" section.
 
-This does **not** actually open the server to anywhere other than your local network and it **not** a replacement for port forwarding or a proper network setup. It is mainly designed as a fun feature that can be useful during testing if you're spinning up a dynamic amount of servers and don't want to manually connect to each one of them.
+This does **not** actually open the server to anywhere other than your local network and it is **not** a replacement for port forwarding or a proper network setup. It is mainly designed as a fun feature that can be useful during testing if you're spinning up a dynamic amount of servers and don't want to manually connect to each one of them.
 
 ## Setup
 
