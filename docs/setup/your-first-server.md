@@ -123,6 +123,7 @@ package demo
 import net.minestom.server.MinecraftServer
 import net.minestom.server.instance.block.Block
 import net.minestom.server.coordinate.Pos
+import net.minestom.server.event.player.AsyncPlayerConfigurationEvent
 
 fun main() {
     // Initialization
