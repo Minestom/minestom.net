@@ -127,11 +127,11 @@ import net.minestom.server.event.player.AsyncPlayerConfigurationEvent
 
 fun main() {
     // Initialization
-    val minecraftServer = MinecraftServer.init();
+    val minecraftServer = MinecraftServer.init()
 
     // Create the instance
-    val instanceManager = MinecraftServer.getInstanceManager();
-    val instanceContainer = instanceManager.createInstanceContainer();
+    val instanceManager = MinecraftServer.getInstanceManager()
+    val instanceContainer = instanceManager.createInstanceContainer()
 
     // Set the ChunkGenerator
     instanceContainer.setGenerator { unit ->
@@ -145,6 +145,8 @@ fun main() {
         event.spawningInstance = instanceContainer
         player.respawnPoint = Pos(0.0, 42.0, 0.0)
     }
+
+    minecraftServer.start("0.0.0.0", 25565)
 }
 ```
 
