@@ -16,3 +16,21 @@ connectionManager.setUuidProvider((playerConnection, username) -> {
 ::: warning
 The UUID provider is unnecessary and will not work if you have IP forwarding enabled (Velocity/Bungee)
 :::
+
+## Enabling Mojang Authentication
+
+If you want to enable Mojang authentication after the server has been started, you can use the following code:
+Enabling Mojang Authentication will validate the session token, set the player's skin, and provide a "trusted" UUID. 
+You can enable this with `MojangAuth#init`.
+
+```java
+public static void main(String[] args) {
+    
+    MinecraftServer minecraftServer = MinecraftServer.init();
+
+    // enables Mojang authentication
+    MojangAuth.init();
+    
+    minecraftServer.start("0.0.0.0", 25565);
+}
+```
