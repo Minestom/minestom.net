@@ -144,6 +144,12 @@ export default defineConfig({
             { text: "Open to LAN", link: "/docs/feature/open-to-lan" },
           ],
         },
+        {
+          "text": "Compatibility",
+          "items": [
+            { "text": "Proxies", "link": "/docs/compatibility/proxies" },
+          ]
+        }
       ],
     },
     socialLinks: [
