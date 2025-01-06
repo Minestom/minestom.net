@@ -13,14 +13,13 @@ Minestom supports the following proxies and their derivatives:
 
 Connecting via a proxy *replaces* any use of `MojangAuth#init`.
 
-### Velocity or Gate
-
+:::tabs
+== Velocity
 ```java
 VelocityProxy.enable("secret_here")
 ```
 
-#### Velocity
-```diff
+```toml
 # Should we forward IP addresses and other data to backend servers?
 # Available options:
 # - "none":        No forwarding will be done. All players will appear to be connecting
@@ -32,27 +31,30 @@ VelocityProxy.enable("secret_here")
 #                  unable to implement network level firewalling (on a shared host).
 # - "modern":      Forward player IPs and UUIDs as part of the login process using
 #                  Velocity's native forwarding. Only applicable for Minecraft 1.13 or higher.
--player-info-forwarding-mode = "NONE"
-+player-info-forwarding-mode = "MODERN"
+player-info-forwarding-mode = "NONE" // [!code --]
+player-info-forwarding-mode = "MODERN" // [!code ++]
 ```
 
-#### Gate
-```diff
+== Gate
+```java
+VelocityProxy.enable("secret_here")
+```
+
+```yaml
 # This allows you to customize how player information such as IPs and UUIDs are forwarded to your server.
 # See the documentation for more information.
 forwarding:
   # Options: legacy, none, bungeeguard, velocity
--  mode: legacy
-+  mode: velocity
+  mode: legacy // [!code --]
+  mode: velocity // [!code ++]
   # The secret used if the mode is velocity.
--  #velocitySecret: secret_here
-+  velocitySecret: secret_here
+  #velocitySecret: secret_here // [!code --]
+  velocitySecret: secret_here // [!code ++]
   # The secret used if the mode is bungeeguard.
   #bungeeGuardSecret: secret_here
 ```
 
-### BungeeCord
-
+== BungeeCord
 Vanilla BungeeCord does not support tokens, so is ill-advised to use stock. Secret exchanges can be implemented using [BungeeGuard](https://github.com/lucko/BungeeGuard), you should **never** use BungeeCord without it. The following enables BungeeCord and BungeeGuard support:
 
 ```java
@@ -60,32 +62,34 @@ BungeeCordProxy.enable()
 BungeeCordProxy.setBungeeGuardTokens(Set.of("tokens", "here"))
 ```
 
-```diff
--ip_forward: false
-+ip_forward: true
+```yaml
+ip_forward: false // [!code --]
+ip_forward: true // [!code ++]
 ```
+:::
 
 ## Transferring between servers
 
 To transfer players, you need inform the proxy to do so. You can either do this via the [BungeeCord plugin message channel](https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/) or through your own means via your own plugin message channel or a message queue.
 
-### Enabling the BungeeCord plugin message channel
+### Using the BungeeCord plugin message channel
 All supported proxies should have the BungeeCord plugin message channel enabled by default.
 
-#### Velocity
+:::tabs
+== Velocity
 ```toml
 # Enables BungeeCord plugin messaging channel support on Velocity.
 bungee-plugin-message-channel = true
 ```
 
-#### Gate
+== Gate
 ```yaml
 # Whether the proxy should support bungee plugin channels.
 # (Disable this if your backend servers are untrusted.)
 bungeePluginChannelEnabled: true
 ```
+:::
 
-### Transferring a player
 ```java
 final String server = "lobby"
 player.sendPluginMessage("bungeecord:main", NetworkBuffer.makeArray(buffer -> {
