@@ -45,7 +45,7 @@ ItemEntity item = new ItemEntity(ItemStack.of(Material.DIAMOND_SWORD));
 item.setInstance(instance, spawnPosition); // actually spawning an item
 ```
 
-> For more info on adding functuionality to the item entity, view the [demo](https://github.com/Minestom/Minestom/blob/32735340d723dd44733fe1941b138dfa4ecf6d3b/demo/src/main/java/net/minestom/demo/PlayerInit.java#L74C1-L92C15).
+> For more info on adding functionality to the item entity, view the [demo](https://github.com/Minestom/Minestom/blob/32735340d723dd44733fe1941b138dfa4ecf6d3b/demo/src/main/java/net/minestom/demo/PlayerInit.java#L74C1-L92C15).
 
 ## Entity Meta
 
