@@ -148,6 +148,7 @@ export default defineConfig({
           "text": "Compatibility",
           "items": [
             { "text": "Proxies", "link": "/docs/compatibility/proxies" },
+            { "text": "Unsupported Versions", "link": "/docs/compatibility/unsupported-versions" }
           ]
         }
       ],
