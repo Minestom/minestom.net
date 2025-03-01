@@ -25,7 +25,7 @@ export default defineConfig({
     nav: [
       { text: "Libraries", link: "/libraries" },
       // { text: "Showcase", link: "/showcase/introduction" },
-      { text: "Wiki", link: "/docs/introduction" },
+      { text: "Wiki", link: "/docs/getting-started/introduction" },
       { text: "Javadoc", link: "https://javadoc.minestom.net" },
     ],
 
@@ -44,8 +44,19 @@ export default defineConfig({
       // ],
       "/docs/": [
         {
-          text: "Introduction",
-          link: "/docs/introduction",
+          text: "Getting Started",
+          items: [
+            { 
+              text: "Introduction",
+              link: "/docs/getting-started/introduction",
+              items: [
+                {
+                  text: "What is Minestom",
+                  link: "/docs/getting-started/what-is-minestom"
+                }
+              ]
+            }
+          ]
         },
         {
           text: "Setup",
