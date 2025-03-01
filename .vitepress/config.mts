@@ -128,7 +128,6 @@ export default defineConfig({
             { text: "Inventories", link: "/docs/feature/inventories" },
             { text: "Player UUID", link: "/docs/feature/player-uuid" },
             { text: "Player Skin", link: "/docs/feature/player-skin" },
-            { text: "Permissions", link: "/docs/feature/permissions" },
             { text: "Advancements", link: "/docs/feature/advancements" },
             {
               text: "Map Rendering",
