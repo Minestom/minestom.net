@@ -13,7 +13,7 @@ connectionManager.setUuidProvider((playerConnection, username) -> {
 });
 ```
 
-::: warning
+:::alert warning
 The UUID provider is unnecessary and will not work if you have IP forwarding enabled (Velocity/Bungee)
 :::
 

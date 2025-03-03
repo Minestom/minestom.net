@@ -1,0 +1,99 @@
+/* Define color variables for both light and dark modes */
+:root {
+  --alert-border-color: transparent;
+  --alert-text-color: inherit;
+  --alert-header-bg: transparent;
+
+  --alert-note-color: #56a8ff;
+  --alert-info-color: #56a8ff;
+  --alert-warning-color: #facc15;
+  --alert-danger-color: #ff5858;
+  --alert-success-color: #5ec75f;
+  --alert-important-color: #d499f7;
+
+  --alert-note-bg: rgba(86, 168, 255, 0.2);
+  --alert-info-bg: rgba(86, 168, 255, 0.2);
+  --alert-warning-bg: rgba(229, 184, 70, 0.2);
+  --alert-danger-bg: rgba(255, 88, 88, 0.2);
+  --alert-success-bg: rgba(94, 199, 95, 0.2);
+  --alert-important-bg: rgba(212, 153, 247, 0.2);
+}
+
+/* General Alert styling */
+.alert {
+  padding: 10px 18px;
+  margin: 8px 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: all 0.1s ease;
+  border-left: 4px solid var(--alert-border-color);
+  overflow: hidden;
+}
+
+/* Remove extra spacing inside alerts */
+.alert p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.alert p:last-child {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.alert-content p:last-child {
+  line-height: 1.5;
+}
+
+/* Apply header background without affecting text color */
+.alert-header {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 8px; /* For spacing between button and text */
+  background: var(--alert-header-bg); /* Set background color for header */
+  color: var(--alert-text-color); /* Ensure text color is inherited from parent */
+}
+
+/* Alert Types */
+.alert-note {
+  border-left-color: var(--alert-note-color);
+  background: var(--alert-note-bg);
+}
+.alert-note .alert-header { color: var(--alert-note-color); }
+
+.alert-info {
+  border-left-color: var(--alert-info-color);
+  background: var(--alert-info-bg);
+}
+.alert-info .alert-header { color: var(--alert-info-color); }
+
+.alert-warning {
+  border-left-color: var(--alert-warning-color);
+  background: var(--alert-warning-bg);
+}
+.alert-warning .alert-header { color: var(--alert-warning-color); }
+
+.alert-danger {
+  border-left-color: var(--alert-danger-color);
+  background: var(--alert-danger-bg);
+}
+.alert-danger .alert-header { color: var(--alert-danger-color); }
+
+.alert-success {
+  border-left-color: var(--alert-success-color);
+  background: var(--alert-success-bg);
+}
+.alert-success .alert-header { color: var(--alert-success-color); }
+
+.alert-important {
+  border-left-color: var(--alert-important-color);
+  background: var(--alert-important-bg);
+}
+.alert-important .alert-header { color: var(--alert-important-color); }

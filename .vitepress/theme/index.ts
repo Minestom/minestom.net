@@ -5,6 +5,7 @@ import DefaultTheme from "vitepress/theme";
 import Libraries from "./layout/Libraries.vue";
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import "./style.css";
+import "./alerts.css";
 
 export default {
   extends: DefaultTheme,
