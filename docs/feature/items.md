@@ -11,7 +11,7 @@ Items in Minestom are **immutable**, meaning that an `ItemStack` cannot change a
 
 ## API
 
-::: warning
+:::alert warning
 In previous versions of Minestom, methods such as `displayName` existed, since they were part of item meta. In 1.20.5, Mojang switched to a component system, which now requires us to use ItemComponent along with a value.
 :::
 

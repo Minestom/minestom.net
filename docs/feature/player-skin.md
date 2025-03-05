@@ -18,7 +18,7 @@ PlayerSkin skinFromUUID = PlayerSkin.fromUuid(MOJANG_UUID_AS_STRING);
 PlayerSkin skinFromUsername = PlayerSkin.fromUsername("Notch");
 ```
 
-::: warning
+:::alert warning
 Those methods make direct requests to the Mojang API, it is recommended to cache the values.
 :::
 

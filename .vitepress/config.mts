@@ -1,5 +1,7 @@
 import { defineConfig } from "vitepress";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
+import bracketed_spans_plugin from "markdown-it-bracketed-spans"
+import container_plugin from "markdown-it-container"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,9 +9,24 @@ export default defineConfig({
   description:
     "A multithreaded, open-source library for developing high-performance Minecraft servers.",
   markdown: {
+    breaks: true,
     config(md) {
       md.use(tabsMarkdownPlugin);
-    },
+      md.use(bracketed_spans_plugin)
+      md.use(container_plugin, 'alert', {
+        render(tokens, idx) {
+          const token = tokens[idx]
+          const type = token.info.trim().split(' ')[1] || 'info'
+          if (token.nesting === 1) {
+            return `<div class="alert alert-${type}">
+                      <div class="alert-header">${type.toUpperCase()}</div>
+                        <div class="alert-content">\n`
+          } else {
+            return `</div></div>\n`
+          }
+        }
+      })
+    }
   },
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -25,7 +42,7 @@ export default defineConfig({
     nav: [
       { text: "Libraries", link: "/libraries" },
       // { text: "Showcase", link: "/showcase/introduction" },
-      { text: "Wiki", link: "/docs/introduction" },
+      { text: "Wiki", link: "/docs/getting-started/introduction" },
       { text: "Javadoc", link: "https://javadoc.minestom.net" },
     ],
 
@@ -44,8 +61,13 @@ export default defineConfig({
       // ],
       "/docs/": [
         {
-          text: "Introduction",
-          link: "/docs/introduction",
+          text: "Getting Started",
+          items: [
+            { 
+              text: "Introduction",
+              link: "/docs/getting-started/introduction",
+            },
+          ]
         },
         {
           text: "Setup",
