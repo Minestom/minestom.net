@@ -4,7 +4,7 @@ description: Allowing clients using unsupported versions to join a Minestom serv
 
 # Unsupported Versions
 
-:::alert warning
+:::alert important
 Using unsupported Minecraft versions is, well, unsupported. You are unlikely to receive help when using these versions.
 :::
 
@@ -18,7 +18,7 @@ To support a multiple versions on your server, you can use [ViaVersion](https://
 
 ## Commit History
 
-:::alert warning
+:::alert important
 You **will not** receive support when using this method.
 :::
 

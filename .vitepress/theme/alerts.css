@@ -4,14 +4,14 @@
   --alert-text-color: inherit;
   --alert-header-bg: transparent;
 
-  --alert-note-color: rgb(53, 79, 107);
+  --alert-note-color: rgb(86, 168, 255);
   --alert-info-color: rgb(86, 168, 255);
   --alert-warning-color: rgb(250, 204, 21);
   --alert-danger-color: rgb(255, 88, 88);
   --alert-success-color: rgb(94, 199, 95);
   --alert-important-color: rgb(212, 153, 247);
 
-  --alert-note-bg: rgba(53, 79, 107, 0.2);
+  --alert-note-bg: rgba(86, 168, 255, 0.2);
   --alert-info-bg: rgba(86, 168, 255, 0.2);
   --alert-warning-bg: rgba(250, 204, 21, 0.2);
   --alert-danger-bg: rgba(255, 88, 88, 0.2);
