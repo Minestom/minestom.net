@@ -1,19 +1,37 @@
+/* Import Lexend font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+/* Apply the font globally */
+:root {
+  --vp-font-family-base: 'Lexend', sans-serif;
+  --vp-font-family-mono: 'Lexend', monospace;
+}
+
+/* Ensure headers and body use the new font */
+body {
+  font-family: var(--vp-font-family-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--vp-font-family-base);
+}
+
 /* Define color variables for both light and dark modes */
 :root {
   --alert-border-color: transparent;
   --alert-text-color: inherit;
   --alert-header-bg: transparent;
 
-  --alert-note-color: #56a8ff;
-  --alert-info-color: #56a8ff;
-  --alert-warning-color: #facc15;
-  --alert-danger-color: #ff5858;
-  --alert-success-color: #5ec75f;
-  --alert-important-color: #d499f7;
+  --alert-note-color: rgb(53, 79, 107);
+  --alert-info-color: rgb(86, 168, 255);
+  --alert-warning-color: rgb(250, 204, 21);
+  --alert-danger-color: rgb(255, 88, 88);
+  --alert-success-color: rgb(94, 199, 95);
+  --alert-important-color: rgb(212, 153, 247);
 
-  --alert-note-bg: rgba(86, 168, 255, 0.2);
+  --alert-note-bg: rgba(53, 79, 107, 0.2);
   --alert-info-bg: rgba(86, 168, 255, 0.2);
-  --alert-warning-bg: rgba(229, 184, 70, 0.2);
+  --alert-warning-bg: rgba(250, 204, 21, 0.2);
   --alert-danger-bg: rgba(255, 88, 88, 0.2);
   --alert-success-bg: rgba(94, 199, 95, 0.2);
   --alert-important-bg: rgba(212, 153, 247, 0.2);
