@@ -1,21 +1,3 @@
-/* Import Lexend font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
-
-/* Apply the font globally */
-:root {
-  --vp-font-family-base: 'Lexend', sans-serif;
-  --vp-font-family-mono: 'Lexend', monospace;
-}
-
-/* Ensure headers and body use the new font */
-body {
-  font-family: var(--vp-font-family-base);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--vp-font-family-base);
-}
-
 /* Define color variables for both light and dark modes */
 :root {
   --alert-border-color: transparent;
