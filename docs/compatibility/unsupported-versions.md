@@ -4,8 +4,9 @@ description: Allowing clients using unsupported versions to join a Minestom serv
 
 # Unsupported Versions
 
-> [!WARNING]
-> Using unsupported Minecraft versions is, well, unsupported. You are unlikely to receive help when using these versions.
+:::alert warning
+Using unsupported Minecraft versions is, well, unsupported. You are unlikely to receive help when using these versions.
+:::
 
 Minestom aims to keep up-to-date with the latest version of Minecraft. However, this may not be beneficial for all servers. Sometimes there may be the case where:
 - Minestom is behind the latest version of Minecraft.
@@ -17,8 +18,9 @@ To support a multiple versions on your server, you can use [ViaVersion](https://
 
 ## Commit History
 
-> [!CAUTION]
-> You **will not** receive support when using this method.
+:::alert warning
+You **will not** receive support when using this method.
+:::
 
 In the case where you either decide that protocol translation is too jank or you only need a specific version for your server, using an older commit hash is an option. Going back in the Minestom commit history will allow you to find commits where the latest version was the one you need.
 

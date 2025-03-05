@@ -14,15 +14,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 code {
-  background-color: rgba(0, 0, 0, 0.05);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: "Fira Code", monospace;
 }
-/**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
- */
 
 @tailwind base;
 @tailwind components;
