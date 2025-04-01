@@ -45,11 +45,11 @@ VelocityProxy.enable("secret_here")
 # See the documentation for more information.
 forwarding:
   # Options: legacy, none, bungeeguard, velocity
-  mode: legacy // [!code --]
-  mode: velocity // [!code ++]
+  mode: legacy # [!code --]
+  mode: velocity # [!code ++]
   # The secret used if the mode is velocity.
   #velocitySecret: secret_here // [!code --]
-  velocitySecret: secret_here // [!code ++]
+  velocitySecret: secret_here # [!code ++]
   # The secret used if the mode is bungeeguard.
   #bungeeGuardSecret: secret_here
 ```
@@ -63,8 +63,8 @@ BungeeCordProxy.setBungeeGuardTokens(Set.of("tokens", "here"))
 ```
 
 ```yaml
-ip_forward: false // [!code --]
-ip_forward: true // [!code ++]
+ip_forward: false # [!code --]
+ip_forward: true # [!code ++]
 ```
 :::
 
