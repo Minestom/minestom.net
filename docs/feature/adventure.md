@@ -98,29 +98,9 @@ There is also one additional color class; `DyeColor`. This enum represents the d
 
 ## Translation
 
-The Adventure update in Minestom adds the `SerializationManager` class, a powerful and feature-rich way to control the flow of component translation. Adventure provides the concept of a `GlobalTranslator`. By supplying sources, a collection of key-value pairs, you can perform server-side translations without any additional code or complicated localization libraries.
+The Adventure update in Minestom adds the `MinestomAdventure` class, a powerful and feature-rich way to control the flow of component translation. Adventure provides the concept of a `GlobalTranslator`. By supplying sources, and a collection of key-value pairs, you can perform server-side translations without any additional code or complicated localization libraries.
 
-To enable automatic component translation, you need to set the constant `SerializationManager#AUTOMATIC_COMPONENT_TRANSLATION` to `true`. With this set, any components that are being sent to players will be translated using their locale automatically.
-
-Additionally, the `SerializationManager` provides access to the serializer used to convert all components to JSON strings. By default, the serializer is a `Function<Component, String>` that uses Adventure's `GsonComponentSerializer` to serialize a component into a JSON string using the GSON library. However, you can mutate this serializer or change it completely.
-
-For example, if you wanted to replace all instances of the word "dog" with "cat" every single time a component is serialized, you could use the following code:
-
-```java
-// get the manager and the current serializer
-SerializationManager manager = MinecraftServer.getSerializationManager();
-Function<Component, String> oldSerializer = manager.getSerializer();
-
-// create a text replacement config and turn this into a function
-TextReplacementConfig config = TextReplacementConfig.builder()
-        .matchLiteral("dog")
-        .replacement("cat")
-        .build();
-Function<Component, Component> dogRemover = component -> component.replaceText(config);
-
-// mutate the old serializer with the dog remover
-manager.setSerializer(component.andThen(oldSerializer));
-```
+To enable automatic component translation, you need to set the constant `MinestomAdventure#AUTOMATIC_COMPONENT_TRANSLATION` to `true`. With this set, any components that are being sent to players will be translated using their locale automatically.
 
 ## Migrating to Adventure
 
