@@ -11,6 +11,7 @@ Entity creation starts with an entity class selection. Regardless of the type of
 * `Entity` is the most barebones version of an entity. It provides you with a minimal API (and minimal overhead), including spawning packet handling, metadata support, default physics.
 * `LivingEntity` extends `Entity` and also allows you to grant your entity liveliness. The type of entity doesn't matter, minestom doesn't restrict you to what Mojang intends. If you give it health, it will have health. This subclass also provides an API to modify the entity's equipment and attributes.
 * `EntityCreature` extends `LivingEntity` and also provides you with the navigation and AI API.
+* `ItemEntity` extends `Entity` and provides you with the ability to spawn items in the world.
 
 If none of the above fits your requirements, you are free to use any of these classes as an ancestor for your own entity class implementation. It could be viable in cases when you need to handle physics or overwrite already presented methods. There are several examples in Minestom repository itself: `Player` that extends `LivingEntity` and handles equipment and a bunch of other things; `EntityProjectile` that extends `Entity` and has its own physics and collision code.
 
@@ -34,6 +35,17 @@ EntityCreature boat = new EntityCreature(EntityType.BOAT);
 // modify AI so that the boat is aggressive
 boat.setInstance(instance, spawnPosition); // actually spawning a boat
 ```
+
+Creating an item entity:
+
+```java
+Instance instance = ...; // instance to spawn an item in
+Pos spawnPosition = new Pos(0D, 42D, 0D);
+ItemEntity item = new ItemEntity(ItemStack.of(Material.DIAMOND_SWORD));
+item.setInstance(instance, spawnPosition); // actually spawning an item
+```
+
+> For more info on adding functionality to the item entity, view the [demo](https://github.com/Minestom/Minestom/blob/32735340d723dd44733fe1941b138dfa4ecf6d3b/demo/src/main/java/net/minestom/demo/PlayerInit.java#L74C1-L92C15).
 
 ## Entity Meta
 
