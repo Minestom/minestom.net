@@ -1,5 +1,7 @@
 import { defineConfig } from "vitepress";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
+import bracketed_spans_plugin from "markdown-it-bracketed-spans"
+import container_plugin from "markdown-it-container"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,9 +9,24 @@ export default defineConfig({
   description:
     "A multithreaded, open-source library for developing high-performance Minecraft servers.",
   markdown: {
+    breaks: true,
     config(md) {
       md.use(tabsMarkdownPlugin);
-    },
+      md.use(bracketed_spans_plugin)
+      md.use(container_plugin, 'alert', {
+        render(tokens, idx) {
+          const token = tokens[idx]
+          const type = token.info.trim().split(' ')[1] || 'info'
+          if (token.nesting === 1) {
+            return `<div class="alert alert-${type}">
+                      <div class="alert-header">${type.toUpperCase()}</div>
+                        <div class="alert-content">\n`
+          } else {
+            return `</div></div>\n`
+          }
+        }
+      })
+    }
   },
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -58,25 +75,6 @@ export default defineConfig({
           ],
         },
         {
-          text: "Thread Architecture",
-          items: [
-            {
-              text: "Thread Safety in the JVM",
-              link: "/docs/thread-architecture/thread-safety",
-            },
-            {
-              text: "Acquirable API",
-              link: "/docs/thread-architecture/acquirable-api",
-              items: [
-                {
-                  text: "The Inside",
-                  link: "/docs/thread-architecture/acquirable-api/inside-the-api",
-                },
-              ],
-            },
-          ],
-        },
-        {
           text: "World",
           items: [
             { text: "Instances", link: "/docs/world/instances" },
@@ -98,10 +96,7 @@ export default defineConfig({
           text: "Feature",
           items: [
             { text: "Adventure", link: "/docs/feature/adventure" },
-            {
-              text: "Player Capabilities",
-              link: "/docs/feature/player-capabilities",
-            },
+            { text: "Items", link: "/docs/feature/items" },
             {
               text: "Events",
               link: "/docs/feature/events",
@@ -116,7 +111,10 @@ export default defineConfig({
                 },
               ],
             },
-            { text: "Items", link: "/docs/feature/items" },
+            {
+              text: "Player Capabilities",
+              link: "/docs/feature/player-capabilities",
+            },
             {
               text: "Entities",
               link: "/docs/feature/entities",
@@ -149,7 +147,26 @@ export default defineConfig({
             { "text": "Proxies", "link": "/docs/compatibility/proxies" },
             { "text": "Unsupported Versions", "link": "/docs/compatibility/unsupported-versions" }
           ]
-        }
+        },
+        {
+          text: "Thread Architecture",
+          items: [
+            {
+              text: "Thread Safety in the JVM",
+              link: "/docs/thread-architecture/thread-safety",
+            },
+            {
+              text: "Acquirable API",
+              link: "/docs/thread-architecture/acquirable-api",
+              items: [
+                {
+                  text: "The Inside",
+                  link: "/docs/thread-architecture/acquirable-api/inside-the-api",
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     socialLinks: [

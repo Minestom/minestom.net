@@ -27,7 +27,7 @@ A lot of tools/features exist to make developing thread-safe and efficient code 
 
 Fields need to have some sort of synchronization mechanism. The JVM comes with the `volatile` access flag which forces the field to be always on the main memory instead of in the cache (with some other details that I will not describe) so every thread reads the value from the exact same place. Depending on your application, a `ThreadLocal<T>` object could be enough, you could think of it as a `Map<Thread, T>` where Thread is always the current thread. The easiest way to make a field thread-safe is to make it immutable with the `final` keyword, if you cannot change a field, you do not risk multiple threads to change it at the same time.
 
-::: warning
+:::alert warning
 Making a field thread-safe does not mean that the object itself is. But only that accessing the field will always return you the correct instance.
 :::
 

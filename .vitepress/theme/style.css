@@ -1,7 +1,24 @@
-/**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --vp-font-family-base: 'Inter', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--vp-font-family-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--vp-font-family-base);
+}
+
+code, pre {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700 !important;
+}
 
 @tailwind base;
 @tailwind components;

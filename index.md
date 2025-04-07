@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Quick Start
-      link: /docs/setup/your-first-server
+      link: /docs/introduction
     - theme: alt
       text: GitHub
       link: https://github.com/Minestom/Minestom
