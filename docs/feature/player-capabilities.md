@@ -69,10 +69,11 @@ Notification notification = new Notification(
 );
 ```
 
-To send the notification, use the `sendNotification` method on `Player`:
+To send the notification, use `Player#sendNotification` or `PacketGroupingAudience#sendNotification`
 
 ```java
 Player#sendNotification(Notification);
+PacketGroupingAudience#sendNotification(Notification);
 ```
 
 The example renders as the following:
