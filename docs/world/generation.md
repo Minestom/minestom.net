@@ -31,8 +31,7 @@ instance.setGenerator(unit -> {
 
 ```java
 Instance instance = ...;
-instance.setGenerator(unit ->
-    unit.modifier().fillHeight(0, 40, Block.STONE));
+instance.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.STONE));
 ```
 
 ## Modifying over unit borders
@@ -115,8 +114,8 @@ This example shows a simple approach to building heightmaps using JNoise, this c
 ```java
 // Noise used for the height
 JNoise noise = JNoise.newBuilder()
-        .fastSimplex()
-        .setFrequency(0.005) // Low frequency for smooth terrain
+        .fastSimplex(FastSimplexNoiseGenerator.newBuilder().build())
+        .scale(0.005) // Low frequency for smooth terrain
         .build();
 
 // Set the Generator
@@ -127,7 +126,7 @@ instance.setGenerator(unit -> {
             Point bottom = start.add(x, 0, z);
 
             synchronized (noise) { // Synchronization is necessary for JNoise
-                double height = noise.getNoise(bottom.x(), bottom.z()) * 16;
+                double height = noise.evaluateNoise(bottom.x(), bottom.z()) * 16;
                 // * 16 means the height will be between -16 and +16
                 unit.modifier().fill(bottom, bottom.add(1, 0, 1).withY(height), Block.STONE);
             }

@@ -21,6 +21,7 @@ The description supports color and styles in addition to some more complex compo
 The player sample is represented as a list of UUID to name mappings and do not have to be players that are on the server. The `NamedAndIdentified` interface is used to hold this mapping and allow both players and custom mappings to be used interchangeably in the `ResponseData` class. For an example on how to use this interface, see the code block below.
 
 ```java
+ResponseData responseData = ...;
 // you can add players directly
 responseData.addEntry(somePlayer);
 responseData.addEntries(MinecraftServer.getConnectionManager().getOnlinePlayers());

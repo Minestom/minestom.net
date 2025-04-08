@@ -9,7 +9,7 @@ In Minestom all entities must extend `Entity` directly or from their subclasses.
 Entity creation starts with an entity class selection. Regardless of the type of entity being created, you can instantiate it as any of the following classes:
 
 * `Entity` is the most barebones version of an entity. It provides you with a minimal API (and minimal overhead), including spawning packet handling, metadata support, default physics.
-* `LivingEntity` extends `Entity` and also allows you to grant your entity liveliness. The type of entity doesn't matter, minestom doesn't restrict you to what Mojang intends. If you give it health, it will have health. This subclass also provides an API to modify the entity's equipment and attributes.
+* `LivingEntity` extends `Entity` and also allows you to grant your entity liveliness. While Minestom does not restrict you to how the vanilla server sets them, some entity types are unable to be a Living Entities as they will cause the client to be disconnected. This subclass also provides an API to modify the entity's equipment and attributes.
 * `EntityCreature` extends `LivingEntity` and also provides you with the navigation and AI API.
 * `ItemEntity` extends `Entity` and provides you with the ability to spawn items in the world.
 
@@ -26,14 +26,21 @@ Entity horse = new Entity(EntityType.HORSE);
 horse.setInstance(instance, spawnPosition); // actually spawning a horse
 ```
 
-Creating a boat with liveness and the possibility to manipulate the AI and navigation. For example, we can add some goals to it to make it aggressive and attacking players.
+Creating a horse with liveness and the possibility to manipulate the AI and navigation. For example, we can add some goals to it to make it aggressive and attacking players.
 
 ```java
 Instance instance = ...; // instance to spawn a boat in
 Pos spawnPosition = new Pos(0D, 42D, 0D);
-EntityCreature boat = new EntityCreature(EntityType.BOAT);
-// modify AI so that the boat is aggressive
-boat.setInstance(instance, spawnPosition); // actually spawning a boat
+EntityCreature horse = new EntityCreature(EntityType.HORSE);
+// modify AI so that the horse is aggressive
+horse.addAIGroup(List.of(
+    // adds a melee attack goal with the range of 4 and delay of 2 seconds
+    new MeleeAttackGoal(horse, 4.0, Duration.ofSeconds(2))
+), List.of(
+    // adds a target for closest entity thats a Player within 10 blocks
+    new ClosestEntityTarget(horse, 10.0, entity -> entity instanceof Player)
+));
+horse.setInstance(instance, spawnPosition); // actually spawning a horse
 ```
 
 Creating an item entity:
@@ -45,7 +52,7 @@ ItemEntity item = new ItemEntity(ItemStack.of(Material.DIAMOND_SWORD));
 item.setInstance(instance, spawnPosition); // actually spawning an item
 ```
 
-> For more info on adding functionality to the item entity, view the [demo](https://github.com/Minestom/Minestom/blob/32735340d723dd44733fe1941b138dfa4ecf6d3b/demo/src/main/java/net/minestom/demo/PlayerInit.java#L74C1-L92C15).
+> For more info on adding functionality to the item entity, view the [demo](https://github.com/Minestom/Minestom/blob/fb895cb89956e256f52f84d6abe267bd9233ca3f/demo/src/main/java/net/minestom/demo/PlayerInit.java#L75-L93).
 
 ## Entity Meta
 
@@ -60,13 +67,13 @@ HorseMeta meta = (HorseMeta) horse.getEntityMeta();
 meta.setVariant(new HorseMeta.Variant(HorseMeta.Marking.WHITE_DOTS, HorseMeta.Color.CREAMY));
 ```
 
-Making a boat look menacing:
+Making a horse look menacing:
 
 ```java
-BoatMeta meta = (BoatMeta) boat.getEntityMeta();
+HorseMeta meta = (HorseMeta) horse.getEntityMeta();
 meta.setOnFire(true);
 meta.setCustomNameVisible(true);
-meta.setCustomName(Component.text("Dangerous boat", NamedTextColor.RED));
+meta.setCustomName(Component.text("Dangerous horse", NamedTextColor.RED));
 ```
 
 ## Useful methods
@@ -89,13 +96,13 @@ If you're wondering how it works internally, a destruction packet is being sent 
 
 There could be situations when you need to modify multiple attributes of `EntityMeta` at once. There is an issue here because every time you modify the meta, a packet is being sent to all its viewers. To reduce network bandwidth and send all updates at once there is a `EntityMeta#setNotifyAboutChanges(boolean)` method. Call it with `false` before your first metadata update and then with `true` right after the last one: all performed changes will be sent at once. If you need more on this subject, look into the associated method documentation: it's rich.
 
-For example, we can take the code that updates boat metadata: if we execute it after a boat has been spawned, it will result in 3 metadata packets being sent to each of the boat's viewers. To avoid this, all we need is to add two simple lines:
+For example, we can take the code that updates horse metadata: if we execute it after a horse has been spawned, it will result in 3 metadata packets being sent to each of the horse's viewers. To avoid this, all we need is to add two simple lines:
 
 ```java
-BoatMeta meta = (BoatMeta) boat.getEntityMeta();
+HorseMeta meta = (HorseMeta) horse.getEntityMeta();
 meta.setNotifyAboutChanges(false); // this
 meta.setOnFire(true);
 meta.setCustomNameVisible(true);
-meta.setCustomName(Component.text("Dangerous boat", NamedTextColor.RED));
+meta.setCustomName(Component.text("Dangerous horse", NamedTextColor.RED));
 meta.setNotifyAboutChanges(true); // and this
 ```
