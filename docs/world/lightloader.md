@@ -10,7 +10,8 @@ By default, lighting will be generated for chunks when they are sent to the clie
 
 An example of using this method:
 ```java
-InstanceContainer.setChunkSupplier(LightingChunk::new);
+Instance instance = ...;
+instance.setChunkSupplier(LightingChunk::new);
 ```
 ## Precalculating Lighting
 
@@ -18,7 +19,7 @@ To load preload chunks and calculate lighting before players join, you can use t
 
 ```java
 var chunks = new ArrayList<CompletableFuture<Chunk>>();
-ChunkUtils.forChunksInRange(0, 0, 32, (x, z) -> chunks.add(instanceContainer.loadChunk(x, z)));
+ChunkRange.chunksInRange(0, 0, 32, (x, z) -> chunks.add(instanceContainer.loadChunk(x, z)));
 
 CompletableFuture.runAsync(() -> {
     CompletableFuture.allOf(chunks.toArray(CompletableFuture[]::new)).join();

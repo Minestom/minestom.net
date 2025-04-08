@@ -4,13 +4,31 @@ As UUID implies, it has to be a unique identifier. By default, this identifier i
 
 What you normally want is a unique identifier that will stay the same even after a disconnection or a server shutdown, which could be obtained by getting the Mojang UUID of the player using their API, or having your custom UUID linked to the registration system on your website, we do not implement that by default, so you are free to choose what you prefer.
 
-Here how to register your own UUID provider:
+To change a player's UUID:
 
 ```java
-connectionManager.setUuidProvider((playerConnection, username) -> {
-   // This method will be called at players connection to set their UUID
-   return UUID.randomUUID(); /* Set here your custom UUID registration system */
+MinecraftServer.getConnectionManager().setPlayerProvider((connection, gameProfile) -> {
+    // This method will be called at players connection to change the player's provider
+    return new Player(connection, new GameProfile(UUID.randomUUID() /* Set here your custom UUID registration system */, gameProfile.name(), gameProfile.properties()));
 });
+```
+
+## Custom Player class
+
+Setting the Player Provider allows you to create a custom `Player` class, this is useful if you want to override default behaviour.
+
+For example:
+
+```java
+public class CustomPlayer extends Player {
+    public CustomPlayer(@NotNull PlayerConnection playerConnection, @NotNull GameProfile gameProfile) {
+        super(playerConnection, gameProfile);
+    }
+}
+```
+
+```java
+MinecraftServer.getConnectionManager().setPlayerProvider(CustomPlayer::new);
 ```
 
 :::alert warning

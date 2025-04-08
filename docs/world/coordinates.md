@@ -2,9 +2,9 @@
 
 ## Overview
 
-All coordinates classes in Minestom are immutables (like a lot of others), `Point` being the common interface, and the implementations `Pos` and `Vec`.
+All coordinates classes in Minestom are immutables (like a lot of others), `Point` being the common interface, and the implementations `Pos`, `Vec` and `BlockVec`.
 
-`Vec` is a containing for the x, y & z coordinates, adding a few vector methods. `Pos` contains the 3 coordinates + yaw/pitch for the view. `Point` should be used when the type does not matter.
+`Pos` contains the 3 coordinates + yaw/pitch for the view, `Vec` contains the x, y & z coordinates and adds a few vector methods, `BlockVec` contains block x, y & z coordinates. `Point` should be used when the type does not matter.
 
 ## Immutability performance
 

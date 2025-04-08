@@ -69,11 +69,10 @@ Notification notification = new Notification(
 );
 ```
 
-To send the notification, use one of the static methods on `NotificationCenter`:
+To send the notification, use the `sendNotification` method on `Player`:
 
 ```java
-NotificationCenter.send(Notification, Player);
-NotificationCenter.send(Notification, Collection<Player>);
+Player#sendNotification(Notification);
 ```
 
 The example renders as the following:

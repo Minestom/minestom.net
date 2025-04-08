@@ -31,12 +31,8 @@ instance.setBlock(0, 41, 0, tnt);
 Each block has unique data which can be retrieved with `Block#registry()`.
 
 ```java
-Block block = Block.GRASS;
-// Some fields have their own dedicated method
+Block block = Block.GRASS_BLOCK;
 boolean solid = block.registry().isSolid();
-// ... you can however retrieve them from string
-double hardness = block.registry().getDouble("hardness");
-hardness = block.registry().hardness();
 ```
 
 ## Tags
@@ -52,13 +48,13 @@ tnt = tnt.withTag(tag, "my-value");
 String value = tnt.getTag(tag);
 
 // Block can also expose a convenient view of their nbt
-NBTCompound nbt = tnt.nbt();
+CompoundBinaryTag nbt = tnt.nbt();
 ```
 
 Tags data can be serialized and will be saved on disk automatically.
 
 :::alert warning
-Tags `id`, `x`, `y`, `z `and `keepPacked`are used by the anvil loader and may cause unexpected behavior when added to blocks.
+Tags `id`, `x`, `y`, `z` and `keepPacked` are used by the anvil loader and may cause unexpected behavior when added to blocks.
 :::
 
 ## Handlers
@@ -77,9 +73,9 @@ public class DemoHandler implements BlockHandler {
     }
 
     @Override
-    public @NotNull NamespaceID getNamespaceId() {
-        // Namespace required for serialization purpose
-        return NamespaceID.from("minestom:demo");
+    public @NotNull Key getKey() {
+        // Key required for serialization purpose
+        return Key.key("minestom:demo");
     }
 }
 ```
@@ -96,5 +92,5 @@ tnt = tnt.withHandler(new DemoHandler());
 // Share the same handler reference with multiple blocks
 BlockHandler handler = new DemoHandler();
 Block stone = Block.STONE.withHandler(handler);
-Block grass = Block.GRASS.withHandler(handler);
+Block grass = Block.GRASS_BLOCK.withHandler(handler);
 ```
