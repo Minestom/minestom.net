@@ -106,3 +106,13 @@ meta.setCustomNameVisible(true);
 meta.setCustomName(Component.text("Dangerous horse", NamedTextColor.RED));
 meta.setNotifyAboutChanges(true); // and this
 ```
+
+### Player Entities (NPCs)
+
+When creating NPCs that look like players, it's important to implement them as an extention to the `Entity` class rather than using the `Player` class or creating "dummy connections". This approach prevents potential issues with custom `Player` class implementations and provides better control over the NPC's behavior.
+
+A reference implementation can be found in [this gist](https://gist.github.com/mworzala/2c5da51204c45c70db771d0ce7fe9412) by **mworzala**, which demonstrates how to create a basic player NPC.
+
+> **Important Notes:**
+> - Usernames must be 16 characters or less. Longer usernames will result in a `DecoderException` with the message "Failed to decode packet 'clientbound/minecraft:player_info_update'"
+> - This implementation is provided as a reference and starting point. You may need to extend it based on your specific requirements
