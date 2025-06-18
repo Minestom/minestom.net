@@ -24,15 +24,15 @@ Items are configured using `DataComponent`s, the whole list of components can be
 
 ```java
 ItemStack item = ItemStack.of(Material.STONE)
-        .with(DataComponent.CUSTOM_NAME, Component.text("Item name!", NamedTextColor.GREEN));
+        .with(DataComponents.CUSTOM_NAME, Component.text("Item name!", NamedTextColor.GREEN));
 ```
 
 However, as items are immutable, creating complex objects is simpler using a builder:
 
 ```java
 item = ItemStack.builder(Material.STONE)
-        .set(DataComponent.CUSTOM_NAME, Component.text("Item name!", NamedTextColor.GREEN))
-        .set(DataComponent.LORE, List.of(Component.text("Line 1"), Component.text("Line 2")))
+        .set(DataComponents.CUSTOM_NAME, Component.text("Item name!", NamedTextColor.GREEN))
+        .set(DataComponents.LORE, List.of(Component.text("Line 1"), Component.text("Line 2")))
         .build();
 
 // We also provide some utility methods for common components
@@ -51,13 +51,13 @@ item = item.withAmount(5);
 // Set the amount based on the current one
 item = item.withAmount(amount -> amount * 2);
 // Same with various other fields
-item = item.with(DataComponent.CUSTOM_NAME, Component.text("New item name!"));
+item = item.with(DataComponents.CUSTOM_NAME, Component.text("New item name!"));
 
 // Start rebuilding the item
 // More performant than the above if you need to modify multiple fields
 item = item.with(builder -> {
         builder.amount(32)
-                .set(DataComponent.CUSTOM_NAME, Component.text("Again..."));
+                .set(DataComponents.CUSTOM_NAME, Component.text("Again..."));
         });
 ```
 
