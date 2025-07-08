@@ -61,7 +61,7 @@ repositories {
 
 ```groovy-vue
 dependencies {
-    implementation 'net.minestom:minestom-snapshots:{{ version }}'
+    implementation 'net.minestom:minestom:{{ version }}'
 }
 ```
 
@@ -69,7 +69,7 @@ dependencies {
 
 ```kotlin-vue
 dependencies {
-    implementation("net.minestom:minestom-snapshots:{{version}}")
+    implementation("net.minestom:minestom:{{version}}")
 }
 ```
 
@@ -80,7 +80,7 @@ dependencies {
     <!-- ... -->
     <dependency>
         <groupId>net.minestom</groupId>
-        <artifactId>minestom-snapshots</artifactId>
+        <artifactId>minestom</artifactId>
         <version>{{version}}</version>
     </dependency>
 </dependencies>
@@ -88,7 +88,7 @@ dependencies {
 
 :::
 
-The version string is always the first 10 characters of a commit hash. You can view commits 
+The version string is always the first 10 characters of a commit hash. You can view commits
 [here](https://github.com/Minestom/Minestom/commits/master/).
 
 Minestom PR branches are also published and can be used to preview upcoming features. For such branches, the version string is `{branch}-{first 10 chars of commit}`. For example, the 1_20_5 branch was usable with the version string `1_20_5-dd965f4bb8`.

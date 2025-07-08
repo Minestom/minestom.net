@@ -201,7 +201,7 @@ repositories {
 
 dependencies {
     // Change this to the latest version
-    implementation 'net.minestom:minestom-snapshots:<version>'
+    implementation 'net.minestom:minestom:<version>'
 }
 
 java {
@@ -245,7 +245,7 @@ repositories {
 
 dependencies {
     // Change this to the latest version
-    implementation("net.minestom:minestom-snapshots:<version>")
+    implementation("net.minestom:minestom:<version>")
 }
 
 java {
@@ -298,7 +298,7 @@ Here is a complete `pom.xml` file with a few extra niceities added.
     <dependencies>
         <dependency>
             <groupId>net.minestom</groupId>
-            <artifactId>minestom-snapshots</artifactId>
+            <artifactId>minestom</artifactId>
             <version>version</version> <!--Change this to the Minestom version you are using-->
         </dependency>
     </dependencies>
