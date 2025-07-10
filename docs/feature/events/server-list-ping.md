@@ -34,6 +34,7 @@ event.setStatus(Status.builder()
                 .sample(NamedAndIdentified.named("Notch"))
                 .sample(NamedAndIdentified.named(Component.text("Herobrine", NamedTextColor.AQUA)))
                 .build())
+        .playerInfo(onlinePlayers, 500) // simpler alternative to set player count only
         .versionInfo(new Status.VersionInfo("1.8.9", 47)) // set some fake version info
         .build());
 ```
