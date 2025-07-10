@@ -4,7 +4,7 @@ description: Responding to all types of server list ping in one place.
 
 # Server list ping
 
-Minestom provides the ability to customise responses to five different server list ping types all in one place. Put simply, to listen to every type of server list ping event you just need to listen to the `ServerListPingEvent` and modify the `ResponseData` in the event. Regardless of the source of the ping, the response data will be formatted in the correct way for the corresponding source.
+Minestom provides the ability to customise responses to five different server list ping types all in one place. Put simply, to listen to every type of server list ping event you just need to listen to the `ServerListPingEvent` and modify the `Status` in the event. Regardless of the source of the ping, the response data will be formatted in the correct way for the corresponding source.
 
 ## Ping types
 
@@ -18,28 +18,29 @@ Covered by the `MODERN_FULL_RGB` and `MODERN_NAMED_COLORS` constants, this categ
 
 The description supports color and styles in addition to some more complex component types. Minecraft versions on 1.16 or higher can utilise full RGB color codes. For older versions, the colors are downsampled into named colors automatically.
 
-The player sample is represented as a list of UUID to name mappings and do not have to be players that are on the server. The `NamedAndIdentified` interface is used to hold this mapping and allow both players and custom mappings to be used interchangeably in the `ResponseData` class. For an example on how to use this interface, see the code block below.
+The player sample is represented as a list of UUID to name mappings and do not have to be players that are on the server. The `NamedAndIdentified` interface is used to hold this mapping and allow both players and custom mappings to be used interchangeably in the `Status` class. For an example on how to use this interface, see the code block below.
 
 ```java
-ResponseData responseData = ...;
-// you can add players directly
-responseData.addEntry(somePlayer);
-responseData.addEntries(MinecraftServer.getConnectionManager().getOnlinePlayers());
+byte[] favicon; // a byte array of raw PNG data; could be loaded from a file
+int onlinePlayers = MinecraftServer.getConnectionManager().getOnlinePlayerCount();
 
-// or using the named and identified interface
-responseData.addEntry(NamedAndIdentified.named("Bob"))
-responseData.addEntry(NamedAndIdentified.named(Component.text("Sally", TextColor.of(0x123412))));
+event.setStatus(Status.builder()
+        .description(Component.text("Welcome to my Minecraft server!", NamedTextColor.GOLD))
+        .favicon(favicon)
+        .playerInfo(PlayerInfo.builder()
+                .onlinePlayers(onlinePlayers)
+                .maxPlayers(500)
+                .sample(somePlayer)
+                .sample(NamedAndIdentified.named("Notch"))
+                .sample(NamedAndIdentified.named(Component.text("Herobrine", NamedTextColor.AQUA)))
+                .build())
+        .versionInfo(new VersionInfo("1.8.9", 47)) // set some fake version info
+        .build());
 ```
 
 The methods that do not take a UUID will use a random UUID, allowing you to create any number of players without the risk of a conflicting UUID being used. Additionally, each entry can use components or strings. Using components allows you to use colour and styling for each entry. The player list displayed in the vanilla Minecraft client supports the legacy section sign color coding and the names of each entry are automatically converted to this format.
 
-In the modern category, the player sample, along with the online and maximum players, may be hidden completely as well:
-
-```java
-responseData.setPlayersHidden(true);
-```
-
-In the Vanilla client, the online / maximum player count will be replaced with `???`
+In the modern category, the player sample, along with the online and maximum players, may be hidden completely as well by setting `playerInfo` to `null`. In the vanilla client, the online / maximum player count will be replaced with `???`
 
 ### Legacy
 
