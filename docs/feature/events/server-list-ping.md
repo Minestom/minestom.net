@@ -27,14 +27,14 @@ int onlinePlayers = MinecraftServer.getConnectionManager().getOnlinePlayerCount(
 event.setStatus(Status.builder()
         .description(Component.text("Welcome to my Minecraft server!", NamedTextColor.GOLD))
         .favicon(favicon)
-        .playerInfo(PlayerInfo.builder()
+        .playerInfo(Status.PlayerInfo.builder()
                 .onlinePlayers(onlinePlayers)
                 .maxPlayers(500)
                 .sample(somePlayer)
                 .sample(NamedAndIdentified.named("Notch"))
                 .sample(NamedAndIdentified.named(Component.text("Herobrine", NamedTextColor.AQUA)))
                 .build())
-        .versionInfo(new VersionInfo("1.8.9", 47)) // set some fake version info
+        .versionInfo(new Status.VersionInfo("1.8.9", 47)) // set some fake version info
         .build());
 ```
 
