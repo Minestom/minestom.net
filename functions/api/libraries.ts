@@ -20,14 +20,14 @@ export interface Env {
     KV_CACHE: KVNamespace;
 }
 
-function transformGitHubApiResponse(json: any): Repository[] {
-    return json.items
-        .filter((repo: any) => repo.archived === false)
-        .map((repo: any) => ({
+function transformGitHubApiResponse(json: any[]): Repository[] {
+    return json.filter(repo => repo.archived === false)
+        .map(repo => ({
             owner: repo.owner.login,
             name: repo.name,
             description: repo.description,
             stars: repo.stargazers_count,
+            preRelease: false, // TODO
             url: repo.html_url,
         }));
 }
