@@ -1,5 +1,7 @@
+const API_PER_PAGE = 100; // GitHub API allows up to 100 items per page
+const API_MAX_PAGES = 10; // Limit to prevent abuse
 const GITHUB_API_URL =
-    "https://api.github.com/search/repositories?q=topic:minestom-library";
+    `https://api.github.com/search/repositories?q=topic:minestom-library&per_page=${API_PER_PAGE}`;
 const CACHE_TTL_SECONDS = 600; // 10 minutes
 const KV_TTL_SECONDS = 1800; // 30 minutes
 const KV_KEY = "LIBRARIES";
@@ -9,7 +11,6 @@ export type Repository = {
     name: string;
     description: string;
     stars: number;
-    preRelease: boolean;
     url: string;
 };
 
@@ -18,10 +19,9 @@ export interface Env {
     KV_CACHE: KVNamespace;
 }
 
-function transformGitHubApiResponse(json: any): Repository[] {
-    return json.items
-        .filter((repo: any) => repo.archived === false)
-        .map((repo: any) => ({
+function transformGitHubApiResponse(json: any[]): Repository[] {
+    return json.filter(repo => repo.archived === false)
+        .map(repo => ({
             owner: repo.owner.login,
             name: repo.name,
             description: repo.description,
@@ -30,8 +30,8 @@ function transformGitHubApiResponse(json: any): Repository[] {
         }));
 }
 
-async function fetchGitHubRepositories(token: string): Promise<Repository[]> {
-    const response = await fetch(GITHUB_API_URL, {
+async function fetchGithubSearchAPI(token: string, page: number = 1): Promise<any> {
+    const response = await fetch(`${GITHUB_API_URL}&page=${page}`, {
         headers: {
             "X-Source": "Cloudflare-Workers",
             "User-Agent": "Cloudflare-Workers",
@@ -42,9 +42,22 @@ async function fetchGitHubRepositories(token: string): Promise<Repository[]> {
     if (!response.ok) {
         throw new Error(`GitHub API request failed with status ${response.status}`);
     }
+    return await response.json();
+}
 
-    const data = await response.json();
-    return transformGitHubApiResponse(data);
+async function fetchGitHubRepositories(token: string): Promise<Repository[]> {
+    const firstPage = await fetchGithubSearchAPI(token);
+    const items = [...firstPage.items];
+
+    const totalCount = Math.min(firstPage.total_count, API_PER_PAGE * API_MAX_PAGES);
+    let currentPage = 1;
+
+    while (items.length < totalCount && currentPage++ < API_MAX_PAGES) {
+        const nextPage = await fetchGithubSearchAPI(token, currentPage);
+        items.push(...nextPage.items);
+    }
+
+    return transformGitHubApiResponse(items);
 }
 
 async function getCachedRepositories(
