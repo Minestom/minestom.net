@@ -11,7 +11,6 @@ export type Repository = {
     name: string;
     description: string;
     stars: number;
-    preRelease: boolean;
     url: string;
 };
 
@@ -27,7 +26,6 @@ function transformGitHubApiResponse(json: any[]): Repository[] {
             name: repo.name,
             description: repo.description,
             stars: repo.stargazers_count,
-            preRelease: false, // TODO
             url: repo.html_url,
         }));
 }
