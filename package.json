@@ -27,6 +27,7 @@
     "vue": "^3.4.29"
   },
   "dependencies": {
+    "fast-xml-parser": "^5.2.5",
     "markdown-it-attrs": "^4.3.1",
     "markdown-it-bracketed-spans": "^1.0.1",
     "markdown-it-container": "^4.0.0"
