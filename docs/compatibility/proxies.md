@@ -11,12 +11,15 @@ Minestom supports the following proxies and their derivatives:
 
 ## Connecting via the proxy
 
-Connecting via a proxy *replaces* any use of `MojangAuth#init`.
+Connecting via a proxy *replaces* the auth argument in `MinecraftServer.init()`.
 
 :::tabs
 == Velocity
 ```java
-VelocityProxy.enable("secret_here")
+new Auth.Velocity("secret_here")
+
+// example
+MinecraftServer server = MinecraftServer.init(new Auth.Velocity("secret_here"));
 ```
 
 ```toml
@@ -37,7 +40,10 @@ player-info-forwarding-mode = "MODERN" // [!code ++]
 
 == Gate
 ```java
-VelocityProxy.enable("secret_here")
+new Auth.Velocity("secret_here")
+
+// example
+MinecraftServer server = MinecraftServer.init(new Auth.Velocity("secret_here"));
 ```
 
 ```yaml
@@ -58,8 +64,10 @@ forwarding:
 Vanilla BungeeCord does not support tokens, so is ill-advised to use stock. Secret exchanges can be implemented using [BungeeGuard](https://github.com/lucko/BungeeGuard), you should **never** use BungeeCord without it. The following enables BungeeCord and BungeeGuard support:
 
 ```java
-BungeeCordProxy.enable()
-BungeeCordProxy.setBungeeGuardTokens(Set.of("tokens", "here"))
+new Auth.Bungee(Set.of("secret", "here"))
+
+// example
+MinecraftServer server = MinecraftServer.init(new Auth.Bungee(Set.of("secret", "here")));
 ```
 
 ```yaml

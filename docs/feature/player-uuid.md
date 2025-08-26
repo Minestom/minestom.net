@@ -38,17 +38,15 @@ The UUID provider is unnecessary and will not work if you have IP forwarding ena
 ## Enabling Mojang Authentication
 
 If you want to enable Mojang authentication after the server has been started, you can use the following code:
-Enabling Mojang Authentication will validate the session token, set the player's skin, and provide a "trusted" UUID. 
-You can enable this with `MojangAuth#init`.
+Enabling Mojang Authentication will validate the session token, set the player's skin, and provide a "trusted" UUID.
+You can enable this by passing `new Auth.Online()` to `MinecraftServer#init()`.
 
 ```java
 public static void main(String[] args) {
-    
-    MinecraftServer minecraftServer = MinecraftServer.init();
 
-    // enables Mojang authentication
-    MojangAuth.init();
-    
+    // new Auth.Online() enables mojang auth
+    MinecraftServer minecraftServer = MinecraftServer.init(new Auth.Online());
+
     minecraftServer.start("0.0.0.0", 25565);
 }
 ```
