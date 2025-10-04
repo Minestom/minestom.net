@@ -16,6 +16,9 @@ TrackedWaypointPacket.Icon icon = new TrackedWaypointPacket.Icon(TrackedWaypoint
 TrackedWaypointPacket.Waypoint waypoint = new TrackedWaypointPacket.Waypoint(Either.left(uuid), icon, target);
 player.sendPacket(new TrackedWaypointPacket(TrackedWaypointPacket.Operation.TRACK, waypoint));
 
+// If you wanted a string ID instead
+// TrackedWaypointPacket.Waypoint waypoint = new TrackedWaypointPacket.Waypoint(Either.right("emerald_generator"), icon, target);
+
 // Create a new waypoint with the same ID to update its properties
 TrackedWaypointPacket.Waypoint updatedWaypoint = new TrackedWaypointPacket.Waypoint(...);
 player.sendPacket(new TrackedWaypointPacket(TrackedWaypointPacket.Operation.UPDATE, updatedWaypoint));
