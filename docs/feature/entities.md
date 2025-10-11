@@ -8,10 +8,10 @@ In Minestom all entities must extend `Entity` directly or from their subclasses.
 
 Entity creation starts with an entity class selection. Regardless of the type of entity being created, you can instantiate it as any of the following classes:
 
-* `Entity` is the most barebones version of an entity. It provides you with a minimal API (and minimal overhead), including spawning packet handling, metadata support, default physics.
-* `LivingEntity` extends `Entity` and also allows you to grant your entity liveliness. While Minestom does not restrict you to how the vanilla server sets them, some entity types are unable to be a Living Entities as they will cause the client to be disconnected. This subclass also provides an API to modify the entity's equipment and attributes.
-* `EntityCreature` extends `LivingEntity` and also provides you with the navigation and AI API.
-* `ItemEntity` extends `Entity` and provides you with the ability to spawn items in the world.
+- `Entity` is the most barebones version of an entity. It provides you with a minimal API (and minimal overhead), including spawning packet handling, metadata support, default physics.
+- `LivingEntity` extends `Entity` and also allows you to grant your entity liveliness. While Minestom does not restrict you to how the vanilla server sets them, some entity types are unable to be a Living Entities as they will cause the client to be disconnected. This subclass also provides an API to modify the entity's equipment and attributes.
+- `EntityCreature` extends `LivingEntity` and also provides you with the navigation and AI API.
+- `ItemEntity` extends `Entity` and provides you with the ability to spawn items in the world.
 
 If none of the above fits your requirements, you are free to use any of these classes as an ancestor for your own entity class implementation. It could be viable in cases when you need to handle physics or overwrite already presented methods. There are several examples in Minestom repository itself: `Player` that extends `LivingEntity` and handles equipment and a bunch of other things; `EntityProjectile` that extends `Entity` and has its own physics and collision code.
 
@@ -107,12 +107,55 @@ meta.setCustomName(Component.text("Dangerous horse", NamedTextColor.RED));
 meta.setNotifyAboutChanges(true); // and this
 ```
 
-### Player Entities (NPCs)
+### Player Entities (NPCs/Mannequins)
+
+As of 1.21.9, there is now a Mannequin entity type. This is the intended and preferred ways to create NPCs. However the old method is still better in a few cases.
+
+Here is an example Mannequin class that creates a Swimming Minestom npc.
+
+```java-vue
+
+public class Mannequin extends EntityCreature {
+
+    public Mannequin() {
+        super(EntityType.MANNEQUIN);
+
+        editEntityMeta(MannequinMeta.class, meta -> {
+            meta.setDescription(Component.text("I'm an NPC"));
+
+            ResolvableProfile profile = new ResolvableProfile(
+                    PlayerSkin.fromUsername("Minestom")
+            );
+//            or you can replace elements of the skin from a Resource Pack
+//            ResolvableProfile profile = new ResolvableProfile(
+//                    new ResolvableProfile.Partial("Minestom", null, List.of()),
+//                    new PlayerSkin.Patch(
+//                            Key.key("minecraft", "entity/player/wide/steve"), // override the skin to steve from the vanilla resource pack
+//                            null,
+//                            null,
+//                            false
+//                    )
+//            );
+
+            meta.setProfile(profile);
+            meta.setCustomNameVisible(true);
+            meta.setPose(EntityPose.SWIMMING);
+        });
+
+        this.set(DataComponents.CUSTOM_NAME, Component.text("Minestom", NamedTextColor.GOLD));
+    }
+
+}
+
+```
+
+If you want to use the old method, read below.
 
 When creating NPCs that look like players, it's important to implement them as an extention to the `Entity` class rather than using the `Player` class or creating "dummy connections". This approach prevents potential issues with custom `Player` class implementations and provides better control over the NPC's behavior.
 
 A reference implementation can be found in [this gist](https://gist.github.com/mworzala/2c5da51204c45c70db771d0ce7fe9412) by **mworzala**, which demonstrates how to create a basic player NPC.
 
 > **Important Notes:**
+>
 > - Usernames must be 16 characters or less. Longer usernames will result in a `DecoderException` with the message "Failed to decode packet 'clientbound/minecraft:player_info_update'"
 > - This implementation is provided as a reference and starting point. You may need to extend it based on your specific requirements

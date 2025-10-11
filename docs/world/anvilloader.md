@@ -5,9 +5,10 @@ description: >-
 
 ## Loading a world using AnvilLoader
 
-In order to load a world into an instance, use the `InstanceContainer#setChunkLoader(IChunkLoader)` function.
+In order to load a world into an instance, use the `InstanceContainer#setChunkLoader(ChunkLoader)` function.
 
 An example of using this method to load a world is:
+
 ```java
 InstanceContainer.setChunkLoader(new AnvilLoader("worlds/world"));
 ```
@@ -18,6 +19,5 @@ In order to load a world, the world folder will only need the `/region` folder, 
 
 ## Saving a world
 
-In order to save a world, you will have to use the `InstanceContainer#saveChunksToStorage()` function, 
+In order to save a world, you will have to use the `InstanceContainer#saveChunksToStorage()` function,
 this will only work if you have previously loaded a world into the instance using AnvilLoader.
-
