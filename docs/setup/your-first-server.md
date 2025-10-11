@@ -206,7 +206,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21)) // Minestom has a minimum Java version of 21
+        languageVersion.set(JavaLanguageVersion.of(25)) // Minestom has a minimum Java version of 25
     }
 }
 
@@ -250,7 +250,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21)) // Minestom has a minimum Java version of 21
+        languageVersion.set(JavaLanguageVersion.of(25)) // Minestom has a minimum Java version of 25
     }
 }
 
@@ -289,7 +289,7 @@ Here is a complete `pom.xml` file with a few extra niceities added.
     <version>1.0.0</version>
 
     <properties>
-        <java.version>21</java.version> <!--Minestom has a minimum Java version of 21-->
+        <java.version>25</java.version> <!--Minestom has a minimum Java version of 25-->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
