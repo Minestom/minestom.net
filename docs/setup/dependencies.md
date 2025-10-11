@@ -28,7 +28,7 @@ onMounted(() => {
 # Dependencies
 
 :::alert info
-Minestom needs Java 21 or newer in order to run. If you are using Gradle, you must use version 8.5 or higher.
+Minestom needs Java 25 or newer in order to run. If you are using Gradle, you must use version 9.1 or higher. If you are using IntelliJ IDEA, you must use 2025.2 or higher.
 :::
 
 Adding Minestom to your Java project is done just like a normal library.
@@ -88,7 +88,29 @@ dependencies {
 
 :::
 
-The version string is always the first 10 characters of a commit hash. You can view commits
-[here](https://github.com/Minestom/Minestom/commits/master/).
+The version string for the master branches are always the latest github release name.
 
-Minestom PR branches are also published and can be used to preview upcoming features. For such branches, the version string is `{branch}-{first 10 chars of commit}`. For example, the 1_20_5 branch was usable with the version string `1_20_5-dd965f4bb8`.
+Minestom PR branches are also published and can be used to preview upcoming features. You can enable them with
+
+:::tabs
+
+== Gradle (Kotlin)
+
+```kotlin-vue
+repositories {
+    maven(url = "https://central.sonatype.com/repository/maven-snapshots/") {
+        content { // This filtering is optional, but recommended
+            includeModule("net.minestom", "minestom")
+            includeModule("net.minestom", "testing")
+        }
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation("net.minestom:minestom:<branch>-SNAPSHOT")
+    testImplementation("net.minestom:testing:<branch>-SNAPSHOT")
+}
+```
+
+:::
