@@ -4,11 +4,11 @@ Anvil is the format made by Mojang for vanilla. Minestom provides this format an
 
 ## Requirements
 
-Worlds to be used with [`AnvilLoader`](https://javadoc.minestom.net/net/minestom/server/instance/anvil/AnvilLoader.html) only need to contain the `region` directory, which is where the chunk data comes from. Chunk loaders do not read entity data.
+Worlds to be used with [`AnvilLoader`](https://javadoc.minestom.net/net.minestom.server/net/minestom/server/instance/anvil/AnvilLoader.html) only need to contain the `region` directory, which is where the chunk data comes from. Chunk loaders do not read entity data.
 
 ## Usage
 
-To use a world from the **runtime file system**, you can do something like the following code snippet, which constructs the loader using [`AnvilLoader#<init>(Path)`](https://javadoc.minestom.net/net/minestom/server/instance/anvil/AnvilLoader.html#%3Cinit%3E(java.nio.file.Path)).
+To use a world from the **runtime file system**, you can do something like the following code snippet, which constructs the loader using [`AnvilLoader#<init>(Path)`](https://javadoc.minestom.net/net.minestom.server/net/minestom/server/instance/anvil/AnvilLoader.html#%3Cinit%3E(java.nio.file.Path)).
 
 ```java
 final Path directory = this.worlds.join("world");

@@ -83,7 +83,6 @@ export default defineConfig({
               link: "/docs/world/loading",
               items: [
                 { text: "Anvil", link: "/docs/world/loading/anvil" },
-                { text: "Polar", link: "/docs/world/loading/polar" },
               ],
             },
             {
