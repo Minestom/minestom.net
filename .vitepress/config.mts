@@ -96,6 +96,14 @@ export default defineConfig({
           text: "Feature",
           items: [
             { text: "Adventure", link: "/docs/feature/adventure" },
+            {
+              text: "Serialization",
+              link: "/docs/feature/serialization",
+              items: [
+                { text: "Codecs", link: "/docs/feature/serialization/codecs" },
+                { text: "Network Buffers", link: "/docs/feature/serialization/network-buffers" },
+              ],
+            },
             { text: "Items", link: "/docs/feature/items" },
             { text: "Events", link: "/docs/feature/events" },
             {
