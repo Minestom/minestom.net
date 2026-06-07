@@ -8,7 +8,7 @@ description: Minestom's implementation of the GameSpy4 protocol.
 
 Just like Vanilla servers, Minestom supports the GameSpy4 protocol server listener. This can be used to obtain information from the server using query software like [https://mcsrvstat.us/](https://mcsrvstat.us/) or Dinnerbone's [mcstatus](https://github.com/Dinnerbone/mcstatus) program.
 
-For more information about the query system, see [https://wiki.vg/Query](https://wiki.vg/Query).
+For more information about the query system, see [https://wikivg.booky.dev/Query](https://wikivg.booky.dev/Query).
 
 ## Setup
 
