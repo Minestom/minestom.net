@@ -125,7 +125,6 @@ export default defineConfig({
               ],
             },
             { text: "Locator Bar", link: "/docs/feature/locator-bar" },
-            { text: "Query System", link: "/docs/feature/query" },
             { text: "Changing the MOTD", link: "/docs/feature/motd" },
             { text: "Open to LAN", link: "/docs/feature/open-to-lan" },
           ],
