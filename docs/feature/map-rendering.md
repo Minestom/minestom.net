@@ -10,28 +10,60 @@ The thing is... the server decides the contents, and there is no requirement to 
 
 Minestom does not save map data for you, but it will send it for you. At the most basic level, map framebuffers (the 128x128 pixel area the server draws on) hold the 1-byte indices of colors in a pre-determined color palette, but not RGB.
 
-Once you have selected a map ID to write to (see [MapMeta](https://github.com/Minestom/Minestom/blob/master/src/main/java/net/minestom/server/item/metadata/MapMeta.java) for more information), you can write its contents via a `MapDataPacket`:
+A `MapDataPacket` is an immutable record. You build one with the map ID you want to update and a `ColorContent` describing the pixels to write:
 
 ```java
-MapDataPacket mapData = new MapDataPacket();
-mapData.mapId = YOUR_MAP_ID;
-mapData.data = YOUR_PIXELS;
-mapData.x = X_START;
-mapData.z = Z_START;
-mapData.rows = ROW_COUNT;
-mapData.columns = COLUMN_COUNT;
+byte[] pixels = YOUR_PIXELS; // length columns * rows, palette indices
+
+MapDataPacket mapData = new MapDataPacket(
+        YOUR_MAP_ID, // mapId
+        (byte) 0,    // scale
+        false,       // locked
+        false,       // trackingPosition (send icons?)
+        List.of(),   // icons
+        new MapDataPacket.ColorContent(
+                (byte) COLUMN_COUNT, // columns (width of the updated area)
+                (byte) ROW_COUNT,    // rows (height of the updated area)
+                (byte) X_START,      // x offset of the top-left pixel
+                (byte) Z_START,      // z offset of the top-left pixel
+                pixels));
 ```
 
-- `mapId` is an `int` to be able to reference which map to change.
-- `data` is a `byte[]` array which holds the indices inside the color palette. Its size should be at least `rows*columns`.
-- `x` is an unsigned byte (stored inside a `short`) which represents the X coordinate of the left-most pixel to write. Ranges from 0 to 127 (inclusive).
-- `y` is an unsigned byte (stored inside a `short`) which represents the Y coordinate of the top-most pixel to write. Ranges from 0 to 127 (inclusive).
-- `rows` is an unsigned byte (stored inside a `short`) which represents the number of rows to update.
-- `columns` is an unsigned byte (stored inside a `short`) which represents the number of columns to update.
+- `mapId` is an `int` used to reference which map to change.
+- `scale` is a `byte` for the map scale. Use `0` for a 1:1 custom texture.
+- `locked` is a `boolean`. When `true` the client cannot modify the map in a cartography table.
+- `trackingPosition` is a `boolean` controlling whether the `icons` list is sent. Set it to `false` for a plain image.
+- `icons` is a `List<MapDataPacket.Icon>` of map decorations (player markers, banners, etc.). Use `List.of()` for none.
+- `colorContent` is a `@Nullable ColorContent` holding the pixels to update. Pass `null` to send only metadata/icons without touching the pixels.
 
-Pixels are stored in a row-major configuration (ie index is defined by `x+width*y`). Attempting to write pixels outside the 128x128 area WILL crash and/or disconnect the client, so be careful. Minestom does not check which area you are writing to.
+The `ColorContent` record carries the pixel update:
 
-You can then send the packet to players through `PlayerConnection#sendPacket(ServerPacket)`
+- `columns` is an unsigned byte (stored inside a `byte`) for the number of columns (width) to update. Ranges from 1 to 128.
+- `rows` is an unsigned byte for the number of rows (height) to update. Ranges from 1 to 128.
+- `x` is an unsigned byte for the X coordinate of the left-most pixel to write. Ranges from 0 to 127 (inclusive).
+- `z` is an unsigned byte for the Z (vertical) coordinate of the top-most pixel to write. Ranges from 0 to 127 (inclusive).
+- `data` is a `byte[]` array which holds the indices inside the color palette. Its size should be at least `columns * rows`.
+
+Pixels are stored in a row-major configuration (ie index is defined by `x + columns * z`). Attempting to write pixels outside the 128x128 area WILL crash and/or disconnect the client, so be careful. Minestom does not check which area you are writing to.
+
+You can then send the packet to players through `Player#sendPacket(SendablePacket)`:
+
+```java
+player.sendPacket(mapData);
+```
+
+## Displaying a map
+
+To make a player actually see your map, give them a filled map item pointing at the same map ID via the `MAP_ID` data component:
+
+```java
+ItemStack map = ItemStack.builder(Material.FILLED_MAP)
+        .set(DataComponents.MAP_ID, YOUR_MAP_ID)
+        .build();
+player.getInventory().addItemStack(map);
+```
+
+The map ID is just an arbitrary `int` you pick to identify the map. Use the same value when sending `MapDataPacket` and when setting `MAP_ID` so the item and the pixel data line up.
 
 ## Framebuffers - High level API
 
@@ -39,17 +71,18 @@ While directly writing to the pixel buffer is fast and easy for simple graphics,
 
 Framebuffers are split into 2 categories: `Framebuffer` and `LargeFramebuffer`. The difference is that `Framebuffer` is meant to render to a single map (so resolution limited to 128x128), while `LargeFramebuffer` can render to any framebuffer size, by rendering over multiple maps. Large framebuffers offer a method to create `Framebuffer` views to help with rendering onto a map.
 
-Once you have finished rendering on your framebuffer, you can ask it to prepare the `MapDataPacket` for you.
+Once you have finished rendering on your framebuffer, you can ask it to prepare the `MapDataPacket` for you by passing the map ID:
 
 ```java
-MapDataPacket mapData = new MapDataPacket();
-mapData.mapId = YOUR_MAP_ID;
 Framebuffer fb = //...
 // some render code
-fb.preparePacket(packet);
+MapDataPacket mapData = fb.preparePacket(YOUR_MAP_ID);
+player.sendPacket(mapData);
 ```
 
-Framebuffers have 3 default flavors provided by Minestom: Direct, Graphics2D and GLFW-Capable.
+For a `LargeFramebuffer`, `preparePacket(mapId, left, top)` prepares a 128x128 sub-view starting at the given top-left corner, so you send one packet (and use one map ID) per map in the wall.
+
+Framebuffers have 2 default flavors provided by Minestom: Direct and Graphics2D.
 
 ### `DirectFramebuffer` / `LargeDirectFramebuffer`
 
@@ -63,7 +96,7 @@ byte[] colors = fb.getColors();
 for (int i = 0; i < colors.length; i++) {
     colors[i] = MapColors.COLOR_CYAN.baseColor();
 }
-fb.set(0,0, MapColors.DIRT.baseColor());
+fb.set(0, 0, MapColors.DIRT.baseColor());
 ```
 
 ### `Graphics2DFramebuffer` / `LargeGraphics2DFramebuffer`
@@ -75,6 +108,7 @@ As the name suggests, these framebuffers allow usage of the Graphics2D API from 
 Example use:
 
 ```java
+Graphics2DFramebuffer framebuffer = new Graphics2DFramebuffer();
 Graphics2D renderer = framebuffer.getRenderer();
 renderer.setColor(Color.BLACK);
 renderer.clearRect(0, 0, 128, 128);
@@ -84,7 +118,3 @@ renderer.drawString("Graphics2D!", 0, 20);
 ```
 
 Graphics2D framebuffers also support getting/setting pixels individually if necessary.
-
-### GLFW-Capable buffers
-
-[This is an article all to itself.](./map-rendering/glfwmaprendering)
