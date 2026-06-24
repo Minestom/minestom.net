@@ -114,16 +114,7 @@ export default defineConfig({
             { text: "Player UUID", link: "/docs/feature/player-uuid" },
             { text: "Player Skin", link: "/docs/feature/player-skin" },
             { text: "Advancements", link: "/docs/feature/advancements" },
-            {
-              text: "Map Rendering",
-              link: "/docs/feature/map-rendering",
-              items: [
-                {
-                  text: "GLFW Map Rendering",
-                  link: "/docs/feature/map-rendering/glfwmaprendering",
-                },
-              ],
-            },
+            { text: "Map Rendering", link: "/docs/feature/map-rendering" },
             { text: "Locator Bar", link: "/docs/feature/locator-bar" },
             { text: "Query System", link: "/docs/feature/query" },
             { text: "Changing the MOTD", link: "/docs/feature/motd" },
