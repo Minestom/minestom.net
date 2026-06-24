@@ -79,10 +79,16 @@ export default defineConfig({
           items: [
             { text: "Instances", link: "/docs/world/instances" },
             {
+              text: "Loading",
+              link: "/docs/world/loading",
+              items: [
+                { text: "Anvil", link: "/docs/world/loading/anvil" },
+              ],
+            },
+            {
               text: "Chunk Management",
               link: "/docs/world/chunk-management",
               items: [
-                { text: "Anvil Loader", link: "/docs/world/anvilloader" },
                 { text: "Lighting", link: "/docs/world/lightloader" },
               ],
             },
