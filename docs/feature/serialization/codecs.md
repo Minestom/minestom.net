@@ -202,10 +202,8 @@ BinaryTag nbt = PlayerData.CODEC.encode(Transcoder.NBT, playerData).orElseThrow(
 ```
 
 :::tip
-You can create your own transcoder, for example, one for reading YAML configuration files.
+You can create your own transcoder, for example, one for reading YAML configuration files. See this [SnakeYAML transcoder example](https://gist.github.com/mudkipdev/47ac0f90555d4e810e13ce82c7161211) for a complete implementation.
 :::
-
-<!-- [ TODO: SnakeYAML example, probably link to a Gist ] -->
 
 ## Saving to Files
 ### JSON
