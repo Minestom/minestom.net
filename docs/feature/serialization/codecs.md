@@ -1,6 +1,10 @@
 # Codecs
 Codecs encode and decode data to multiple formats (JSON, NBT, etc.) using the same definition. This allows you to write your serialization logic once and use it with any supported format.
 
+A `Codec<T>` is the combination of an `Encoder<T>`, which turns a value of `T` into a format, and a `Decoder<T>`, which turns that format back into a `T`. A codec never targets a format directly. Instead you hand it a `Transcoder` (such as `Transcoder.JSON` or `Transcoder.NBT`) that decides the concrete representation, so the same codec serves every format.
+
+`StructCodec<T>` is a codec for objects with named fields, encoded as a map like `{"name": ...}`. Reach for `StructCodec.struct(...)` when your type is a record or class made of several fields, and a plain `Codec` (such as `Codec.STRING` or a `.transform()` of one) when the value is a single primitive-like value. A `StructCodec` is itself a `Codec`, so you can use one as a field inside another struct wherever a `Codec` is expected.
+
 ```java
 record PlayerData(String name, int level, @Nullable String nickname) {
     static final StructCodec<PlayerData> CODEC = StructCodec.struct(
@@ -13,6 +17,7 @@ record PlayerData(String name, int level, @Nullable String nickname) {
 
 PlayerData data = new PlayerData("Steve", 67, null);
 JsonElement json = PlayerData.CODEC.encode(Transcoder.JSON, data).orElseThrow();
+// json is {"name":"Steve","level":67} -- the null nickname is left out because the field is optional
 BinaryTag nbt = PlayerData.CODEC.encode(Transcoder.NBT, data).orElseThrow();
 PlayerData decodedData = PlayerData.CODEC.decode(Transcoder.JSON, json).orElseThrow();
 ```
@@ -64,7 +69,7 @@ Codec<Direction> DIRECTION = Codec.Enum(Direction.class);
 ```
 
 ## Optional Fields
-Fields marked with `.optional()` can be missing from the encoded data and will decode to `null`. You can also provide a default value.
+Fields marked with `.optional()` may be absent from the encoded data. When encoding, a `null` value is left out of the output entirely; when decoding, a missing field becomes `null`, or the default value if you provide one.
 
 ```java
 record ItemData(String name, @Nullable String description) {
@@ -219,6 +224,8 @@ PlayerData loadJson(Path path) throws IOException {
 ```
 
 ### NBT
+`Transcoder.NBT` encodes to the general `BinaryTag` type, but a `StructCodec` always produces a map, so the result is really a `CompoundBinaryTag`. The cast below is therefore safe for struct codecs, and it is needed because `BinaryTagIO` writes a compound specifically.
+
 ```java
 void saveNbt(PlayerData data, Path path) throws IOException {
     CompoundBinaryTag nbt = (CompoundBinaryTag) PlayerData.CODEC
@@ -239,12 +246,19 @@ PlayerData loadNbt(Path path) throws IOException {
 ```
 
 ## Converting Between Formats
-You can convert between formats using `RawValue` for direct conversion, or by decoding then encoding.
+A `RawValue` holds a value together with the transcoder that produced it, without decoding it into one of your types. This lets you move data straight from one format to another. `convertTo` works with any transcoder.
 
 ```java
+JsonElement jsonElement = JsonParser.parseString("{\"name\":\"Steve\",\"level\":67}");
+
+// Wrap the JSON value, then convert it directly to NBT
 Codec.RawValue rawValue = Codec.RawValue.of(Transcoder.JSON, jsonElement);
 BinaryTag nbt = rawValue.convertTo(Transcoder.NBT).orElseThrow();
+```
 
-PlayerData data = PlayerData.CODEC.decode(Transcoder.JSON, json).orElseThrow();
+If you already have a codec for the data, you can convert by decoding into your type and re-encoding, which also validates the data along the way:
+
+```java
+PlayerData data = PlayerData.CODEC.decode(Transcoder.JSON, jsonElement).orElseThrow();
 BinaryTag nbt = PlayerData.CODEC.encode(Transcoder.NBT, data).orElseThrow();
 ```
