@@ -101,7 +101,6 @@ export default defineConfig({
               link: "/docs/feature/serialization",
               items: [
                 { text: "Codecs", link: "/docs/feature/serialization/codecs" },
-                { text: "Network Buffers", link: "/docs/feature/serialization/network-buffers" },
               ],
             },
             { text: "Items", link: "/docs/feature/items" },
