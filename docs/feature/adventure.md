@@ -17,7 +17,7 @@ In Minestom, the following classes are audiences:
 * `CommandSender`,
 * `Player`,
 * `Instance`,
-* `Scoreboard`, and
+* `Objective`, and
 * `Team`.
 
 This means that if you have an instance of any one of these classes, you can use the full Adventure API to, for example, show a title to every member of the audience. This allows for more powerful and direct control over how you communicate with players.
