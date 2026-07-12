@@ -25,7 +25,7 @@ Lines are ordered top to bottom and their scores are hidden. Only lines whose co
 Sidebar#setLine(int /* index, 0 at the top */, Component /* content */);
 ```
 
-Showing a sidebar to a player replaces whatever they previously had in the sidebar slot, and viewers are removed automatically when they disconnect.
+How a line's score is displayed can be customized per index with `Sidebar#setNumberFormat(int, NumberFormat)`; formats are kept across `update` calls. Showing a sidebar to a player replaces whatever they previously had in the sidebar slot, and viewers are removed automatically when they disconnect.
 
 ### Objectives
 
@@ -42,7 +42,7 @@ player.setDisplayedObjective(DisplaySlot.BELOW_NAME, objective);
 
 Score holder names are arbitrary strings. The vanilla convention, usernames for players and UUIDs for other entities, is available through `Objective#scoreHolder(Entity)` and the `Entity` overloads of the update methods.
 
-Binding an objective to an occupied slot replaces the previous objective, and all of a player's bindings are removed when they disconnect. A sidebar's backing objective is accessible with `Sidebar#getObjective()` for advanced customization such as per-line number formats.
+Binding an objective to an occupied slot replaces the previous objective, and all of a player's bindings are removed when they disconnect. A sidebar's backing objective is accessible with `Sidebar#getObjective()` for advanced customization such as displaying it in a team color slot.
 
 ## Notifications
 
