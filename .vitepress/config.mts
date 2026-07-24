@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import bracketed_spans_plugin from "markdown-it-bracketed-spans"
 import container_plugin from "markdown-it-container"
-import { writeRedirects } from "./redirects";
+import { redirectsPlugin, writeRedirects } from "./redirects";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -37,6 +37,10 @@ export default defineConfig({
 
   buildEnd(siteConfig) {
     writeRedirects(siteConfig.outDir);
+  },
+
+  vite: {
+    plugins: [redirectsPlugin()],
   },
 
   themeConfig: {
