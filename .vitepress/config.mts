@@ -1,6 +1,5 @@
 import { defineConfig } from "vitepress";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
-import bracketed_spans_plugin from "markdown-it-bracketed-spans"
 import container_plugin from "markdown-it-container"
 import { redirectsPlugin, writeRedirects } from "./redirects";
 
@@ -13,7 +12,6 @@ export default defineConfig({
     breaks: true,
     config(md) {
       md.use(tabsMarkdownPlugin);
-      md.use(bracketed_spans_plugin)
       for (const type of ['note', 'info', 'tip', 'warning', 'danger', 'success', 'important']) {
         md.use(container_plugin, type, {
           render(tokens, idx) {
