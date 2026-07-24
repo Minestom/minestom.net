@@ -6,6 +6,8 @@ const redirects: Record<string, string> = {
   // https://github.com/Minestom/minestom.net/pull/45
   "/docs/feature/events/implementation": "/docs/feature/events#implementation",
   "/docs/feature/events/server-list-ping": "/docs/feature/motd",
+  // https://github.com/Minestom/minestom.net/pull/53
+  "/docs/feature/map-rendering/glfwmaprendering": "/docs/feature/map-rendering",
 };
 
 function renderRedirect(newUrl: string): string {
