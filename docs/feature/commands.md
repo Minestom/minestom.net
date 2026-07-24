@@ -1,6 +1,6 @@
 # Commands
 
-Commands are the main communication between the server and the players. In contrary to current alternatives, Minestom takes full advantage of auto-completion/suggestion and has therefore a fairly strict API.
+Commands are the main communication between the server and the players. In contrast to current alternatives, Minestom takes full advantage of auto-completion/suggestion and therefore has a fairly strict API.
 
 ## Overview
 
@@ -130,7 +130,7 @@ addSyntax((sender, context) -> {
 }, Integer("number"));
 ```
 
-The data will be created and returned every time the syntax is called. It can then be retrieved from the `CommandResult`. `CommandManager#executeServerCommand(String)` allows you to execute a command as a `ServerSender` (which has the benefit of not printing anything on `CommandSender#sendMessage(String)`, and permit to differentiate this sender from a player or the console).
+The data will be created and returned every time the syntax is called. It can then be retrieved from the `CommandResult`. `CommandManager#executeServerCommand(String)` allows you to execute a command as a `ServerSender` (which has the benefit of not printing anything on `CommandSender#sendMessage(String)`, and permits you to differentiate this sender from a player or the console).
 
 ```java
 CommandResult result = MinecraftServer.getCommandManager().executeServerCommand("command 5");

@@ -181,7 +181,7 @@ plugins {
 :::
 With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar for Gradle! (The jar will be put in `/build/libs/` by default).
 
-Here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceities added.
+Here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceties added.
 
 :::tabs
 === Gradle (Groovy)
@@ -276,11 +276,11 @@ tasks {
 
 ## Building the server JAR (Maven)
 
-Start by adding a execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
+Start by adding an execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
 
 You can use the `assembly` plugin to build the jar using the `clean package` command. Documentation on the plugin can be found [here](https://maven.apache.org/plugins/maven-assembly-plugin/).
 
-Here is a complete `pom.xml` file with a few extra niceities added.
+Here is a complete `pom.xml` file with a few extra niceties added.
 
 ```xml
 <project>
@@ -319,7 +319,7 @@ Here is a complete `pom.xml` file with a few extra niceities added.
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>single</goal> <!--Prevent dependecies from shading multiple times-->
+                            <goal>single</goal> <!--Prevent dependencies from shading multiple times-->
                         </goals>
                     </execution>
                 </executions>
