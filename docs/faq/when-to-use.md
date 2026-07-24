@@ -1,18 +1,30 @@
+---
+description: The kinds of projects Minestom suits, and the ones it does not.
+---
+
 # When should I use Minestom?
 
 ---
 
-As Minecraft has evolved, many servers struggle to keep up with new features and work around outdated legacy systems. Minestom addresses this by offering a clean, minimal starting point, enabling you to take full control of how your server functions.
+Minecraft has evolved a lot since its release, but many servers today overlook the built-in mechanics in favor of custom gameplay, leading to wasted performance. Our target audience is developers who want to make a server that benefits little from vanilla features, such as minigames or KitPVP.
 
-In practical terms, this means that Minestom doesn’t include built-in vanilla behavior for things like chests, commands, or combat—you have to implement them all yourself. While this might seem like extra work at first, the benefit is a highly customizable and efficient server where you can implement only the features you need, and nothing else.
+The goal is to offer more performance to those who need it. In other words, it makes sense to use Minestom when it will take less time implementing every missing feature you want, rather than removing every vanilla feature that will slow you down.
 
-Minestom is the ideal choice for situations where flexibility and performance are more important than maintaining the out-of-the-box "vanilla" Minecraft experience. 
+Minestom does not suit every use case, and while our choices make it better for some, they make it worse for others.
 
-In short, use Minestom when you:
-- **Need a lightweight, high-performance server** – Minestom is designed for efficiency, making it ideal for projects where performance is a priority.
-- **Need scalability** – Minestom’s multi-threaded design allows it to handle high player counts efficiently.
-- **Are building a custom server experience** – If you're creating a server that doesn’t rely on vanilla Minecraft mechanics, Minestom is a great choice.
+## Advantages
 
-Don't use Minestom when you:
-- **Want a drop-in replacement for vanilla servers** – Minestom is not a direct replacement for Paper, Spigot, or vanilla Minecraft servers, as it does not include many vanilla mechanics by default.
-- **Rely on plugins from Bukkit, Spigot, or Paper** – Minestom has its own API, meaning existing Minecraft server plugins will not work out of the box.
+- **High performance.** Designed for efficiency, offering high performance with minimal overhead.
+- **Lightweight.** Comes with little to no functionality, allowing the server to be easily extended.
+- **Modern API.** Written in the latest LTS version of Java, using best practices and standards.
+- **Multi-threaded.** Uses a thread pool to manage chunks independently from instances.
+- **Instances instead of worlds.** They are cheap to create and discard at runtime, which suits per-match maps far better than loading worlds from disk.
+- **No legacy NMS.** Obfuscation is a thing of the past, and the protocol is fully implemented and exposed to developers.
+
+## Disadvantages
+
+- **Traditional plugins and mods do not work.** Nothing written for Bukkit, Spigot, Paper, Forge, or Fabric will run.
+- **Unsuitable for a vanilla experience.** Minestom implements almost none of it, so you would be rebuilding survival from scratch.
+- **It takes longer to reach something playable.** Minestom is aimed at developers, and writing a server takes real development time.
+- **Older clients are not supported.** See [Unsupported Versions](/docs/compatibility/unsupported-versions) for ways around this.
+- **A smaller ecosystem.** There are fewer users and third-party libraries than Spigot has.

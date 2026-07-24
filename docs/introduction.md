@@ -1,3 +1,7 @@
+---
+description: An overview of the Minestom wiki and where to find help.
+---
+
 <style>
 
   .minestom-gradient-text {
@@ -8,16 +12,16 @@
 
 </style>
 
-# Welcome to [Minestom]{.minestom-gradient-text}
+# Welcome to <span class="minestom-gradient-text">Minestom</span>
 
 ---
 
-The goal of this wiki is to familiarize you with our library. The most important concepts are described here, however many are not. You can contact one of the Minestom contributors if you wish to help develop the library or have questions.
+This wiki covers the concepts you need to build a server with Minestom, starting from an empty project and working up through worlds, entities, items, and the rest of the library.
 
-In addition to the wiki, we highly recommend checking out our [Javadocs](https://javadoc.minestom.net) and joining our [Discord Server](https://discord.com/invite/pkFRvqB).
+If you are still deciding whether Minestom fits your project, start with [What is Minestom?](/docs/faq/what-is-minestom) and [When should I use Minestom?](/docs/faq/when-to-use). Otherwise, head to [Dependencies](/docs/setup/dependencies) and set up a project.
 
-If you do not know how you landed here, Minestom is a complete rewrite of the Minecraft server software without any Mojang code. You can learn more about it [here](https://github.com/Minestom/Minestom).
+The wiki does not document every class. For a complete API reference, see the [Javadocs](https://javadoc.minestom.net). If you get stuck, or you want to help develop the library, join our [Discord server](https://discord.gg/fpY6kPUkZb).
 
 ::: note
-While we try to update the wiki as things change, it is not always up to date. If you see something out of date or incorrect, we are always open to pull requests!
+We try to keep the wiki current, but pages do fall behind. If you find something out of date or incorrect, pull requests are always welcome.
 :::
