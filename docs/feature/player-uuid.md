@@ -42,11 +42,8 @@ Enabling Mojang Authentication will validate the session token, set the player's
 You can enable this by passing `new Auth.Online()` to `MinecraftServer#init()`.
 
 ```java
-public static void main(String[] args) {
-
-    // new Auth.Online() enables mojang auth
-    MinecraftServer minecraftServer = MinecraftServer.init(new Auth.Online());
-
-    minecraftServer.start("0.0.0.0", 25565);
+void main() {
+    MinecraftServer server = MinecraftServer.init(new Auth.Online());
+    server.start("0.0.0.0", 25565);
 }
 ```

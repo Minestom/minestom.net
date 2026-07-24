@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  --vp-font-family-base: 'Inter', sans-serif;
-  --vp-font-family-mono: 'JetBrains Mono', monospace;
+  --vp-font-family-base: 'Inter', system-ui, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 body {
@@ -17,7 +17,6 @@ h1, h2, h3, h4, h5, h6 {
 code, pre {
   padding: 2px 6px;
   border-radius: 4px;
-  font-weight: 700 !important;
 }
 
 @tailwind base;
