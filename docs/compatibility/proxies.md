@@ -78,7 +78,7 @@ ip_forward: true # [!code ++]
 
 ## Transferring between servers
 
-To transfer players, you need inform the proxy to do so. You can either do this via the [BungeeCord plugin message channel](https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/) or through your own means via your own plugin message channel or a message queue.
+To transfer players, you need to inform the proxy to do so. You can either do this via the [BungeeCord plugin message channel](https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/) or through your own means via your own plugin message channel or a message queue.
 
 ### Using the BungeeCord plugin message channel
 All supported proxies should have the BungeeCord plugin message channel enabled by default.

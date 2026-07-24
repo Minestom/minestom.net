@@ -37,7 +37,7 @@ horse.addAIGroup(List.of(
     // adds a melee attack goal with the range of 4 and delay of 2 seconds
     new MeleeAttackGoal(horse, 4.0, Duration.ofSeconds(2))
 ), List.of(
-    // adds a target for closest entity thats a Player within 10 blocks
+    // adds a target for closest entity that's a Player within 10 blocks
     new ClosestEntityTarget(horse, 10.0, entity -> entity instanceof Player)
 ));
 horse.setInstance(instance, spawnPosition); // actually spawning a horse
@@ -151,7 +151,7 @@ public class Mannequin extends EntityCreature {
 
 If you want to use the old method, read below.
 
-When creating NPCs that look like players, it's important to implement them as an extention to the `Entity` class rather than using the `Player` class or creating "dummy connections". This approach prevents potential issues with custom `Player` class implementations and provides better control over the NPC's behavior.
+When creating NPCs that look like players, it's important to implement them as an extension to the `Entity` class rather than using the `Player` class or creating "dummy connections". This approach prevents potential issues with custom `Player` class implementations and provides better control over the NPC's behavior.
 
 A reference implementation can be found in [this gist](https://gist.github.com/mworzala/2c5da51204c45c70db771d0ce7fe9412) by **mworzala**, which demonstrates how to create a basic player NPC.
 
