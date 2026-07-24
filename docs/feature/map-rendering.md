@@ -38,8 +38,8 @@ MapDataPacket mapData = new MapDataPacket(
 
 The `ColorContent` record carries the pixel update:
 
-- `columns` is an unsigned byte (stored inside a `byte`) for the number of columns (width) to update. Ranges from 1 to 128.
-- `rows` is an unsigned byte for the number of rows (height) to update. Ranges from 1 to 128.
+- `columns` is an unsigned byte for the number of columns (width) to update. Ranges from 1 to 128 (inclusive).
+- `rows` is an unsigned byte for the number of rows (height) to update. Ranges from 1 to 128 (inclusive).
 - `x` is an unsigned byte for the X coordinate of the left-most pixel to write. Ranges from 0 to 127 (inclusive).
 - `z` is an unsigned byte for the Z (vertical) coordinate of the top-most pixel to write. Ranges from 0 to 127 (inclusive).
 - `data` is a `byte[]` array which holds the indices inside the color palette. Its size should be at least `columns * rows`.
