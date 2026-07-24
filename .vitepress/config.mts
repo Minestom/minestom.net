@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import bracketed_spans_plugin from "markdown-it-bracketed-spans"
 import container_plugin from "markdown-it-container"
+import { redirectsPlugin, writeRedirects } from "./redirects";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -33,6 +34,15 @@ export default defineConfig({
     ["meta", { name: "theme-color", content: "#ff6c32" }],
   ],
   cleanUrls: true,
+
+  buildEnd(siteConfig) {
+    writeRedirects(siteConfig.outDir);
+  },
+
+  vite: {
+    plugins: [redirectsPlugin()],
+  },
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
@@ -116,7 +126,6 @@ export default defineConfig({
             { text: "Advancements", link: "/docs/feature/advancements" },
             { text: "Map Rendering", link: "/docs/feature/map-rendering" },
             { text: "Locator Bar", link: "/docs/feature/locator-bar" },
-            { text: "Query System", link: "/docs/feature/query" },
             { text: "Changing the MOTD", link: "/docs/feature/motd" },
             { text: "Open to LAN", link: "/docs/feature/open-to-lan" },
           ],
