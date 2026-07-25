@@ -84,6 +84,10 @@ const config = withSidebar({
   ],
   cleanUrls: true,
 
+  rewrites: {
+    "docs/:path+/index.md": "docs/:path+.md",
+  },
+
   buildEnd(siteConfig) {
     writeRedirects(siteConfig.outDir);
   },
@@ -138,7 +142,7 @@ function normalizeSidebar(items: any[], isCategory = true): void {
       delete item.link;
       item.text = CATEGORY_TITLES[item.text] ?? item.text;
     } else if (typeof item.link === "string") {
-      item.link = item.link.replace(/(?:^|\/)index\.md$/, "/");
+      item.link = item.link.replace(/(?:^|\/)index\.md$/, "");
     }
 
     if (item.items) normalizeSidebar(item.items, false);
