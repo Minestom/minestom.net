@@ -1,3 +1,7 @@
+---
+title: Map Rendering
+---
+
 # Map rendering
 
 ## Introduction

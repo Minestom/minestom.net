@@ -1,4 +1,5 @@
 ---
+title: Chunk Management
 description: >-
   This page describes what you need to know about chunks management, more
   specifically for InstanceContainer

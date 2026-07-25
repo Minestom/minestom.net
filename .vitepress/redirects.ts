@@ -8,6 +8,9 @@ const redirects: Record<string, string> = {
   "/docs/feature/events/server-list-ping": "/docs/feature/motd",
   // https://github.com/Minestom/minestom.net/pull/53
   "/docs/feature/map-rendering/glfwmaprendering": "/docs/feature/map-rendering",
+  // https://github.com/Minestom/minestom.net/pull/60
+  "/docs/world/anvilloader": "/docs/world/chunk-management/anvilloader",
+  "/docs/world/lightloader": "/docs/world/chunk-management/lightloader",
 };
 
 function renderRedirect(newUrl: string): string {

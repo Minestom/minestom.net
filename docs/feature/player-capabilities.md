@@ -1,3 +1,7 @@
+---
+title: Player Capabilities
+---
+
 # Player capabilities
 
 Minestom features a number of interaction methods for players. Many of them are described below, however this list is not exhaustive.

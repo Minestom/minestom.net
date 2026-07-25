@@ -1,3 +1,7 @@
+---
+title: Player Skin
+---
+
 # Player skin
 
 There are three ways of defining a player skin:

@@ -1,4 +1,5 @@
 ---
+title: Introduction
 description: An overview of the Minestom wiki and where to find help.
 ---
 

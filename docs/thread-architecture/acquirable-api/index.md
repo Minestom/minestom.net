@@ -133,7 +133,7 @@ Stream<Player> players = acquirablePlayers.unwrap();
 ```
 
 ::: warning
-Those are not safe operations, be sure to read the [Thread safety](thread-safety) page to understand the implications.
+Those are not safe operations, be sure to read the [Thread safety](/docs/thread-architecture/thread-safety) page to understand the implications.
 :::
 
 I would personally recommend commenting everywhere you use those unsafe methods to indicate why this operation does not compromise the application's safety. If you cannot find any reason, you likely shouldn't.

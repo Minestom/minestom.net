@@ -1,4 +1,5 @@
 ---
+title: Thread Safety in the JVM
 description: Everything you need to know about thread-safe code and how to make it so
 ---
 
