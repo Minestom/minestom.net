@@ -17,7 +17,7 @@ const SIDEBAR_ORDER = [
 
   "world",
   "instances.md",
-  "chunk-management.md",
+  "chunk-management",
   "anvilloader.md",
   "lightloader.md",
   "blocks.md",
