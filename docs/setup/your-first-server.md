@@ -1,4 +1,5 @@
 ---
+title: Your First Server
 description: Includes everything you need to have your first server running.
 ---
 

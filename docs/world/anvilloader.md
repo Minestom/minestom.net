@@ -1,4 +1,5 @@
 ---
+title: Anvil Loader
 description: >-
   This page describes how to load a world folder using AnvilLoader
 ---

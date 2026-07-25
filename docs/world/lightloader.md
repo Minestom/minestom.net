@@ -1,4 +1,5 @@
 ---
+title: Lighting
 description: >-
   This page describes how to add lighting to a minestom instance
 ---
