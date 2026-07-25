@@ -31,7 +31,7 @@ Setting the same coordinate twice overwrites the previous entry, and `Batch#clea
 
 ## Applying
 
-All batches expose `apply(Instance, callback)`, which applies the batch at its default position. The callback runs on the instance's next tick after the batch is applied.
+All batches expose `apply(Instance, callback)`, which applies the batch at its default position and runs the callback on the instance's next tick. For an immediate callback on whichever thread finished the placement, use `unsafeApply` instead, named `applyUnsafe` on `RelativeBlockBatch`.
 
 ```java
 AbsoluteBlockBatch batch = new AbsoluteBlockBatch();
@@ -102,8 +102,6 @@ for (int x = -32; x < 32; x++) {
 batch.apply(instance, null);
 ```
 
-`setInverseOption` controls the `BatchOption` used for the inverse batch, which is independent of the options of the batch itself.
-
 ## RelativeBlockBatch
 
 Coordinates are relative to (0, 0, 0), and the position passed to `apply` translates every block by that amount. Offsets are stored in 16 bits, so each coordinate must be within ±32,767 blocks of the first one set. Larger areas need an `AbsoluteBlockBatch`.
@@ -143,19 +141,23 @@ batch.setBlock(0, 0, 0, Block.TNT);
 
 batch.apply(instance, player.getPosition(), inverse -> {
     // Undo the batch one second later
-    instance.scheduler().scheduleTask(() -> inverse.apply(instance, null), TaskSchedule.seconds(1));
+    instance.scheduler().buildTask(() -> inverse.apply(instance, null))
+            .delay(TaskSchedule.seconds(1))
+            .schedule();
 });
 ```
 
-A returned inverse is not necessarily ready to apply right away. Unless the `unsafeApply` option is set, calling `apply` on it blocks the current thread until it is. You can also check readiness yourself:
+An inverse is not necessarily ready to apply right away. Unless `unsafeApply` is set on it, calling `apply` blocks the current thread until it is. You can also check readiness yourself:
 
 ```java
 // Returns true if ready
-batch.isReady();
+inverse.isReady();
 
 // Blocks until ready
-batch.awaitReady();
+inverse.awaitReady();
 ```
+
+`AbsoluteBlockBatch#setInverseOption` sets the `BatchOption` its inverse is created with, independently of the options of the batch itself.
 
 ::: note
 An inverse is always ready inside the `apply` callback, which is the simplest place to use it.
