@@ -1,29 +1,29 @@
 # Batch
 
-A batch caches a list of block changes and applies them all at once. This is faster than calling `Instance#setBlock` in a loop: each affected chunk is locked once rather than once per block, and viewers are only notified after every block has been placed.
+A batch collects block changes and applies them all at once. This is faster than calling `Instance#setBlock` in a loop: each affected chunk is locked once rather than once per block, and viewers are only notified after every block has been placed.
 
-There are three implementations, each fitting a different use case:
+There are three implementations:
 
 | Type                 | Coordinates                          | Scope                                |
 | -------------------- | ------------------------------------ | ------------------------------------ |
-| `ChunkBatch`         | Chunk-relative X/Z, absolute Y       | A single chunk, applied to any chunk |
+| `ChunkBatch`         | Chunk-relative X/Z, absolute Y       | One chunk, applicable to any chunk   |
 | `AbsoluteBlockBatch` | World                                | Any number of chunks, fixed position |
 | `RelativeBlockBatch` | Origin-relative, translated on apply | Any number of chunks, translatable   |
 
 ::: tip
-Batches are for modifying an already-loaded world. If you are producing terrain, write a [`Generator`](./generation) instead, which runs before the chunk is ever sent to a player.
+Batches modify an already-loaded world. To produce terrain, write a [`Generator`](./generation) instead, which runs before the chunk is ever sent to a player.
 :::
 
 ## Setting blocks
 
-Every batch implements `Block.Setter`, so they share the same methods as `Instance` and `GenerationUnit#modifier`:
+All batches implement `Block.Setter`, the same interface as `Instance` and `GenerationUnit#modifier`:
 
 ```java
 AbsoluteBlockBatch batch = new AbsoluteBlockBatch();
 batch.setBlock(0, 40, 0, Block.STONE);
 batch.setBlock(new BlockVec(1, 40, 0), Block.OAK_LOG);
 
-// Areas are experimental, but convenient for bulk fills
+// Area is experimental
 batch.setBlockArea(Area.cuboid(new BlockVec(0, 41, 0), new BlockVec(15, 45, 15)), Block.GLASS);
 ```
 
@@ -65,7 +65,7 @@ ChunkBatch batch = new ChunkBatch(options);
 
 ## ChunkBatch
 
-X and Z are chunk-relative (0-15) rather than world coordinates; values outside that range are masked down to it. **Y is an absolute world coordinate**, so it must fall within the dimension's build limits.
+X and Z are chunk-relative (0-15) rather than world coordinates, and values outside that range are masked into it. Y is an absolute world coordinate, so it must fall within the instance's build limits.
 
 The default `apply` position is chunk (0, 0), but any chunk works:
 
@@ -76,17 +76,15 @@ batch.setBlock(0, 64, 0, Block.STONE);
 // Applies at chunk (1, 2), so block (16, 64, 32)
 batch.apply(instance, 1, 2, chunk -> { /* ... */ });
 
-// Or against a chunk you already have a reference to
+// Or against a chunk you already have
 batch.apply(instance, chunk, null);
 ```
 
 ::: warning
-The target chunk must be loaded. If it is not, the batch logs a warning, places nothing, and never runs the callback. The `apply(Instance, int, int, ChunkCallback)` overload additionally returns `null`.
+The target chunk must be loaded. Otherwise the batch logs a warning, places nothing, and never runs the callback. The `apply(Instance, int, int, ChunkCallback)` overload additionally returns `null`.
 :::
 
 ## AbsoluteBlockBatch
-
-Each affected chunk is applied independently, so the batch is not atomic across chunk borders. A player standing near a boundary can briefly see one chunk updated before the next. The callback runs once every chunk has finished.
 
 There are no position arguments, since the coordinates passed to `setBlock` are already the final ones:
 
@@ -101,6 +99,8 @@ for (int x = -32; x < 32; x++) {
 
 batch.apply(instance, null);
 ```
+
+Each affected chunk is applied independently, so the batch is not atomic across chunk borders: a player near a boundary can briefly see one chunk updated before the next. The callback runs once every chunk has finished.
 
 ## RelativeBlockBatch
 
@@ -123,17 +123,17 @@ batch.apply(instance, player.getPosition(), null);
 batch.apply(instance, 100, 64, 100, null);
 ```
 
-Every apply rebuilds an `AbsoluteBlockBatch` from scratch, re-inserting each block into a fresh per-chunk map. If you apply the same batch to the same position repeatedly, convert it once and cache the result:
+Every apply rebuilds an `AbsoluteBlockBatch` from scratch. If you apply the same batch to the same position repeatedly, convert it once and cache the result:
 
 ```java
 AbsoluteBlockBatch absolute = batch.toAbsoluteBatch(100, 64, 100);
 ```
 
-`toAbsoluteBatch()` without arguments converts at the origin (0, 0, 0).
+`toAbsoluteBatch()` without arguments converts at the origin.
 
 ## Inverses
 
-An inverse undoes a batch after it has been applied. With `setCalculateInverse(true)`, `apply` returns a new batch containing the previous state of every block it overwrote. The inverse of a `RelativeBlockBatch` is an `AbsoluteBlockBatch`, pinned to the position it was applied at.
+An inverse undoes a batch after it has been applied. With `setCalculateInverse(true)`, `apply` returns a new batch holding the previous state of every block it overwrote. The inverse of a `RelativeBlockBatch` is an `AbsoluteBlockBatch`, pinned to the position it was applied at.
 
 ```java
 RelativeBlockBatch batch = new RelativeBlockBatch(new BatchOption().setCalculateInverse(true));
@@ -160,5 +160,5 @@ inverse.awaitReady();
 `AbsoluteBlockBatch#setInverseOption` sets the `BatchOption` its inverse is created with, independently of the options of the batch itself.
 
 ::: note
-An inverse is always ready inside the `apply` callback, which is the simplest place to use it.
+An inverse is always ready inside the `apply` callback.
 :::
