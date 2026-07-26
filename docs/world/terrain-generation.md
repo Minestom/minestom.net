@@ -1,5 +1,5 @@
 ---
-title: Terrain Generation
+title: Terrain generation
 ---
 
 # Terrain generation

@@ -1,4 +1,4 @@
-# Locator Bar
+# Locator bar
 The [locator bar](https://minecraft.wiki/w/Locator_bar) is a new UI element added in Minecraft version 1.21.6. In Minestom, it can be accessed by sending the related waypoint packet.
 
 ```java

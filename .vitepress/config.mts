@@ -4,10 +4,6 @@ import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import container_plugin from "markdown-it-container"
 import { redirectsPlugin, writeRedirects } from "./redirects";
 
-const CATEGORY_TITLES: Record<string, string> = {
-  "Thread architecture": "Thread Architecture",
-};
-
 const SIDEBAR_ORDER = [
   "introduction.md",
 
@@ -139,7 +135,6 @@ function normalizeSidebar(items: any[], isCategory = true): void {
   for (const item of items) {
     if (isCategory && item.items) {
       delete item.link;
-      item.text = CATEGORY_TITLES[item.text] ?? item.text;
     } else if (typeof item.link === "string") {
       item.link = item.link.replace(/(?:^|\/)index\.md$/, "");
     }

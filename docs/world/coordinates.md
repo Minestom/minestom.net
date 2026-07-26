@@ -1,5 +1,5 @@
 ---
-title: Working with Coordinates
+title: Working with coordinates
 ---
 
 # Working with coordinates

@@ -1,5 +1,5 @@
 ---
-title: Map Rendering
+title: Map rendering
 ---
 
 # Map rendering
