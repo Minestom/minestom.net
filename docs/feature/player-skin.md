@@ -1,16 +1,19 @@
 ---
-title: Player Skin
+title: Changing the player skin
 ---
 
-# Player skin
+# Changing the player skin
 
-There are three ways of defining a player skin:
+::: info
+If you only want players to appear with their own skin, you do not need this page. [Enabling Mojang authentication](/docs/authentication/mojang) applies each player's real skin for you.
+:::
 
-- Setting your player UUID (see [here](player-uuid)) to their Mojang UUID, clients by default retrieve the skin based on this value. This is done automatically by `MojangAuth.init()`
-- Changing it in the `PlayerSkinInitEvent` event
-- Using the method `Player#setSkin(PlayerSkin)`
+A `PlayerSkin` is a texture value and its signature. It can be set in two places:
 
-## How to retrieve skin data from Mojang
+- `PlayerSkinInitEvent`, fired at connection, which defines the skin the player joins with
+- `Player#setSkin(PlayerSkin)`, at any point afterwards
+
+## Retrieving skin data from Mojang
 
 ### Using PlayerSkin methods
 
@@ -26,14 +29,12 @@ PlayerSkin skinFromUsername = PlayerSkin.fromUsername("Notch");
 Those methods make direct requests to the Mojang API, it is recommended to cache the values.
 :::
 
-### Retrieve texture value & signature manually
+### Retrieving the texture value and signature manually
 
-Most of what I will say is described here: [https://wiki.vg/Mojang_API#Username\_-.3E_UUID_at_time](https://wiki.vg/Mojang_API#Username_-.3E_UUID_at_time)
-
-You firstly need to get your Mojang UUID, which can be done by a request based on your username:
+The endpoints are documented on the [Mojang API page](https://minecraft.wiki/w/Mojang_API). First resolve the username to a UUID:
 
 ```
- GET https://api.mojang.com/users/profiles/minecraft/<username>
+ GET https://api.minecraftservices.com/minecraft/profile/lookup/name/<username>
 ```
 
 Then, after getting your UUID:
@@ -42,11 +43,13 @@ Then, after getting your UUID:
  GET https://sessionserver.mojang.com/session/minecraft/profile/<uuid>?unsigned=false
 ```
 
-You'll get here both the texture value and the signature. Those values are used to create a `PlayerSkin`.
+The response contains both the texture value and the signature, which are the two arguments to `PlayerSkin`.
+
+## Applying a skin
 
 ### PlayerSkinInitEvent
 
-The event is called at the player connection and is used to define the skin to send to the player the first time. It is as simple as
+Fired at connection, before the player spawns. The skin set here is the one the player joins with.
 
 ```java
 GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();

@@ -6,10 +6,16 @@ import { redirectsPlugin, writeRedirects } from "./redirects";
 
 const SIDEBAR_ORDER = [
   "introduction.md",
+  "what-is-minestom.md",
+  "when-to-use.md",
 
   "setup",
   "dependencies.md",
   "your-first-server.md",
+
+  "authentication",
+  "mojang.md",
+  "proxies.md",
 
   "world",
   "instances.md",
@@ -24,15 +30,16 @@ const SIDEBAR_ORDER = [
   "adventure.md",
   "items.md",
   "events.md",
-  "player-capabilities.md",
   "entities",
   "ai.md",
   "tags.md",
   "schedulers.md",
   "commands.md",
   "inventories.md",
-  "player-uuid.md",
+  "custom-player.md",
   "player-skin.md",
+  "scoreboards.md",
+  "notifications.md",
   "advancements.md",
   "map-rendering.md",
   "locator-bar.md",
@@ -40,7 +47,6 @@ const SIDEBAR_ORDER = [
   "open-to-lan.md",
 
   "compatibility",
-  "proxies.md",
   "unsupported-versions.md",
 
   "thread-architecture",
@@ -126,7 +132,6 @@ const config = withSidebar({
     useFolderLinkFromIndexFile: true,
     hyphenToSpace: true,
     capitalizeFirst: true,
-    excludePattern: ["faq/"],
     manualSortFileNameByPriority: SIDEBAR_ORDER,
   },
 ]);

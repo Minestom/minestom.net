@@ -1,6 +1,8 @@
-# AI
+---
+title: Pathfinding
+---
 
-## Overview
+# Pathfinding
 
 Entity AI is done by giving an entity an ordered list of goals to do if a condition is validated. Once an action is found, the entity will be affected by it until asked to stop.
 

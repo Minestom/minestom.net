@@ -37,7 +37,7 @@ boolean solid = block.registry().isSolid();
 
 ## Tags
 
-`Block` implements `TagReadable` meaning that they can contain all kinds of data. (see [Tags](../feature/tags))
+`Block` implements `TagReadable` meaning that they can contain all kinds of data. (see [Storing custom data](../feature/tags))
 
 ```java
 Tag<String> tag = Tag.String("my-key");
