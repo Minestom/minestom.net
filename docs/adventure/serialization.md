@@ -58,4 +58,4 @@ A `TranslatableComponent` flattens to nothing unless automatic translation is en
 Component component = MiniMessage.miniMessage().deserialize("<red>Hello <bold>there");
 ```
 
-It is not bundled with Minestom. Add `net.kyori:adventure-text-minimessage` at the same version as the Adventure that Minestom pulls in.
+It is not bundled with Minestom. Add `net.kyori:adventure-text-minimessage` to use it.

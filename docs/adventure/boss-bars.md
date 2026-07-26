@@ -4,10 +4,10 @@ A `BossBar` is the bar across the top of the screen. It has a name, a fill fract
 
 ```java
 BossBar bar = BossBar.bossBar(
-        Component.text("Boss fight"),
-        1.0F,
-        BossBar.Color.RED,
-        BossBar.Overlay.NOTCHED_10
+        Component.text("Boss"),  // name
+        1.0F,                    // progress percentage
+        BossBar.Color.RED,       // color
+        BossBar.Overlay.PROGRESS // variant
 );
 
 audience.showBossBar(bar);
@@ -42,7 +42,7 @@ bar.addFlag(BossBar.Flag.CREATE_WORLD_FOG);
 
 ## The manager
 
-`MinecraftServer#getBossBarManager()` holds the mapping from bars to viewers. `showBossBar` and `hideBossBar` on an audience go through it. The manager provides two operations the audience API does not:
+`MinecraftServer#getBossBarManager()` provides two operations the audience API does not:
 
 ```java
 // remove a bar from all of its viewers
@@ -51,5 +51,3 @@ MinecraftServer.getBossBarManager().destroyBossBar(bar);
 // the bars a player is currently shown
 Collection<BossBar> bars = MinecraftServer.getBossBarManager().getPlayerBossBars(player);
 ```
-
-A bar is registered on first display and tracked until destroyed. Disconnecting players are removed automatically.

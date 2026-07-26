@@ -1,16 +1,16 @@
 # Localization
 
-A `TranslatableComponent` carries a key instead of text. The vanilla client resolves keys it knows against its own language files, so `Component.translatable("block.minecraft.stone")` requires no server-side configuration.
+A `TranslatableComponent` carries a key instead of text. The vanilla client resolves keys it knows against its own language files, so `Component.translatable("block.minecraft.stone")` will show up as "Stone" if the player's language is set to English.
 
 Keys the client does not know are resolved server-side. Adventure's `GlobalTranslator` does this from a `ResourceBundle` per locale:
 
 ```java
 ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.US);
-TranslationStore.StringBased<MessageFormat> store = TranslationStore.messageFormat(Key.key("myserver:messages"));
+TranslationStore.StringBased<MessageFormat> store = TranslationStore.messageFormat(Key.key("minestom:messages"));
 store.registerAll(Locale.US, bundle, true);
 GlobalTranslator.translator().addSource(store);
 
-player.sendMessage(Component.translatable("myserver.welcome"));
+player.sendMessage(Component.translatable("minestom.welcome"));
 ```
 
 ## Automatic translation
@@ -25,7 +25,7 @@ Minestom can render every outgoing component against the receiving player's loca
 The flag is read once and cannot be changed at runtime. Setting the system property from code has no effect unless it happens before the server is initialized.
 :::
 
-When enabled, components in outgoing packets are passed through `MinestomAdventure#COMPONENT_TRANSLATOR`, a `BiFunction<Component, Locale, Component>` defaulting to `GlobalTranslator::render`. Replace it to translate through something other than Adventure's registry:
+When enabled, components in outgoing packets are passed through `MinestomAdventure#COMPONENT_TRANSLATOR`, which defaults to `GlobalTranslator::render`. Replace it to translate through something other than Adventure's registry:
 
 ```java
 MinestomAdventure.COMPONENT_TRANSLATOR = (component, locale) -> myTranslator.render(component, locale);

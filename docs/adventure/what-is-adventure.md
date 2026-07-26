@@ -14,4 +14,4 @@ Adventure is exposed transitively, so it does not need to be declared as a depen
 MiniMessage is not among the bundled modules. Its tag-based format (`<red>Hello <bold>there`) requires adding `net.kyori:adventure-text-minimessage`.
 :::
 
-The [Adventure documentation](https://docs.papermc.io/adventure/) documents the library. The pages here document Minestom's additions and its specific behavior.
+The [Adventure documentation](https://docs.papermc.io/adventure/) documents the library.

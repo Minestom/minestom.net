@@ -19,17 +19,32 @@ Component construction is documented in the [Adventure text guide](https://docs.
 
 ## Colors
 
-`Color` is an RGB color implementing Adventure's `RGBLike`. `mixWith` mixes it with other colors the way vanilla mixes dyes:
+The color of text is a `TextColor`. `NamedTextColor` holds the sixteen standard vanilla colors, and `TextColor.color` builds any other:
+
+```java
+Component.text("Warning", NamedTextColor.RED);
+Component.text("Warning", TextColor.color(0xFF8800));
+```
+
+`TextColor.color` also accepts separate channels, an `HSVLike`, or any `RGBLike`.
+
+### Colors that are not text
+
+`Color` is Minestom's own RGB class, for the places the protocol carries a color that is not text: dyed leather, map colors, firework stars.
+
+```java
+ItemStack armor = ItemStack.builder(Material.LEATHER_CHESTPLATE)
+        .set(DataComponents.DYED_COLOR, new Color(0, 128, 255))
+        .build();
+```
+
+`mixWith` mixes it with other colors the way vanilla mixes dyes:
 
 ```java
 Color purple = new Color(255, 0, 0).mixWith(new Color(0, 0, 255));
 ```
 
-`RGBLike` is not a `TextColor`, so a `Color` has to be converted before it can style text:
-
-```java
-Component text = Component.text("Hello", TextColor.color(purple));
-```
+`Color` implements `RGBLike` rather than `TextColor`, so styling text with one means converting it first, with `TextColor.color(color)`.
 
 `AlphaColor` extends `Color` with an alpha channel and implements `ARGBLike`, the type `ShadowColor.shadowColor` takes.
 

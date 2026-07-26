@@ -44,8 +44,6 @@ ResourcePackRequest request = ResourcePackRequest.resourcePackRequest()
         .build();
 ```
 
-`ResourcePackStatus#intermediate` distinguishes the two, so a callback concerned only with the outcome can filter on it.
-
 ## Sending during configuration
 
 `ResourcePackPushPacket` is valid in the configuration phase, so a pack can be sent from `AsyncPlayerConfigurationEvent`. Configuration does not finish until every pending pack has a terminal status, so the player remains on the connecting screen until the pack is applied.
@@ -56,5 +54,3 @@ globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
     event.setSpawningInstance(instance);
 });
 ```
-
-Each player is configured on its own virtual thread, so a slow download delays only that player's join. Other connections and the tick loop are unaffected.
