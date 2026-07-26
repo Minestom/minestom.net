@@ -64,7 +64,7 @@ audience.stopSound(SoundStop.all());                             // everything
 `SoundEvent.of` creates a sound event for a sound defined in a [resource pack](resource-packs):
 
 ```java
-SoundEvent custom = SoundEvent.of("myserver:ambient.cave_wind", 16.0F);
+SoundEvent custom = SoundEvent.of("minestom:ambient.cave_wind", 16.0F);
 audience.playSound(Sound.sound(custom, Sound.Source.AMBIENT, 1.0F, 1.0F));
 ```
 
