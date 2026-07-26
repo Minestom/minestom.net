@@ -1,4 +1,8 @@
-# Generation
+---
+title: Terrain Generation
+---
+
+# Terrain generation
 
 ## Basics
 
@@ -101,11 +105,11 @@ instance.setGenerator(unit -> {
 
 These examples will generate a flat snow world with chunky snowmen scattered throughout, cleanly applying the snowmen whenever it is possible to do so.
 
-![](/docs/world/generation/snowmen-terrain.png)
+![](/docs/world/terrain-generation/snowmen-terrain.png)
 
 Example with missing terrain for clarity:
 
-![](/docs/world/generation/snowmen.png)
+![](/docs/world/terrain-generation/snowmen.png)
 
 ## Heightmaps with JNoise
 
@@ -137,4 +141,4 @@ instance.setGenerator(unit -> {
 
 Here's an example of what that looks like:
 
-![](/docs/world/generation/jnoise.png)
+![](/docs/world/terrain-generation/jnoise.png)

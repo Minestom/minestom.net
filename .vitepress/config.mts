@@ -17,13 +17,12 @@ const SIDEBAR_ORDER = [
 
   "world",
   "instances.md",
-  "chunk-management",
-  "anvilloader.md",
-  "lightloader.md",
   "blocks.md",
+  "terrain-generation.md",
+  "loading.md",
+  "lighting.md",
   "coordinates.md",
-  "generation.md",
-  "batch.md",
+  "block-batches.md",
 
   "feature",
   "adventure.md",

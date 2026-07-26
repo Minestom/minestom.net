@@ -1,4 +1,8 @@
-# Batch
+---
+title: Block Batches
+---
+
+# Block batches
 
 A batch collects block changes and applies them all at once. This is faster than calling `Instance#setBlock` in a loop: each affected chunk is locked once rather than once per block, and viewers are only notified after every block has been placed.
 
@@ -11,7 +15,7 @@ There are three implementations:
 | `RelativeBlockBatch` | Origin-relative, translated on apply | Any number of chunks, translatable   |
 
 ::: tip
-Batches modify an already-loaded world. To produce terrain, write a [`Generator`](./generation) instead, which runs before the chunk is ever sent to a player.
+Batches modify an already-loaded world. To produce terrain, write a [`Generator`](./terrain-generation) instead, which runs before the chunk is ever sent to a player.
 :::
 
 ## Setting blocks
