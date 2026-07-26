@@ -4,16 +4,18 @@ import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import container_plugin from "markdown-it-container"
 import { redirectsPlugin, writeRedirects } from "./redirects";
 
-const CATEGORY_TITLES: Record<string, string> = {
-  "Thread architecture": "Thread Architecture",
-};
-
 const SIDEBAR_ORDER = [
   "introduction.md",
+  "what-is-minestom.md",
+  "when-to-use.md",
 
   "setup",
   "dependencies.md",
   "your-first-server.md",
+
+  "authentication",
+  "mojang.md",
+  "proxies.md",
 
   "world",
   "instances.md",
@@ -24,19 +26,33 @@ const SIDEBAR_ORDER = [
   "coordinates.md",
   "block-batches.md",
 
+  "adventure",
+  "what-is-adventure.md",
+  "components.md",
+  "serialization.md",
+  "audiences.md",
+  "titles.md",
+  "action-bar.md",
+  "tab-list.md",
+  "sounds.md",
+  "boss-bars.md",
+  "books.md",
+  "resource-packs.md",
+  "localization.md",
+
   "feature",
-  "adventure.md",
   "items.md",
   "events.md",
-  "player-capabilities.md",
   "entities",
   "ai.md",
   "tags.md",
   "schedulers.md",
   "commands.md",
   "inventories.md",
-  "player-uuid.md",
+  "custom-player.md",
   "player-skin.md",
+  "scoreboards.md",
+  "notifications.md",
   "advancements.md",
   "map-rendering.md",
   "locator-bar.md",
@@ -44,7 +60,6 @@ const SIDEBAR_ORDER = [
   "open-to-lan.md",
 
   "compatibility",
-  "proxies.md",
   "unsupported-versions.md",
 
   "thread-architecture",
@@ -130,7 +145,6 @@ const config = withSidebar({
     useFolderLinkFromIndexFile: true,
     hyphenToSpace: true,
     capitalizeFirst: true,
-    excludePattern: ["faq/"],
     manualSortFileNameByPriority: SIDEBAR_ORDER,
   },
 ]);
@@ -139,7 +153,6 @@ function normalizeSidebar(items: any[], isCategory = true): void {
   for (const item of items) {
     if (isCategory && item.items) {
       delete item.link;
-      item.text = CATEGORY_TITLES[item.text] ?? item.text;
     } else if (typeof item.link === "string") {
       item.link = item.link.replace(/(?:^|\/)index\.md$/, "");
     }

@@ -1,6 +1,8 @@
-# Tags
+---
+title: Storing custom data
+---
 
-## Overview
+# Storing custom data
 
 A `Tag` represents a key, and a way to read/write a specific type of data. Generally exposed as a constant, you can use it to apply or read data from any `TagReadable` (e.g. `Entity`, `ItemStack`, and soon `Block`). They are implemented using NBT, meaning that applying a tag to an `ItemStack` will modify its NBT, same for `Block`, and can therefore be sent to the client.
 

@@ -1,5 +1,5 @@
 ---
-title: The Inside
+title: The inside
 description: >-
   Describes how ticks are executed internally and how objects can be acquired
   safely

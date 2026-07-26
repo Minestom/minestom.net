@@ -17,6 +17,13 @@ const redirects: Record<string, string> = {
   "/docs/world/chunk-management": "/docs/world/loading",
   "/docs/world/chunk-management/anvilloader": "/docs/world/loading",
   "/docs/world/chunk-management/lightloader": "/docs/world/lighting",
+  // https://github.com/Minestom/minestom.net/pull/64
+  "/docs/feature/player-capabilities": "/docs/feature/scoreboards",
+  "/docs/feature/player-uuid": "/docs/feature/custom-player",
+  "/docs/compatibility/proxies": "/docs/authentication/proxies",
+  "/docs/faq/what-is-minestom": "/docs/what-is-minestom",
+  "/docs/faq/when-to-use": "/docs/when-to-use",
+  "/docs/feature/adventure": "/docs/adventure/what-is-adventure",
 };
 
 function renderRedirect(newUrl: string): string {

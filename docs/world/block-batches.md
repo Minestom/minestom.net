@@ -1,5 +1,5 @@
 ---
-title: Block Batches
+title: Block batches
 ---
 
 # Block batches

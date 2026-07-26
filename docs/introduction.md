@@ -19,7 +19,7 @@ description: An overview of the Minestom wiki and where to find help.
 
 This wiki covers the concepts you need to build a server with Minestom, starting from an empty project and working up through worlds, entities, items, and the rest of the library.
 
-If you are still deciding whether Minestom fits your project, start with [What is Minestom?](/docs/faq/what-is-minestom) and [When should I use Minestom?](/docs/faq/when-to-use). Otherwise, head to [Dependencies](/docs/setup/dependencies) and set up a project.
+If you are still deciding whether Minestom fits your project, start with [What is Minestom?](/docs/what-is-minestom) and [When should I use Minestom?](/docs/when-to-use). Otherwise, head to [Dependencies](/docs/setup/dependencies) and set up a project.
 
 The wiki does not document every class. For a complete API reference, see the [Javadocs](https://javadoc.minestom.net). If you get stuck, or you want to help develop the library, join our [Discord server](https://discord.gg/fpY6kPUkZb).
 

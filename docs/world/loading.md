@@ -1,5 +1,5 @@
 ---
-title: Loading an Existing World
+title: Loading an existing world
 ---
 
 # Loading an existing world
