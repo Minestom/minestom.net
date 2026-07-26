@@ -1,4 +1,8 @@
-# Coordinates
+---
+title: Working with Coordinates
+---
+
+# Working with coordinates
 
 Anything with a place in the world is a `Point`. It is a sealed interface with three implementations:
 

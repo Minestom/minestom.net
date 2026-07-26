@@ -9,8 +9,14 @@ const redirects: Record<string, string> = {
   // https://github.com/Minestom/minestom.net/pull/53
   "/docs/feature/map-rendering/glfwmaprendering": "/docs/feature/map-rendering",
   // https://github.com/Minestom/minestom.net/pull/60
-  "/docs/world/anvilloader": "/docs/world/chunk-management/anvilloader",
-  "/docs/world/lightloader": "/docs/world/chunk-management/lightloader",
+  "/docs/world/anvilloader": "/docs/world/loading",
+  "/docs/world/lightloader": "/docs/world/lighting",
+  // https://github.com/Minestom/minestom.net/pull/63
+  "/docs/world/generation": "/docs/world/terrain-generation",
+  "/docs/world/batch": "/docs/world/block-batches",
+  "/docs/world/chunk-management": "/docs/world/loading",
+  "/docs/world/chunk-management/anvilloader": "/docs/world/loading",
+  "/docs/world/chunk-management/lightloader": "/docs/world/lighting",
 };
 
 function renderRedirect(newUrl: string): string {
