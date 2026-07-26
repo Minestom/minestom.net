@@ -6,7 +6,7 @@ A `Sidebar` displays up to 15 lines on the right side of the player's screen. It
 Sidebar#<init>(Component /* title */);
 ```
 
-The title is sent as a full component, so colors, hover and click events, and translations all work. See [Adventure API](/docs/feature/adventure) for how they are built.
+The title is sent as a full component, so colors, hover and click events, and translations all work. See [Text components](/docs/adventure/components) for how they are built.
 
 Once created, a sidebar can be added to and removed from players:
 
