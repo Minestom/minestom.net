@@ -2,13 +2,13 @@
 description: Allowing clients using unsupported versions to join a Minestom server.
 ---
 
-# Unsupported Versions
+# Unsupported versions
 
 Minestom only aims to keep up-to-date with the latest version of Minecraft. If your server needs to support players on an older or snapshot version, consider using these below methods.
 
 ## ViaVersion
 
-If you are using a [proxy](/docs/compatibility/proxies.md) such as Velocity or BungeeCord, you can use the [plugin](https://github.com/ViaVersion/ViaVersion) developed by the [ViaVersion](https://github.com/ViaVersion) project. If you don't already have one, you'll need to use [ViaProxy](https://github.com/ViaVersion/ViaProxy), which is a standalone proxy that acts as a protocol translator.
+If you are using a [proxy](/docs/authentication/proxies) such as Velocity or BungeeCord, you can use the [plugin](https://github.com/ViaVersion/ViaVersion) developed by the [ViaVersion](https://github.com/ViaVersion) project. If you don't already have one, you'll need to use [ViaProxy](https://github.com/ViaVersion/ViaProxy), which is a standalone proxy that acts as a protocol translator.
 
 Please do not seek support if you are experiencing unintended behavior or crashes related to ViaVersion.
 

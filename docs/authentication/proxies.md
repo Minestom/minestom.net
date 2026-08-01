@@ -1,8 +1,9 @@
 ---
+title: Velocity/BungeeCord
 description: Connecting a Minestom server to a proxy
 ---
 
-# Proxies
+# Velocity/BungeeCord
 
 Minestom supports the following proxies and their derivatives:
 - [Velocity](https://github.com/PaperMC/Velocity)
@@ -11,7 +12,7 @@ Minestom supports the following proxies and their derivatives:
 
 ## Connecting via the proxy
 
-Connecting via a proxy *replaces* the auth argument in `MinecraftServer.init()`.
+Connecting via a proxy *replaces* the auth argument in `MinecraftServer.init()`. The proxy authenticates the player, so [Mojang authentication](mojang) must not also be enabled.
 
 :::tabs
 == Velocity
@@ -78,7 +79,7 @@ ip_forward: true # [!code ++]
 
 ## Transferring between servers
 
-To transfer players, you need inform the proxy to do so. You can either do this via the [BungeeCord plugin message channel](https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/) or through your own means via your own plugin message channel or a message queue.
+To transfer players, you need to inform the proxy to do so. You can either do this via the [BungeeCord plugin message channel](https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/) or through your own means via your own plugin message channel or a message queue.
 
 ### Using the BungeeCord plugin message channel
 All supported proxies should have the BungeeCord plugin message channel enabled by default.
@@ -99,7 +100,7 @@ bungeePluginChannelEnabled: true
 :::
 
 ```java
-final String server = "lobby"
+final String server = "lobby";
 player.sendPluginMessage("bungeecord:main", NetworkBuffer.makeArray(buffer -> {
     buffer.write(NetworkBuffer.STRING_IO_UTF8, "Connect");
     buffer.write(NetworkBuffer.STRING_IO_UTF8, server);

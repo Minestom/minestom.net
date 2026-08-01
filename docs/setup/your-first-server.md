@@ -1,4 +1,5 @@
 ---
+title: Your first server
 description: Includes everything you need to have your first server running.
 ---
 
@@ -16,13 +17,13 @@ Here is a correct example:
 === Java
 
 ```java
-public static void main(String[] args) {
+void main() {
     // Initialize the server
-    MinecraftServer minecraftServer = MinecraftServer.init();
+    MinecraftServer server = MinecraftServer.init();
 
-    // Register Events (set spawn instance, teleport player at spawn)
+    // Register events (set spawning instance, teleport player to spawn)
     // Start the server
-    minecraftServer.start("0.0.0.0", 25565);
+    server.start("0.0.0.0", 25565);
 }
 ```
 
@@ -32,11 +33,11 @@ public static void main(String[] args) {
 ```kotlin
 fun main() {
     // Initialize the server
-    val minecraftServer = MinecraftServer.init()
+    val server = MinecraftServer.init()
 
-    // Register Events (set spawn instance, teleport player at spawn)
+    // Register events (set spawning instance, teleport player to spawn)
     // Start the server
-    minecraftServer.start("0.0.0.0", 25565)
+    server.start("0.0.0.0", 25565)
 }
 ```
 
@@ -78,8 +79,6 @@ Here is an example of a working Minestom server
 === Java
 
 ```java
-package demo;
-
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.GlobalEventHandler;
@@ -88,29 +87,27 @@ import net.minestom.server.instance.*;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.coordinate.Pos;
 
-public class MainDemo {
-    public static void main(String[] args) {
-        // Initialization
-        MinecraftServer minecraftServer = MinecraftServer.init();
+void main() {
+    // Initialization
+    MinecraftServer server = MinecraftServer.init();
 
-        // Create the instance
-        InstanceManager instanceManager = MinecraftServer.getInstanceManager();
-        InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
+    // Create the instance
+    InstanceManager instanceManager = MinecraftServer.getInstanceManager();
+    InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
 
-        // Set the ChunkGenerator
-        instanceContainer.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK));
+    // Set the ChunkGenerator
+    instanceContainer.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK));
 
-        // Add an event callback to specify the spawning instance (and the spawn position)
-        GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
-        globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
-            final Player player = event.getPlayer();
-            event.setSpawningInstance(instanceContainer);
-            player.setRespawnPoint(new Pos(0, 42, 0));
-        });
+    // Add an event callback to specify the spawning instance (and the spawn position)
+    GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
+    globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
+        final Player player = event.getPlayer();
+        event.setSpawningInstance(instanceContainer);
+        player.setRespawnPoint(new Pos(0, 42, 0));
+    });
 
-        // Start the server on port 25565
-        minecraftServer.start("0.0.0.0", 25565);
-    }
+    // Start the server on port 25565
+    server.start("0.0.0.0", 25565);
 }
 ```
 
@@ -127,7 +124,7 @@ import net.minestom.server.event.player.AsyncPlayerConfigurationEvent
 
 fun main() {
     // Initialization
-    val minecraftServer = MinecraftServer.init()
+    val server = MinecraftServer.init()
 
     // Create the instance
     val instanceManager = MinecraftServer.getInstanceManager()
@@ -146,7 +143,7 @@ fun main() {
         player.respawnPoint = Pos(0.0, 42.0, 0.0)
     }
 
-    minecraftServer.start("0.0.0.0", 25565)
+    server.start("0.0.0.0", 25565)
 }
 ```
 
@@ -181,7 +178,7 @@ plugins {
 :::
 With all of this done, all we need to do is run the `shadowJar` task to create a working uber (fat) jar for Gradle! (The jar will be put in `/build/libs/` by default).
 
-Here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceities added.
+Here is a complete `build.gradle`/`build.gradle.kts` file with a few extra niceties added.
 
 :::tabs
 === Gradle (Groovy)
@@ -276,11 +273,11 @@ tasks {
 
 ## Building the server JAR (Maven)
 
-Start by adding a execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
+Start by adding an execution property and the `jar-with-dependencies` tag for our jar (It will be outputted in `/target/`).
 
 You can use the `assembly` plugin to build the jar using the `clean package` command. Documentation on the plugin can be found [here](https://maven.apache.org/plugins/maven-assembly-plugin/).
 
-Here is a complete `pom.xml` file with a few extra niceities added.
+Here is a complete `pom.xml` file with a few extra niceties added.
 
 ```xml
 <project>
@@ -319,7 +316,7 @@ Here is a complete `pom.xml` file with a few extra niceities added.
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>single</goal> <!--Prevent dependecies from shading multiple times-->
+                            <goal>single</goal> <!--Prevent dependencies from shading multiple times-->
                         </goals>
                     </execution>
                 </executions>

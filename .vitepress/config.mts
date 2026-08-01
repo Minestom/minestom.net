@@ -1,10 +1,77 @@
 import { defineConfig } from "vitepress";
+import { withSidebar } from "vitepress-sidebar";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
-import bracketed_spans_plugin from "markdown-it-bracketed-spans"
 import container_plugin from "markdown-it-container"
+import { redirectsPlugin, writeRedirects } from "./redirects";
+
+const SIDEBAR_ORDER = [
+  "introduction.md",
+  "what-is-minestom.md",
+  "when-to-use.md",
+
+  "setup",
+  "dependencies.md",
+  "your-first-server.md",
+
+  "authentication",
+  "mojang.md",
+  "proxies.md",
+
+  "world",
+  "instances.md",
+  "blocks.md",
+  "terrain-generation.md",
+  "loading.md",
+  "lighting.md",
+  "coordinates.md",
+  "block-batches.md",
+
+  "feature",
+  "items.md",
+  "events.md",
+  "serialization",
+  "codecs.md",
+  "entities",
+  "ai.md",
+  "tags.md",
+  "schedulers.md",
+  "commands.md",
+  "inventories.md",
+  "custom-player.md",
+  "player-skin.md",
+  "scoreboards.md",
+  "notifications.md",
+  "advancements.md",
+  "map-rendering.md",
+  "locator-bar.md",
+  "motd.md",
+  "open-to-lan.md",
+
+  "adventure",
+  "what-is-adventure.md",
+  "components.md",
+  "serialization.md",
+  "audiences.md",
+  "titles.md",
+  "action-bar.md",
+  "tab-list.md",
+  "sounds.md",
+  "boss-bars.md",
+  "books.md",
+  "resource-packs.md",
+  "localization.md",
+
+  "compatibility",
+  "unsupported-versions.md",
+
+  "thread-architecture",
+  "thread-safety.md",
+  "acquirable-api",
+  "inside-the-api.md",
+];
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+const config = withSidebar({
   title: "Minestom",
   description:
     "A multithreaded, open-source library for developing high-performance Minecraft servers.",
@@ -12,7 +79,6 @@ export default defineConfig({
     breaks: true,
     config(md) {
       md.use(tabsMarkdownPlugin);
-      md.use(bracketed_spans_plugin)
       for (const type of ['note', 'info', 'tip', 'warning', 'danger', 'success', 'important']) {
         md.use(container_plugin, type, {
           render(tokens, idx) {
@@ -33,6 +99,19 @@ export default defineConfig({
     ["meta", { name: "theme-color", content: "#ff6c32" }],
   ],
   cleanUrls: true,
+
+  rewrites: {
+    "docs/:path+/index.md": "docs/:path+.md",
+  },
+
+  buildEnd(siteConfig) {
+    writeRedirects(siteConfig.outDir);
+  },
+
+  vite: {
+    plugins: [redirectsPlugin()],
+  },
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
@@ -46,125 +125,6 @@ export default defineConfig({
       { text: "Javadoc", link: "https://javadoc.minestom.net" },
     ],
 
-    sidebar: {
-      // "/showcase": [
-      //   {
-      //     text: "Introduction",
-      //     link: "/showcase/introduction",
-      //   },
-      //
-      //   // Showcase example
-      //   {
-      //     text: "Showcase",
-      //     items: [{ text: "Example Server", link: "/showcase/example" }],
-      //   },
-      // ],
-      "/docs/": [
-        {
-          text: "Introduction",
-          link: "/docs/introduction",
-        },
-        {
-          text: "Setup",
-          items: [
-            { text: "Dependencies", link: "/docs/setup/dependencies" },
-            {
-              text: "Your First Server",
-              link: "/docs/setup/your-first-server",
-            },
-          ],
-        },
-        {
-          text: "World",
-          items: [
-            { text: "Instances", link: "/docs/world/instances" },
-            {
-              text: "Chunk Management",
-              link: "/docs/world/chunk-management",
-              items: [
-                { text: "Anvil Loader", link: "/docs/world/anvilloader" },
-                { text: "Lighting", link: "/docs/world/lightloader" },
-              ],
-            },
-            { text: "Blocks", link: "/docs/world/blocks" },
-            { text: "Coordinates", link: "/docs/world/coordinates" },
-            { text: "Generation", link: "/docs/world/generation" },
-            { text: "Batch", link: "/docs/world/batch" },
-          ],
-        },
-        {
-          text: "Feature",
-          items: [
-            { text: "Adventure", link: "/docs/feature/adventure" },
-            {
-              text: "Serialization",
-              link: "/docs/feature/serialization",
-              items: [
-                { text: "Codecs", link: "/docs/feature/serialization/codecs" },
-              ],
-            },
-            { text: "Items", link: "/docs/feature/items" },
-            { text: "Events", link: "/docs/feature/events" },
-            {
-              text: "Player Capabilities",
-              link: "/docs/feature/player-capabilities",
-            },
-            {
-              text: "Entities",
-              link: "/docs/feature/entities",
-              items: [{ text: "AI", link: "/docs/feature/entities/ai" }],
-            },
-            { text: "Tags", link: "/docs/feature/tags" },
-            { text: "Schedulers", link: "/docs/feature/schedulers" },
-            { text: "Commands", link: "/docs/feature/commands" },
-            { text: "Inventories", link: "/docs/feature/inventories" },
-            { text: "Player UUID", link: "/docs/feature/player-uuid" },
-            { text: "Player Skin", link: "/docs/feature/player-skin" },
-            { text: "Advancements", link: "/docs/feature/advancements" },
-            {
-              text: "Map Rendering",
-              link: "/docs/feature/map-rendering",
-              items: [
-                {
-                  text: "GLFW Map Rendering",
-                  link: "/docs/feature/map-rendering/glfwmaprendering",
-                },
-              ],
-            },
-            { text: "Locator Bar", link: "/docs/feature/locator-bar" },
-            { text: "Query System", link: "/docs/feature/query" },
-            { text: "Changing the MOTD", link: "/docs/feature/motd" },
-            { text: "Open to LAN", link: "/docs/feature/open-to-lan" },
-          ],
-        },
-        {
-          "text": "Compatibility",
-          "items": [
-            { "text": "Proxies", "link": "/docs/compatibility/proxies" },
-            { "text": "Unsupported Versions", "link": "/docs/compatibility/unsupported-versions" }
-          ]
-        },
-        {
-          text: "Thread Architecture",
-          items: [
-            {
-              text: "Thread Safety in the JVM",
-              link: "/docs/thread-architecture/thread-safety",
-            },
-            {
-              text: "Acquirable API",
-              link: "/docs/thread-architecture/acquirable-api",
-              items: [
-                {
-                  text: "The Inside",
-                  link: "/docs/thread-architecture/acquirable-api/inside-the-api",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     socialLinks: [
       {
         icon: "github",
@@ -176,4 +136,35 @@ export default defineConfig({
       },
     ],
   },
-});
+}, [
+  {
+    documentRootPath: "/",
+    scanStartPath: "docs",
+    resolvePath: "/docs/",
+    useTitleFromFileHeading: true,
+    useTitleFromFrontmatter: true,
+    useFolderTitleFromIndexFile: true,
+    useFolderLinkFromIndexFile: true,
+    hyphenToSpace: true,
+    capitalizeFirst: true,
+    manualSortFileNameByPriority: SIDEBAR_ORDER,
+  },
+]);
+
+function normalizeSidebar(items: any[], isCategory = true): void {
+  for (const item of items) {
+    if (isCategory && item.items) {
+      delete item.link;
+    } else if (typeof item.link === "string") {
+      item.link = item.link.replace(/(?:^|\/)index\.md$/, "");
+    }
+
+    if (item.items) normalizeSidebar(item.items, false);
+  }
+}
+
+for (const group of Object.values(config.themeConfig.sidebar as Record<string, any>)) {
+  normalizeSidebar(group.items);
+}
+
+export default defineConfig(config);

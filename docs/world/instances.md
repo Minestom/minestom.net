@@ -12,11 +12,11 @@ InstanceManager instanceManager = MinecraftServer.getInstanceManager()
 Entity#getInstance
 ```
 
-Internally, the default Instance class have its own sets to store the entities in it, but all chunk based methods are abstract and meant to be implemented by a subclass
+Internally, the default Instance class has its own sets to store the entities in it, but all chunk based methods are abstract and meant to be implemented by a subclass
 
 ## InstanceContainer
 
-"Container" here means that this is an instance that can store chunks. And as every instance, have its own sets of entities
+"Container" here means that this is an instance that can store chunks. And like every instance, it has its own sets of entities
 
 You can create an `InstanceContainer` by calling:
 
@@ -24,7 +24,7 @@ You can create an `InstanceContainer` by calling:
 InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
 ```
 
-In order to have a valid world generation, you need to specify which `Generator` the instance should use, without it no chunk can be generated. (check [here](https://minestom.net/docs/world/generation) to make your own)
+In order to have a valid world generation, you need to specify which `Generator` the instance should use, without it no chunk can be generated. (check [here](/docs/world/terrain-generation) to make your own)
 
 ```java
 instance.setGenerator(YOUR_GENERATOR);
