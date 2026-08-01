@@ -83,13 +83,17 @@ record ItemData(String name, @Nullable String description) {
 ItemData itemData = ItemData.CODEC.decode(Transcoder.JSON, JsonParser.parseString("{\"name\": \"test\"}")).orElseThrow();
 ```
 
-Default values are used when the field is missing from the data:
+A field with a default value decodes to that default when it is missing or explicitly null, and a value equal to the default is left out when encoding.
 
 ```java
 StructCodec.struct(
     "max_players", Codec.INT.optional(20), Config::maxPlayers,
     // ...
 )
+
+// {"max_players": 30} decodes to 30
+// {"max_players": null} and {} both decode to 20
+// a config with 20 max players encodes to {}
 ```
 
 ## Lists and Collections
@@ -165,26 +169,33 @@ record Outer(String outerValue, Inner inner) {
             Outer::new
     );
 }
+
+Outer outer = new Outer("outside", new Inner("inside"));
+JsonElement json = Outer.CODEC.encode(Transcoder.JSON, outer).orElseThrow();
+// json is {"outer_value":"outside","inner_value":"inside"}
 ```
 
-This produces `{"outer_value": "test", "inner_value": "innerValue"}` instead of `{"outer_value": "test", "inner": {"inner_value": "innerValue"}}`.
+Giving the field a key of its own instead, `"inner", Inner.CODEC, Outer::inner`, nests it as `{"outer_value":"outside","inner":{"inner_value":"inside"}}`.
 
 ## Error Handling
-Codec operations return a `Result<T>` type that represents either success or failure. Use pattern matching to handle both cases, or helper methods like `orElseThrow()` and `orElse()`.
+Codec operations return a `Result<T>`, which is either a `Result.Ok` holding the value or a `Result.Error` holding a message.
 
 ```java
 Result<PlayerData> result = PlayerData.CODEC.decode(Transcoder.JSON, json);
 
-if (result instanceof Result.Ok<PlayerData> ok) {
-    PlayerData data = ok.value();
-} else if (result instanceof Result.Error<PlayerData> error) {
-    player.sendMessage("Failed to decode your player data: " + error.message());
+switch (result) {
+    case Result.Ok(PlayerData data) -> player.sendMessage("Welcome back, " + data.name());
+    case Result.Error(String message) -> player.sendMessage("Failed to decode your player data: " + message);
 }
+```
 
-// If the data cannot be decoded successfully, throw a runtime exception
+When the message is not needed, `orElseThrow()` and `orElse()` unwrap the result directly:
+
+```java
+// Throws IllegalArgumentException carrying the error message
 PlayerData data = result.orElseThrow();
 
-// If the data cannot be decoded successfully, fallback to the default value
+// Falls back to another value
 PlayerData data = result.orElse(defaultData);
 ```
 
