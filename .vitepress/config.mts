@@ -126,7 +126,7 @@ const config = withSidebar({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/minestom/Minestom",
+        link: "https://github.com/Minestom/Minestom",
       },
       {
         icon: "discord",
