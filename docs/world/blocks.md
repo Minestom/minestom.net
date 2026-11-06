@@ -28,11 +28,12 @@ instance.setBlock(0, 41, 0, tnt);
 
 ## Registry
 
-Each block has unique data which can be retrieved with `Block#registry()`.
+Each block exposes registry data such as hardness, solidity, and light emission directly.
 
 ```java
 Block block = Block.GRASS_BLOCK;
-boolean solid = block.registry().isSolid();
+boolean solid = block.solid();
+float hardness = block.hardness();
 ```
 
 ## Tags
