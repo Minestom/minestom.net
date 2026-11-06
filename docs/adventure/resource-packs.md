@@ -12,7 +12,11 @@ ResourcePackRequest request = ResourcePackRequest.resourcePackRequest()
 audience.sendResourcePacks(request);
 ```
 
-The `id` is a UUID you choose, and identifies the pack in later calls. The `hash` is the hex-encoded SHA-1 of the pack file, which the client compares against its cached copy. An incorrect hash causes the pack to be re-downloaded on every join.
+The `id` is a UUID you choose, and identifies the pack in later calls. The `hash` is the hex-encoded SHA-1 of the pack file, which the client verifies after downloading.
+
+::: warning
+An incorrect hash fails the download with `FAILED_DOWNLOAD`. If the pack is required, the player is kicked. Pass an empty hash to skip the check.
+:::
 
 Removing packs uses the same id:
 
