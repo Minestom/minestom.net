@@ -24,7 +24,7 @@ You can create an `InstanceContainer` by calling:
 InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
 ```
 
-In order to have a valid world generation, you need to specify which `Generator` the instance should use, without it no chunk can be generated. (check [here](/docs/world/terrain-generation) to make your own)
+Setting a `Generator` on the instance produces terrain for its chunks. Without one, chunks are generated empty. (check [here](/docs/world/terrain-generation) to make your own)
 
 ```java
 instance.setGenerator(YOUR_GENERATOR);
