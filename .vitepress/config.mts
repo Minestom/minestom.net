@@ -29,6 +29,8 @@ const SIDEBAR_ORDER = [
   "feature",
   "items.md",
   "events.md",
+  "serialization",
+  "codecs.md",
   "entities",
   "ai.md",
   "tags.md",
