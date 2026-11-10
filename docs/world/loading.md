@@ -4,7 +4,7 @@ title: Loading an existing world
 
 # Loading an existing world
 
-An instance generates every chunk on the fly, unless it is given a `ChunkLoader` to read them from disk. The default is `ChunkLoader.noop()`, which loads and saves nothing. Chunks a loader does not have still fall through to the [`Generator`](./terrain-generation).
+An instance generates every chunk on the fly, unless it is given a `ChunkLoader` to read them from disk. The default is `ChunkLoader.noop()`, which loads and saves nothing. Chunks missing from the loader still fall through to the [`Generator`](./terrain-generation).
 
 ## Anvil
 
@@ -27,7 +27,7 @@ Blocks, biomes, block entities, heightmaps, and baked lighting all come from the
 
 ## Saving
 
-Saving goes back through the same loader. Each method returns a `CompletableFuture<Void>`, completed on the calling thread unless the loader reports `supportsParallelSaving`.
+Saving goes back through the same loader. Each method returns a `CompletableFuture<Void>`, completed on the calling thread unless `supportsParallelSaving` is true.
 
 | Method                      | Writes                                        |
 | --------------------------- | --------------------------------------------- |
@@ -36,5 +36,5 @@ Saving goes back through the same loader. Each method returns a `CompletableFutu
 | `saveInstance()`            | The instance's tags, to `level.dat` for Anvil |
 
 ::: tip
-If your world is small enough to keep in memory, [Polar](https://github.com/hollow-cube/polar) is a single-file format designed for compact maps. If you only need to place a structure rather than back a whole world, the [schem](https://github.com/hollow-cube/schem) library reads schematics. Both are third-party, so they may lag behind Minestom releases.
+If your world is small enough to keep in memory, [Polar](https://github.com/hollow-cube/polar) is a single-file format designed for compact maps. If you only need to place a structure rather than back a whole world, the [schem](https://github.com/hollow-cube/schem) library reads schematics. Both are third-party libraries. Their releases may lag behind Minestom.
 :::

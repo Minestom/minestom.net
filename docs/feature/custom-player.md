@@ -20,7 +20,7 @@ MinecraftServer.getConnectionManager().setPlayerProvider(CustomPlayer::new);
 
 ## Assigning your own UUID
 
-The provider also sets the player's UUID. Constructing a new `GameProfile` replaces the one Minestom generated, allowing a UUID from your own database or registration system:
+The provider also sets the player's UUID. Constructing a new `GameProfile` replaces the one the configured player provider generated. The new profile can use a UUID from your own database or registration system:
 
 ```java
 MinecraftServer.getConnectionManager().setPlayerProvider((connection, gameProfile) -> {
@@ -30,5 +30,5 @@ MinecraftServer.getConnectionManager().setPlayerProvider((connection, gameProfil
 ```
 
 ::: warning
-The client has already been sent its UUID by the time the provider runs, in every auth mode. Minestom uses the overridden one from here on, but the two no longer agree. To change the UUID the client is told, use `AsyncPlayerPreLoginEvent#setGameProfile`, which fires early enough.
+The client has already been sent its UUID by the time the provider runs, in every auth mode. The overridden UUID is used from here on, but the two no longer agree. To change the UUID the client is told, use `AsyncPlayerPreLoginEvent#setGameProfile`, which fires early enough.
 :::

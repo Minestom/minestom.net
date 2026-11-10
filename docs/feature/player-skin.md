@@ -5,7 +5,7 @@ title: Changing the player skin
 # Changing the player skin
 
 ::: info
-If you only want players to appear with their own skin, you do not need this page. [Enabling Mojang authentication](/docs/authentication/mojang) applies each player's real skin for you.
+If players only need their own skin, this page is not required. [Enabling Mojang authentication](/docs/authentication/mojang) applies each player's real skin.
 :::
 
 A `PlayerSkin` is a texture value and its signature. It can be set in two places:
@@ -17,7 +17,7 @@ A `PlayerSkin` is a texture value and its signature. It can be set in two places
 
 ### Using PlayerSkin methods
 
-`PlayerSkin` offers some utils methods to retrieve a skin using simple information such as a Mojang UUID or a Minecraft username
+Static methods on `PlayerSkin` retrieve a skin from a Mojang UUID or a Minecraft username.
 
 ```java
 PlayerSkin skinFromUUID = PlayerSkin.fromUuid(MOJANG_UUID_AS_STRING);

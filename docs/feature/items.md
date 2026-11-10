@@ -2,12 +2,12 @@
 
 ## Overview
 
-Items in Minestom are **immutable**, meaning that an `ItemStack` cannot change after being built. This provides us many benefits:
+Items in Minestom are **immutable**, meaning that an `ItemStack` cannot change after being built. The benefits are:
 
 - Thread safety, as you cannot change the same object from multiple threads.
 - No side effects where a change to an item would modify all inventories where the same object is present.
 - Ability to reuse `ItemStack` in multiple places. For example, if all your players start with the same set of items, you could just store those as constants and add them to each player inventory to avoid a lot of allocation.
-- Related to the second point, it allows us to internally cache items packet (eg: window packet) to keep improving performance
+- Related to the second point, item packets (for example, window packets) can be cached internally to improve performance.
 
 ## ItemStack
 

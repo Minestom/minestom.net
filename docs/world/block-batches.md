@@ -15,7 +15,7 @@ There are three implementations:
 | `RelativeBlockBatch` | Origin-relative, translated on apply | Any number of chunks, translatable   |
 
 ::: tip
-Batches modify an already-loaded world. To produce terrain, write a [`Generator`](./terrain-generation) instead, which runs before the chunk is ever sent to a player.
+Batches apply block changes to a loaded `Instance`. To produce terrain, write a [`Generator`](./terrain-generation) instead, which runs before the chunk is sent to a player.
 :::
 
 ## Setting blocks
@@ -46,11 +46,11 @@ batch.apply(instance, inverse -> {
 });
 ```
 
-The callback type differs per batch. `ChunkBatch` hands you the `Chunk` it was applied to, while `AbsoluteBlockBatch` and `RelativeBlockBatch` hand you the inverse batch (see [Inverses](#inverses)), which is `null` unless inverse calculation is enabled.
+The callback type differs per batch. For `ChunkBatch` the callback argument is the applied `Chunk`. For `AbsoluteBlockBatch` and `RelativeBlockBatch` it is the inverse batch (see [Inverses](#inverses)), which is `null` unless inverse calculation is enabled.
 
 ## Options
 
-`BatchOption` is passed to the batch constructor and configures how application behaves.
+`BatchOption` is passed to the batch constructor and controls how the batch is applied.
 
 ```java
 BatchOption options = new BatchOption()
@@ -62,7 +62,7 @@ ChunkBatch batch = new ChunkBatch(options);
 
 | Option                | Default | Effect                                                                                                                                                               |
 | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `setFullChunk`        | `false` | The batch is responsible for the entire chunk. Existing blocks are cleared before placement, and viewers receive a full chunk resend instead of per-section updates. |
+| `setFullChunk`        | `false` | The batch applies to the entire chunk. Existing blocks are cleared before placement. Viewers receive a full chunk resend, not per-section updates. |
 | `setCalculateInverse` | `false` | `apply` returns a batch undoing the changes. Otherwise it returns `null`.                                                                                            |
 | `setUnsafeApply`      | `false` | `apply` does not wait for the batch to be ready. Applying a batch that is not ready yet gives an undefined result.                                                   |
 | `setSendUpdate`       | `true`  | Whether viewers are notified at all. Disable it if you intend to send the block updates yourself.                                                                    |
@@ -85,7 +85,7 @@ batch.apply(instance, chunk, null);
 ```
 
 ::: warning
-The target chunk must be loaded. Otherwise the batch logs a warning, places nothing, and never runs the callback. The `apply(Instance, int, int, ChunkCallback)` overload additionally returns `null`.
+The target chunk must be loaded. Otherwise, a warning is logged, no blocks are placed, and the callback is not run. The `apply(Instance, int, int, ChunkCallback)` overload additionally returns `null`.
 :::
 
 ## AbsoluteBlockBatch

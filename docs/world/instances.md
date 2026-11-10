@@ -2,7 +2,7 @@
 
 ## What is an instance
 
-Instances are what replace "worlds" from Minecraft vanilla, those are lightweight and should offer similar properties. There are multiple instances implementation, currently `InstanceContainer` and `SharedInstance` (both are explained below)
+Instances replace "worlds" from vanilla Minecraft. They are lightweight and have similar properties. There are multiple `Instance` implementations, currently `InstanceContainer` and `SharedInstance` (both are explained below)
 
 All instances can be accessed by using the InstanceManager or by getting an entity instance
 
@@ -44,9 +44,9 @@ SharedInstance sharedInstance = instanceManager.createSharedInstance(instanceCon
 
 ## Create your own Instance type
 
-You are able to create your own class extending `Instance` and add entities to it.
+Create your own class extending `Instance` and add entities to it.
 
-In this case, the only thing you need to be aware of is that all instances need to be registered manually in the instance manager.
+All custom instances need to be registered manually in the instance manager.
 
 ```java
 instanceManager.registerInstance(YOUR_CUSTOM_INSTANCE);

@@ -1,6 +1,6 @@
 # Inventories
 
-Minestom has an improved inventory system! This includes vanilla accurate click behaviour (except in cases like crafting), an improved inventory event API, and a few other changes.
+The inventory system includes vanilla-accurate click behavior (except in cases like crafting), an improved inventory event API, and a few other changes.
 
 ## Usage
 

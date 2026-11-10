@@ -4,15 +4,15 @@ title: Pathfinding
 
 # Pathfinding
 
-Entity AI is done by giving an entity an ordered list of goals to do if a condition is validated. Once an action is found, the entity will be affected by it until asked to stop.
+Entity AI is an ordered list of goals, each with a condition. When a goal's condition passes, its action is applied until the goal is stopped.
 
-For example, a very simple aggressive creature could have:
+For example, a simple aggressive creature could have:
 
 1. Attack target
 2. Walk randomly around
 3. Do nothing
 
-Every tick, the entity will find the goal to follow based on its priority. If the entity has a target the first goal will be used, and the rest be ignored.
+Every tick, the highest-priority goal whose condition passes is selected. When a target is present, the first goal is used and the remaining goals are skipped.
 
 ## Groups
 
