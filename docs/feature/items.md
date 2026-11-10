@@ -63,12 +63,19 @@ item = item.with(builder -> {
 
 ## Serialization
 
-Items can be serialized to and from various formats using its `Codec`:
+Serialization goes through `ItemStack.CODEC`. Some components reference registry entries, so encoding and decoding need a `Registries` instance from `MinecraftServer.getRegistries()`:
 
 ```java
-BinaryTag nbt = ItemStack.CODEC.encode(Transcoder.NBT, item).orElseThrow();
-item = ItemStack.CODEC.decode(Transcoder.NBT, nbt).orElseThrow();
+Registries registries = MinecraftServer.getRegistries();
 
-JsonElement json = ItemStack.CODEC.encode(Transcoder.JSON, item).orElseThrow();
-item = ItemStack.CODEC.decode(Transcoder.JSON, json).orElseThrow();
+CompoundBinaryTag nbt = item.toItemNBT(registries);
+item = ItemStack.fromItemNBT(nbt, registries);
+```
+
+For other formats, wrap the transcoder in a `RegistryTranscoder`:
+
+```java
+Transcoder<JsonElement> json = new RegistryTranscoder<>(Transcoder.JSON, registries);
+JsonElement encoded = ItemStack.CODEC.encode(json, item).orElseThrow();
+item = ItemStack.CODEC.decode(json, encoded).orElseThrow();
 ```
