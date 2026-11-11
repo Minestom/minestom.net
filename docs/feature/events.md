@@ -195,7 +195,7 @@ node.addListener(PlayerMoveEvent.class, event -> {
 });
 ```
 
-When an event is cancelled, subsequent listeners on the same node will still run by default. However, you can configure a listener to skip cancelled events:
+Listeners skip cancelled events by default. To run a listener anyway, set `ignoreCancelled(false)`:
 
 ```java
 node.addListener(EventListener.builder(PlayerMoveEvent.class)
@@ -206,36 +206,21 @@ node.addListener(EventListener.builder(PlayerMoveEvent.class)
     .build());
 ```
 
-Note that by default, `ignoreCancelled` is `true`, meaning most listeners will not run if the event has been cancelled by an earlier listener.
-
 ### Recursive events
 
-Some event hierarchies use `RecursiveEvent` to allow parent event listeners to receive child events. This is useful when you want to listen to a broad category of events without registering separate listeners for each specific type.
-
-For example, `ProjectileCollideEvent` is a recursive event with two subclasses:
-- `ProjectileCollideWithEntityEvent` - when a projectile hits an entity
-- `ProjectileCollideWithBlockEvent` - when a projectile hits a block
-
-If you listen to the parent event, you will receive both types:
+Events that implement `RecursiveEvent` are also dispatched to listeners registered on their parent type:
 
 ```java
-// This listener will be called for BOTH entity and block collisions
-node.addListener(ProjectileCollideEvent.class, event -> {
-    System.out.println("Projectile collided at " + event.getCollisionPosition());
+public class CustomEvent implements RecursiveEvent {
+}
 
-    // You can check the specific type if needed
-    if (event instanceof ProjectileCollideWithEntityEvent entityCollision) {
-        System.out.println("Hit entity: " + entityCollision.getTarget());
-    }
-});
+public final class CustomChildEvent extends CustomEvent {
+}
 
-// Or listen only to the specific subclass
-node.addListener(ProjectileCollideWithEntityEvent.class, event -> {
-    System.out.println("Only called for entity collisions");
+node.addListener(CustomEvent.class, event -> {
+    // Called for both CustomEvent and CustomChildEvent.
 });
 ```
-
-Without `RecursiveEvent`, listening to `ProjectileCollideEvent` would only receive events of that exact type, not its subclasses. Recursive events make event hierarchies more intuitive.
 
 ## Implementation
 
