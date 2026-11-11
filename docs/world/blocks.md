@@ -60,7 +60,7 @@ Tags `id`, `x`, `y`, `z` and `keepPacked` are used by the anvil loader and may c
 
 ## Handlers
 
-The `BlockHandler` interface allows blocks to have behavior by listening to some events like placement or interaction. And can be serialized to disk thanks to their namespace.
+The `BlockHandler` interface defines block behavior for events such as placement and interaction. Handlers can be serialized to disk through their namespace.
 
 ```java
 public class DemoHandler implements BlockHandler {

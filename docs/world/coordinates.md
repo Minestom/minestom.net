@@ -37,7 +37,7 @@ BlockVec block = new BlockVec(3, 64, 1);
 
 `Vec` and `BlockVec` expose `ZERO`, `ONE`, `SECTION`, `CHUNK`, and `REGION`, and `Pos` has `ZERO`. `CHUNK` and `REGION` leave Y at zero, since they describe a horizontal grid.
 
-Conversions are explicit, so precision is never lost by accident:
+Each conversion has a dedicated method.
 
 ```java
 Vec vec = point.asVec();
@@ -46,7 +46,7 @@ Pos aimed = point.asPos(90, 0);
 BlockVec block = point.asBlockVec(); // floors x/y/z
 ```
 
-Converting a type to itself is deprecated, as a hint that the call does nothing.
+Converting a type to itself is deprecated to signal that the call does nothing.
 
 ## Method reference
 
@@ -77,7 +77,7 @@ Chunks and sections share a horizontal grid, so `chunkX()` and `chunkZ()` are al
 | `relative(BlockFace)`      | Steps one block along the given face                      |
 
 ::: warning
-`div` does not guard against division by zero, which yields infinity or `NaN` rather than throwing.
+`div` does not check for division by zero. Division by zero produces infinity or `NaN`. It does not throw.
 :::
 
 ### Geometry
@@ -107,7 +107,7 @@ Prefer the squared variants when comparing distances, since they skip the square
 | `isZero()`                 | All three coordinates are 0                |
 
 ::: warning
-Do not compare points with `equals`. A record only equals another instance of its own class, so `new Vec(1, 2, 3).equals(new BlockVec(1, 2, 3))` is `false`. Use `samePoint` instead.
+Do not compare points with `equals`. A record equals only instances of the same class. `new Vec(1, 2, 3).equals(new BlockVec(1, 2, 3))` returns `false`. Use `samePoint` to compare points of different types.
 :::
 
 ### Vec
@@ -162,7 +162,7 @@ pos.withDirection(new Vec(0, 0, 1));  // always faces south
 
 ### BlockVec
 
-`BlockVec` can never sit between blocks, and block events hand you one. Its methods come in pairs, and the return type tells you whether the result is still on the grid:
+A `BlockVec` has integer coordinates and is always on the block grid. Block events pass one to the listener. Each method has an integer overload and a double overload. The return type indicates whether the result is still on the grid:
 
 ```java
 BlockVec block = new BlockVec(4, 64, 4);
@@ -180,6 +180,6 @@ new BlockVec(1.9, 64.5, -0.1); // 1, 64, -1
 
 Coordinates are records with final fields, and none of them can be mutated after construction. That sounds like it would be inefficient, but in practice it rarely is:
 
-- A point can be shared, cached, and handed to another thread without any defense copying needed.
-- [Scalar replacement](https://shipilev.net/jvm/anatomy-quarks/18-scalar-replacement/) lets HotSpot skip the allocation altogether when a point never escapes the method that created it.
-- [JEP 401](https://openjdk.org/jeps/401), value classes and objects, targets Java 28 as a preview feature. A value class declares that its instances have no identity, which lets the JVM flatten them into fields, arrays, and registers instead of allocating on the heap. `Point` is documented as a candidate, so the remaining overhead could disappear soon without the API changing at all.
+- A point can be shared, cached, and passed to another thread without any defensive copying.
+- [Scalar replacement](https://shipilev.net/jvm/anatomy-quarks/18-scalar-replacement/) removes the allocation when a point does not escape the method that created it.
+- [JEP 401](https://openjdk.org/jeps/401), value classes and objects, targets Java 28 as a preview feature. A value class has instances without identity. The JVM can flatten them into fields, arrays, and registers without allocating on the heap. `Point` is documented as a candidate for a value class.

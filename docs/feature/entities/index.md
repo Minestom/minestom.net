@@ -2,16 +2,16 @@
 
 ## Overview
 
-In Minestom all entities must extend `Entity` directly or from their subclasses. The Entity class mainly provides developers with a serverside API that doesn't have much of an effect on the client. Similarly to `ItemStack` there is a thing named `EntityMeta` that allows you to change what the client sees. This article will talk in detail about the implementations of `EntityMeta`.
+In Minestom all entities must extend `Entity` directly or from their subclasses. The `Entity` class defines a server-side API with little effect on the client. As with `ItemStack`, `EntityMeta` contains the data the client displays.
 
 ## Entity Classes
 
 Entity creation starts with an entity class selection. Regardless of the type of entity being created, you can instantiate it as any of the following classes:
 
-- `Entity` is the most barebones version of an entity. It provides you with a minimal API (and minimal overhead), including spawning packet handling, metadata support, default physics.
-- `LivingEntity` extends `Entity` and also allows you to grant your entity liveliness. While Minestom does not restrict you to how the vanilla server sets them, some entity types are unable to be a Living Entities as they will cause the client to be disconnected. This subclass also provides an API to modify the entity's equipment and attributes.
-- `EntityCreature` extends `LivingEntity` and also provides you with the navigation and AI API.
-- `ItemEntity` extends `Entity` and provides you with the ability to spawn items in the world.
+- `Entity` is the most barebones version of an entity. It has a minimal API (and minimal overhead), including spawning packet handling, metadata support, and default physics.
+- `LivingEntity` extends `Entity` and adds entity liveliness. The entity type is not restricted to the vanilla mapping, but some types cannot be a `LivingEntity` because the client disconnects. This subclass also defines an API for the entity's equipment and attributes.
+- `EntityCreature` extends `LivingEntity` and adds the navigation and AI API.
+- `ItemEntity` extends `Entity` and represents an item spawned in the world.
 
 If none of the above fits your requirements, you are free to use any of these classes as an ancestor for your own entity class implementation. It could be viable in cases when you need to handle physics or overwrite already presented methods. There are several examples in Minestom repository itself: `Player` that extends `LivingEntity` and handles equipment and a bunch of other things; `EntityProjectile` that extends `Entity` and has its own physics and collision code.
 
@@ -56,7 +56,7 @@ item.setInstance(instance, spawnPosition); // actually spawning an item
 
 ## Entity Meta
 
-Once you have selected a class for an entity and instantiated it, you can retrieve it's metadata using `Entity#getEntityMeta()`. Casting this to the proper type, depending on the entity type you specified on instantiation, allows you to change the way your entity will be displayed on clients.
+Once you have selected a class for an entity and instantiated it, you can retrieve its metadata using `Entity#getEntityMeta()`. Cast the metadata to the type matching the entity to change how the entity is displayed on clients.
 
 ### Examples
 
@@ -151,7 +151,7 @@ public class Mannequin extends EntityCreature {
 
 If you want to use the old method, read below.
 
-When creating NPCs that look like players, it's important to implement them as an extension to the `Entity` class rather than using the `Player` class or creating "dummy connections". This approach prevents potential issues with custom `Player` class implementations and provides better control over the NPC's behavior.
+When creating NPCs that look like players, it's important to implement them as an extension to the `Entity` class rather than using the `Player` class or creating "dummy connections". Subclassing `Entity` avoids the `Player` constructor and custom `Player` subclasses. The NPC's metadata is set through `EntityMeta`.
 
 A reference implementation can be found in [this gist](https://gist.github.com/mworzala/2c5da51204c45c70db771d0ce7fe9412) by **mworzala**, which demonstrates how to create a basic player NPC.
 

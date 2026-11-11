@@ -8,11 +8,11 @@ title: Map rendering
 
 Minecraft maps usually hold a 128x128 image representing an aerial view of an area. This is done by saving a 128x128 image inside the map data and rendering it.
 
-The thing is... the server decides the contents, and there is no requirement to show an aerial view. This means that maps can serve as arbitrary 128x128 textures which can then be used for custom blocks, graphics and more.
+The server controls the contents, and an aerial view is not required. Maps can serve as arbitrary 128x128 textures for custom blocks, graphics, and more.
 
 ## Writing map data - Low level API
 
-Minestom does not save map data for you, but it will send it for you. At the most basic level, map framebuffers (the 128x128 pixel area the server draws on) hold the 1-byte indices of colors in a pre-determined color palette, but not RGB.
+Map data is not persisted by the server. Sending a `MapDataPacket` through `Player#sendPacket` updates the client. At the most basic level, map framebuffers (the 128x128 pixel area the server draws on) hold the 1-byte indices of colors in a pre-determined color palette, but not RGB.
 
 A `MapDataPacket` is an immutable record. You build one with the map ID you want to update and a `ColorContent` describing the pixels to write:
 
@@ -40,7 +40,7 @@ MapDataPacket mapData = new MapDataPacket(
 - `icons` is a `List<MapDataPacket.Icon>` of map decorations (player markers, banners, etc.). Use `List.of()` for none.
 - `colorContent` is a `@Nullable ColorContent` holding the pixels to update. Pass `null` to send only metadata/icons without touching the pixels.
 
-The `ColorContent` record carries the pixel update:
+The `ColorContent` record contains the pixel update:
 
 - `columns` is an unsigned byte for the number of columns (width) to update. Ranges from 1 to 128 (inclusive).
 - `rows` is an unsigned byte for the number of rows (height) to update. Ranges from 1 to 128 (inclusive).
@@ -48,7 +48,7 @@ The `ColorContent` record carries the pixel update:
 - `z` is an unsigned byte for the Z (vertical) coordinate of the top-most pixel to write. Ranges from 0 to 127 (inclusive).
 - `data` is a `byte[]` array which holds the indices inside the color palette. Its size should be at least `columns * rows`.
 
-Pixels are stored in a row-major configuration (ie index is defined by `x + columns * z`). Attempting to write pixels outside the 128x128 area WILL crash and/or disconnect the client, so be careful. Minestom does not check which area you are writing to.
+Pixels are stored in row-major order, so the index is `x + columns * z`. Writing outside the 128x128 area can crash the client or disconnect it. No bounds check is performed on the pixel area.
 
 You can then send the packet to players through `Player#sendPacket(SendablePacket)`:
 
@@ -71,9 +71,9 @@ The map ID is just an arbitrary `int` you pick to identify the map. Use the same
 
 ## Framebuffers - High level API
 
-While directly writing to the pixel buffer is fast and easy for simple graphics, it is rapidly cumbersome to write each pixel individually. For this reason, Minestom provides framebuffers: a high-level API for rendering onto maps.
+While directly writing to the pixel buffer is fast and easy for simple graphics, it is rapidly cumbersome to write each pixel individually. For this reason, a high-level API for rendering onto maps is available through framebuffers.
 
-Framebuffers are split into 2 categories: `Framebuffer` and `LargeFramebuffer`. The difference is that `Framebuffer` is meant to render to a single map (so resolution limited to 128x128), while `LargeFramebuffer` can render to any framebuffer size, by rendering over multiple maps. Large framebuffers offer a method to create `Framebuffer` views to help with rendering onto a map.
+Framebuffers are split into 2 categories: `Framebuffer` and `LargeFramebuffer`. The difference is that `Framebuffer` is meant to render to a single map (so resolution limited to 128x128), while `LargeFramebuffer` can render to any framebuffer size, by rendering over multiple maps. A method on `LargeFramebuffer` creates `Framebuffer` views for rendering onto a map.
 
 Once you have finished rendering on your framebuffer, you can ask it to prepare the `MapDataPacket` for you by passing the map ID:
 
@@ -86,7 +86,7 @@ player.sendPacket(mapData);
 
 For a `LargeFramebuffer`, `preparePacket(mapId, left, top)` prepares a 128x128 sub-view starting at the given top-left corner, so you send one packet (and use one map ID) per map in the wall.
 
-Framebuffers have 2 default flavors provided by Minestom: Direct and Graphics2D.
+Two default framebuffer implementations are available: `DirectFramebuffer` and `Graphics2DFramebuffer`.
 
 ### `DirectFramebuffer` / `LargeDirectFramebuffer`
 
@@ -105,7 +105,7 @@ fb.set(0, 0, MapColors.DIRT.baseColor());
 
 ### `Graphics2DFramebuffer` / `LargeGraphics2DFramebuffer`
 
-_These framebuffers require a conversion from RGB to MapColors. This is done automatically by Minestom but can seriously impact rendering performance when the resolution increases._
+_These framebuffers require a conversion from RGB to MapColors. RGB to MapColors conversion is automatic but can seriously impact rendering performance when the resolution increases._
 
 As the name suggests, these framebuffers allow usage of the Graphics2D API from the AWT library included in the Java standard library. Access the `Graphics2D` object through `getRenderer()` and render your content on it.
 
@@ -121,4 +121,4 @@ renderer.drawString("Hello from", 0, 10);
 renderer.drawString("Graphics2D!", 0, 20);
 ```
 
-Graphics2D framebuffers also support getting/setting pixels individually if necessary.
+Pixels can also be read and set individually on Graphics2D framebuffers.

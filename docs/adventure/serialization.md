@@ -23,7 +23,7 @@ Component parsed = LegacyComponentSerializer.legacyAmpersand().deserialize("&cDa
 ```
 
 ::: warning
-Legacy codes predate most of what a component can carry. Round-tripping through this serializer downsamples RGB colors to the nearest of the sixteen named colors, and discards fonts, shadow colors, and hover and click events.
+Legacy codes predate most component data. Round-tripping through this serializer downsamples RGB colors to the nearest of the sixteen named colors, and discards fonts, shadow colors, and hover and click events.
 :::
 
 ## JSON
@@ -47,12 +47,12 @@ Components are sent to the client as NBT rather than JSON. Use JSON for storage 
 The plain text, legacy, and ANSI serializers use Minestom's flattener to reduce a component tree to a flat string.
 
 ::: warning
-A `TranslatableComponent` flattens to nothing unless automatic translation is enabled, which it is not by default. Minestom's flattener replaces Adventure's handler for translatable components, and its own only runs behind that flag, so the key is not emitted as a fallback. See [Localization](localization).
+Automatic translation is disabled by default. When it is disabled, a `TranslatableComponent` produces no text when flattened, and the output contains no key. The flattener replaces Adventure's handler for translatable components with its own handler, which only runs when automatic translation is enabled. See [Localization](localization).
 :::
 
 ## MiniMessage
 
-`ComponentSerializer<Component, Component, T>` is the interface to implement for a custom format. MiniMessage already provides a tag-based one:
+`ComponentSerializer<Component, Component, T>` is the interface to implement for a custom format. A tag-based serializer is already available in MiniMessage:
 
 ```java
 Component component = MiniMessage.miniMessage().deserialize("<red>Hello <bold>there");

@@ -6,9 +6,9 @@ title: Terrain generation
 
 ## Basics
 
-Each `Instance` has an optional `Generator` that is responsible for generating areas of various sizes.
+Each `Instance` has an optional `Generator` that generates areas of various sizes.
 
-The area size is abstracted as a `GenerationUnit` representing an aggregate of sections, the generator then has the ability to place blocks (and biomes) using relative and absolute coordinates. The dynamically sized area allows the API to be more flexible, and allows the instance to choose whether to generate full chunks at once or section by section without changing the generator.
+The area size is abstracted as a `GenerationUnit` representing an aggregate of sections. The generator places blocks and biomes using relative and absolute coordinates. Because a `GenerationUnit` can cover several sections, the instance can generate a full chunk at once or one section at a time without changing the generator.
 
 Generation tasks are currently forwarded to the common JDK pool. Virtual threads will be used once Project Loom is integrated into the mainline.
 
@@ -42,9 +42,9 @@ instance.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.STONE));
 
 Modification over the border of a `GenerationUnit` cannot be done without extra steps. `GenerationUnit`s cannot be resized during generation, instead we need to create a new `GenerationUnit` that encloses the area around our target blocks. We can do this through the `GenerationUnit#fork` methods.
 
-Forked units are designed to be placed into the instance whenever it is possible to do so. This eliminates any section bordering issues that may arise.
+Forked units are designed to be placed into the instance whenever it is possible to do so. This avoids section bordering issues.
 
-There are two fork methods, both useful in their own ways. Here is a simple example of adding a structure (snowman):\
+There are two fork methods. Here is a simple example of adding a structure (snowman):\
 
 ```java
 Instance instance = ...;
@@ -70,8 +70,8 @@ instance.setGenerator(unit -> {
 });
 ```
 
-Adding structures using forks is trivial.\
-However, for this `GenerationUnit#fork` method, you must know how large these structures are beforehand. To alleviate this condition, there is an alternative `GenerationUnit#fork` method that gives access to a direct `Block.Setter`. This `Block.Setter` automatically adjusts the fork's size depending on the blocks you set using it.\
+Structures can be added with forks.\
+However, for this `GenerationUnit#fork` method, you must know how large these structures are beforehand. The alternative `GenerationUnit#fork` overload passes a `Block.Setter` to a consumer. This `Block.Setter` automatically adjusts the fork's size depending on the blocks you set using it.\
 \
 Here is the same example written with the `Block.Setter` utility:
 

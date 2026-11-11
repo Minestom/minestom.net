@@ -12,21 +12,21 @@ Entity entity = ...;
 String data = entity.getTag(myTag);
 ```
 
-Tags benefit are:
+The benefits of tags are:
 
 * Control writability and readability independently with `TagReadable`/`TagWritable`, ideal for immutable classes.
-* Hidden conversion complexity, your code should not have to worry about how a `List<ItemStack>` is serialized.
+* Tag serialization converts values such as `List<ItemStack>` to and from NBT.
 * Automatic serialization support (as backed by NBT), easing data persistence and debuggability.
 
 ## API
 
-First of all, it is recommended to expose Tags as constants and reuse them. All `Tag` methods should be pure, and allow you to specify additional information to handle the data.
+Expose tags as constants and reuse them. All `Tag` methods should be pure and take the additional information needed to handle the data.
 
 All tags are available as static factory methods inside the `Tag` class.
 
 #### Map
 
-Tag mapping allows you to transform the retrieved value.
+Tag mapping transforms the retrieved value.
 
 ```java
 Tag<String> stringTag = Tag.String("my-string");
@@ -52,4 +52,4 @@ A structure tag is a wrapper around a nbt compound (map) independent of all the 
 
 #### View
 
-A view can access every tag and is therefore mostly unsafe, should only be used at last resort.
+A view can access every tag and is unsafe. Prefer a narrower tag type.

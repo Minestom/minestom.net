@@ -30,7 +30,7 @@ Component.text("Warning", TextColor.color(0xFF8800));
 
 ### Colors that are not text
 
-`Color` is Minestom's own RGB class, for the places the protocol carries a color that is not text: dyed leather, map colors, firework stars.
+`Color` is Minestom's own RGB class, for colors that are not text: dyed leather, map colors, firework stars.
 
 ```java
 ItemStack armor = ItemStack.builder(Material.LEATHER_CHESTPLATE)
@@ -72,5 +72,5 @@ Component component = Component.text("Click me")
 ```
 
 ::: warning
-Always set `uses`. A callback with unlimited uses and a finite lifetime is registered in neither the permanent nor the temporary map, so the component is still sent and clicking it does nothing, with no error. Unlimited uses only works when the lifetime is effectively infinite, and such callbacks are stored permanently and never released.
+Set `uses`. A callback with unlimited uses and a finite lifetime is registered in neither the permanent nor the temporary map. The component is still sent, and clicking it has no effect. Unlimited use requires an effectively infinite lifetime. Such callbacks are stored permanently.
 :::

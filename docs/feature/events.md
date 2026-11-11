@@ -2,7 +2,7 @@
 
 ## Overview
 
-Events are organized in a tree structure where events flow down from parent nodes to child nodes. When you call an event, it first processes on the node you fired it on, then passes down to all matching children (sorted by priority). Each child node can filter events based on the event's type and fields.
+Events are organized in a tree structure. Dispatching an event runs the listeners on the node it was dispatched to, then the listeners on all matching child nodes in priority order. Each child node can filter events based on the event's type and fields.
 
 Each node contains an event class filter (only events of this type can enter, e.g. `PlayerEvent` or `InstanceEvent`), a condition for additional filtering (e.g. `player.getGameMode() == GameMode.CREATIVE`), a list of listeners, a name for identification, and a priority.
 
@@ -88,7 +88,7 @@ node.addListener(EventListener.builder(EntityTickEvent.class)
     .build());
 ```
 
-The builder supports:
+The builder methods are:
 - `expireCount(int)`: Remove the listener after N calls
 - `expireWhen(Predicate)`: Remove the listener when a condition becomes true
 - `filter(Predicate)`: Only call the handler if the predicate passes
@@ -179,13 +179,13 @@ server/
 
 ### Custom events
 
-You can freely implement the `Event` interface to model custom events. Traits like `CancellableEvent` (to stop the execution after a certain point) and `EntityEvent` (provides a `getEntity` method) are also present to ensure your code will work with existing logic. You can then choose to run your custom event from an arbitrary node (see an [example](#event-execution)), or from the root with `EventDispatcher#call(Event)`.
+`Event` can be implemented directly to define custom events. `CancellableEvent` marks events that listeners can cancel, and `EntityEvent` exposes the acting entity through `getEntity()`. A custom event can be dispatched from any node (see an [example](#event-execution)), or from the root with `EventDispatcher#call(Event)`.
 
 ## Event traits
 
 ### Cancellable events
 
-Some events implement `CancellableEvent`, which allows listeners to cancel the event and prevent further processing.
+Some events implement `CancellableEvent`. Canceling the event prevents further processing.
 
 ```java
 node.addListener(PlayerMoveEvent.class, event -> {
@@ -224,28 +224,24 @@ node.addListener(CustomEvent.class, event -> {
 
 ## Implementation
 
-This section will describe what happens when an event is called or when a new node is added, which can help you optimize for performance.
-
 ### Listener handle
 
 A `ListenerHandle` represents direct access to an event type listener. Handles are stored inside the node and must be retrieved for the listeners to be executed.
 
-`EventNode#call(Event)` is as simple as retrieving the handle (through a map lookup) and executing `ListenerHandle#call(Event)`. You can completely avoid the map lookup by directly using the handle, which is why `EventNode#getHandle(Class<Event>)` exists.
+`EventNode#call(Event)` retrieves the handle with a map lookup, then calls `ListenerHandle#call(Event)`. `EventNode#getHandle(Class<Event>)` returns the handle directly. This avoids the lookup.
 
-Keeping the handle in a field instead of doing map lookups for every event call may also help avoid object allocation in cases where nothing is listening to the event.
+Keeping the handle in a field removes the map lookup from each event call. It also avoids the allocation when no listener is registered.
 
 ### Registration
 
-All registration methods (and methods touching the tree) are synchronized. This is not considered a major flaw since event calling is much more important. However, this means you should avoid temporary nodes and listeners as much as possible.
+All registration methods and tree mutations are synchronized. Temporary nodes and listeners therefore have a synchronization cost. Avoid them where possible.
 
 ### Event calling
 
-Event calling is straightforward. It first checks if the listeners inside the handle are up-to-date. If not, it loops through all of them to create the consumer. Then it runs the consumer.
+Event dispatch first checks whether the listener handle is up to date. If not, it rebuilds the listeners into a consumer, then runs the consumer.
 
-This is why you should avoid adding listeners after server initialization, as it will invalidate the associated handles.
+### Performance
 
-### Conclusion
-
-The event implementation has been heavily optimized for calling events rather than for registration utilities. This is a reasonable tradeoff, but must be well understood when building a high-performance server.
+Dispatch is optimized at the expense of registration. Adding listeners after startup invalidates the affected handles. Register listeners during initialization.
 
 For those interested, the code is available [here](https://github.com/Minestom/Minestom/blob/master/src/main/java/net/minestom/server/event/EventNodeImpl.java).
