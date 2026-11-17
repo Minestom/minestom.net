@@ -5,7 +5,7 @@ title: Changing the player skin
 # Changing the player skin
 
 ::: info
-If you only want players to appear with their own skin, you do not need this page. [Enabling Mojang authentication](/docs/authentication/mojang) applies each player's real skin for you.
+If players only need their own skin, this page is not required. [Enabling Mojang authentication](/docs/authentication/mojang) applies each player's real skin.
 :::
 
 A `PlayerSkin` is a texture value and its signature. It can be set in two places:

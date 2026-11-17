@@ -1,8 +1,8 @@
 # Localization
 
-A `TranslatableComponent` carries a key instead of text. The vanilla client resolves keys it knows against its own language files, so `Component.translatable("block.minecraft.stone")` will show up as "Stone" if the player's language is set to English.
+A `TranslatableComponent` contains a key instead of text. The vanilla client resolves keys against its own language files, so `Component.translatable("block.minecraft.stone")` is displayed as "Stone" if the player's language is set to English.
 
-Keys the client does not know are resolved server-side. Adventure's `GlobalTranslator` does this from a `ResourceBundle` per locale:
+Keys missing from the client's language files are resolved server-side. Adventure's `GlobalTranslator` does this from a `ResourceBundle` per locale:
 
 ```java
 ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.US);
@@ -15,7 +15,7 @@ player.sendMessage(Component.translatable("minestom.welcome"));
 
 ## Automatic translation
 
-Minestom can render every outgoing component against the receiving player's locale. This is disabled by default and controlled by `ServerFlag#AUTOMATIC_COMPONENT_TRANSLATION`, read from the `minestom.automatic-component-translation` system property:
+Every outgoing component can be rendered against the receiving player's locale. This is disabled by default and controlled by `ServerFlag#AUTOMATIC_COMPONENT_TRANSLATION`, read from the `minestom.automatic-component-translation` system property:
 
 ```
 -Dminestom.automatic-component-translation=true
@@ -42,5 +42,5 @@ MinestomAdventure.setDefaultLocale(Locale.US);
 The plain text, legacy, and ANSI serializers use Minestom's component flattener, which resolves translation keys through `COMPONENT_TRANSLATOR` at the default locale.
 
 ::: warning
-The flattener only does this when automatic translation is enabled. With the flag off, which is the default, a `TranslatableComponent` contributes nothing at all to the flattened string: not the translation, not the key, not the fallback. Enable the flag, or resolve the component yourself before serializing it.
+The flattener only resolves keys when automatic translation is enabled. With the flag off, which is the default, a `TranslatableComponent` contributes no text to the flattened string, and the key does not appear in the output. Enable the flag, or resolve the component before serializing it.
 :::

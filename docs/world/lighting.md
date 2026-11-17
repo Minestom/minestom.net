@@ -1,6 +1,6 @@
 # Lighting
 
-A chunk renders black unless it carries light data. Chunks read from an [Anvil world](./loading#anvil) have it cached in their region files, but generated chunks have none. The `LightingChunk` supplier computes sky and block light for them:
+A chunk without light data renders black. Chunks read from an [Anvil world](./loading#anvil) have it cached in their region files, but generated chunks have none. The `LightingChunk` supplier computes sky and block light for them:
 
 ```java
 InstanceContainer instance = instanceManager.createInstanceContainer();
@@ -25,7 +25,7 @@ CompletableFuture.allOf(chunks.toArray(CompletableFuture[]::new))
 
 ## Full bright
 
-A dimension type with `ambientLight` set to `1.0F` renders every block fully lit, no light computation needed:
+With `ambientLight` at `1.0F`, the client renders every block fully lit, and chunks need no light data:
 
 ```java
 RegistryKey<DimensionType> lobbyDimension = MinecraftServer.getDimensionTypeRegistry()

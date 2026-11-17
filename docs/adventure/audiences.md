@@ -1,6 +1,6 @@
 # Audiences
 
-An `Audience` receives messages, titles, boss bars, sounds, and the rest of the Adventure API, whether it stands for one player or a group. Operations an audience does not support are ignored rather than throwing.
+An `Audience` receives messages, titles, boss bars, sounds, and the rest of the Adventure API, whether it represents one player or a group. Unsupported operations have no effect.
 
 These Minestom types are audiences:
 
@@ -18,7 +18,7 @@ instance.sendMessage(Component.text("Hello, instance!"));
 
 ## The Audiences class
 
-`Audiences` provides the server's built-in audiences as static methods:
+The server's built-in audiences are static methods on `Audiences`:
 
 ```java
 Audiences.console().sendMessage(Component.text("Hello, console!"));
@@ -50,7 +50,7 @@ Once anything is registered, `customs()` and `all()` iterate the registry with s
 
 ## Packet grouping
 
-`PacketGroupingAudience` builds a packet once and sends it to every member through `PacketSendingUtils#sendGroupedPacket`, rather than serializing it per player. Every multi-player audience in Minestom implements it.
+`PacketGroupingAudience` builds one packet through `PacketSendingUtils#sendGroupedPacket` and sends it to every member. Every multi-player audience in Minestom implements it.
 
 Any class holding a group of players can implement it. `getPlayers()` is the only method to write:
 

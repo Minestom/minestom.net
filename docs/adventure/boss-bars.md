@@ -24,7 +24,7 @@ The `NOTCHED_` variants divide it into 6, 10, 12, or 20 segments:
 
 ## Updating a bar
 
-A `BossBar` is mutable and tracks its viewers. Changes are sent to every current viewer, so the bar does not need to be shown again:
+A `BossBar` is mutable and tracks its viewers. Changes are sent to every current viewer:
 
 ```java
 bar.progress(0.5F);
@@ -42,7 +42,7 @@ bar.addFlag(BossBar.Flag.CREATE_WORLD_FOG);
 
 ## The manager
 
-`MinecraftServer#getBossBarManager()` provides two operations the audience API does not:
+`MinecraftServer#getBossBarManager()` also exposes two operations that are not available on `Audience`:
 
 ```java
 // remove a bar from all of its viewers

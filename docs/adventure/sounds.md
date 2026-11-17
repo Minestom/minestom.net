@@ -68,8 +68,8 @@ SoundEvent custom = SoundEvent.of("minestom:ambient.cave_wind", 16.0F);
 audience.playSound(Sound.sound(custom, Sound.Source.AMBIENT, 1.0F, 1.0F));
 ```
 
-The second argument is a fixed broadcast range in blocks. A vanilla server uses it to decide which players receive the sound; Minestom only serializes the field and does no such filtering, and the client ignores it when computing attenuation. Audible distance comes from the pack's `attenuation_distance` instead.
+The second argument is a fixed broadcast range in blocks. A vanilla server uses it to limit which players receive the sound. The field is serialized but not used for filtering, and the client ignores it when computing attenuation. Audible distance comes from the pack's `attenuation_distance` instead.
 
 ::: warning
-The key must match an entry in the pack's `sounds.json`. A client without the pack plays nothing, logging a line to its own log and showing the player no error.
+The key must match an entry in the pack's `sounds.json`. A client without the pack plays nothing and logs a line, and the player sees no error.
 :::

@@ -72,7 +72,7 @@ dependencies {
 
 :::
 
-Release versions are named after the matching GitHub release. A `net.minestom:testing` artifact is published alongside each release, which provides helpers for integration testing your server.
+Release versions are named after the matching GitHub release. A `net.minestom:testing` artifact is published alongside each release and contains helpers for integration testing your server.
 
 ## Snapshots
 
