@@ -8,11 +8,11 @@ title: Map rendering
 
 Minecraft maps usually hold a 128x128 image representing an aerial view of an area. This is done by saving a 128x128 image inside the map data and rendering it.
 
-The server controls the contents, and an aerial view is not required. Maps can serve as arbitrary 128x128 textures for custom blocks, graphics, and more.
+The thing is... the server decides the contents, and there is no requirement to show an aerial view. This means that maps can serve as arbitrary 128x128 textures which can then be used for custom blocks, graphics and more.
 
 ## Writing map data - Low level API
 
-Map data is not persisted by the server. Sending a `MapDataPacket` through `Player#sendPacket` updates the client. At the most basic level, map framebuffers (the 128x128 pixel area the server draws on) hold the 1-byte indices of colors in a pre-determined color palette, but not RGB.
+Minestom does not save map data for you, but it will send it for you. At the most basic level, map framebuffers (the 128x128 pixel area the server draws on) hold the 1-byte indices of colors in a pre-determined color palette, but not RGB.
 
 A `MapDataPacket` is an immutable record. You build one with the map ID you want to update and a `ColorContent` describing the pixels to write:
 
@@ -71,9 +71,9 @@ The map ID is just an arbitrary `int` you pick to identify the map. Use the same
 
 ## Framebuffers - High level API
 
-While directly writing to the pixel buffer is fast and easy for simple graphics, it is rapidly cumbersome to write each pixel individually. For this reason, a high-level API for rendering onto maps is available through framebuffers.
+While directly writing to the pixel buffer is fast and easy for simple graphics, it is rapidly cumbersome to write each pixel individually. For this reason, Minestom provides framebuffers: a high-level API for rendering onto maps.
 
-Framebuffers are split into 2 categories: `Framebuffer` and `LargeFramebuffer`. The difference is that `Framebuffer` is meant to render to a single map (so resolution limited to 128x128), while `LargeFramebuffer` can render to any framebuffer size, by rendering over multiple maps. A method on `LargeFramebuffer` creates `Framebuffer` views for rendering onto a map.
+Framebuffers are split into 2 categories: `Framebuffer` and `LargeFramebuffer`. The difference is that `Framebuffer` is meant to render to a single map (so resolution limited to 128x128), while `LargeFramebuffer` can render to any framebuffer size, by rendering over multiple maps. Large framebuffers offer a method to create `Framebuffer` views to help with rendering onto a map.
 
 Once you have finished rendering on your framebuffer, you can ask it to prepare the `MapDataPacket` for you by passing the map ID:
 
@@ -105,7 +105,7 @@ fb.set(0, 0, MapColors.DIRT.baseColor());
 
 ### `Graphics2DFramebuffer` / `LargeGraphics2DFramebuffer`
 
-_These framebuffers require a conversion from RGB to MapColors. RGB to MapColors conversion is automatic but can seriously impact rendering performance when the resolution increases._
+_These framebuffers require a conversion from RGB to MapColors. This is done automatically by Minestom but can seriously impact rendering performance when the resolution increases._
 
 As the name suggests, these framebuffers allow usage of the Graphics2D API from the AWT library included in the Java standard library. Access the `Graphics2D` object through `getRenderer()` and render your content on it.
 
@@ -121,4 +121,4 @@ renderer.drawString("Hello from", 0, 10);
 renderer.drawString("Graphics2D!", 0, 20);
 ```
 
-Pixels can also be read and set individually on Graphics2D framebuffers.
+Graphics2D framebuffers also support getting/setting pixels individually if necessary.
